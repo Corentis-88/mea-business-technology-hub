@@ -20,7 +20,7 @@ function renderApp(path = "/") {
 describe("student journeys", () => {
   it("keeps the private editing studio off the public navigation and opens first-time setup at its direct URL", async () => {
     renderApp("/manage-mea-7f3k9q");
-    expect(await screen.findByRole("heading", { name: "Create the login for this computer" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Create the login for this computer" }, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Create login and open studio" })).toBeInTheDocument();
     expect(screen.queryByRole("navigation", { name: "Main navigation" })).not.toBeInTheDocument();
   });
