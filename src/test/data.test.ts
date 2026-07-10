@@ -27,6 +27,12 @@ describe("qualification coverage", () => {
     }
   });
 
+  it("gives every topic at least one explanatory visual", () => {
+    for (const { topic } of allTopics) {
+      expect(topic.sections.some((section) => section.visual || section.visuals?.length || section.image)).toBe(true);
+    }
+  });
+
   it("uses unique topic and quiz identifiers inside each qualification", () => {
     for (const course of courses) {
       const topics = course.units.flatMap((unit) => unit.topics);

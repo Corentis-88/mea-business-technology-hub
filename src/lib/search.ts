@@ -15,7 +15,7 @@ export const searchDocuments: SearchDocument[] = courses.flatMap((course) =>
       topicCode: topic.code,
       title: topic.title,
       summary: topic.summary,
-      keywords: [...topic.keywords, ...topic.sections.flatMap((section) => [section.heading, section.visual?.title ?? ""]), ...course.aliases],
+      keywords: [...topic.keywords, ...topic.sections.flatMap((section) => [section.heading, section.visual?.title ?? "", ...(section.visuals?.map((visual) => visual.title) ?? []), section.image?.caption ?? ""]), ...course.aliases],
       terms: [...topic.keyTerms.flatMap((term) => [term.term, term.definition]), ...topic.sections.flatMap((section) => section.bullets ?? [])],
     })),
   ),

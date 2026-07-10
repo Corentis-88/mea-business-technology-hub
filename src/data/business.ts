@@ -58,27 +58,69 @@ export const businessCourse: Course = {
           keywords: ["entrepreneur", "enterprise", "risk", "reward", "added value", "dynamic market", "USP"],
           sections: [
             {
-              heading: "A dynamic business world",
+              heading: "Change creates business opportunities",
               paragraphs: [
-                "Business ideas change as technology develops, customer wants move on and existing products become obsolete. An entrepreneur spots an unmet need and organises resources to respond.",
+                "Business ideas change as technology develops, customer wants move on and existing products become obsolete. An entrepreneur watches these changes and spots an unmet need.",
                 "Change creates opportunity, but it also creates threats: a successful product today may lose demand when a cheaper, faster or more convenient alternative appears.",
               ],
               visual: {
-                kind: "stakeholder-map",
-                title: "From change to enterprise",
-                caption: "A useful chain for explaining why new enterprises appear.",
-                labels: ["Change", "Customer need", "Business idea", "Resources", "Value"],
+                kind: "process-flow",
+                title: "From change to an opportunity",
+                caption: "A change can reveal an unmet customer need and create an opportunity for a new business idea.",
+                labels: ["Market change", "Unmet need", "New idea", "Opportunity"],
               },
             },
             {
-              heading: "Risk, reward and added value",
+              heading: "Customer needs and enterprise resources",
+              paragraphs: [
+                "Customer needs are the problems or wants that a product or service should meet. Common needs include price, quality, choice and convenience, but research must show which need matters most to a particular customer group.",
+                "An entrepreneur organises resources to meet that need. These include people and skills, finance, materials, equipment and time. A good idea becomes an enterprise only when the resources can be combined into something customers value.",
+              ],
+              image: {
+                src: "images/business/customer-needs-resources-value.png",
+                alt: "A bakery illustration showing customers with different needs, an entrepreneur combining people, ingredients, equipment, money and time, and a finished cake being handed to a satisfied customer.",
+                caption: "Read the scene from left to right: understand what customers value, organise the resources, then create a product they are willing to buy.",
+              },
+              visual: {
+                kind: "concept-web",
+                title: "What customers may need",
+                caption: "Research identifies which need matters most to this customer group; a business should not assume every customer wants the same thing.",
+                labels: ["Customer needs", "Fair price", "Quality", "Choice", "Convenience", "Good service"],
+              },
+              visuals: [{
+                kind: "concept-web",
+                title: "Resources an entrepreneur organises",
+                caption: "A workable enterprise needs the right mix of people, money, materials, equipment and time.",
+                labels: ["Business resources", "People + skills", "Finance", "Materials", "Equipment", "Time"],
+              }],
+            },
+            {
+              heading: "Risk and reward",
               paragraphs: [
                 "Risks include failure, financial loss and insecurity. Rewards include profit, independence, satisfaction and business success.",
+                "Risk is uncertain: taking a larger risk does not guarantee a larger reward. The entrepreneur must compare what may be lost with what may be gained.",
+              ],
+              visual: {
+                kind: "concept-web",
+                title: "Possible risks and rewards",
+                caption: "Starting a business creates possible losses and possible rewards; neither outcome is guaranteed.",
+                labels: ["Risk + reward", "Failure", "Money lost", "Insecurity", "Profit", "Independence", "Satisfaction"],
+              },
+            },
+            {
+              heading: "Creating added value",
+              paragraphs: [
                 "Added value is the difference between the selling price and the cost of bought-in materials. Convenience, branding, quality, design and a unique selling point can persuade customers to pay more.",
               ],
               formula: "Added value = selling price − cost of bought-in materials",
               example:
                 "A bakery sells a decorated cake for £28 using £9 of ingredients. It adds £19 of value through design, skill and convenience.",
+              visual: {
+                kind: "process-flow",
+                title: "How a business creates added value",
+                caption: "Resources and enterprise activity turn bought-in materials into a product that customers are willing to buy at a higher price.",
+                labels: ["Bought-in items", "Skill + design", "Customer benefit", "Selling price", "Added value"],
+              },
             },
           ],
           keyTerms: [
@@ -134,7 +176,7 @@ export const businessCourse: Course = {
                 kind: "research-cycle",
                 title: "Market research cycle",
                 caption: "Research should lead to a decision, not stop at data collection.",
-                labels: ["Aim", "Collect", "Analyse", "Decide", "Review"],
+                labels: ["Set aim", "Collect data", "Analyse", "Decide + review"],
               },
             },
             {
@@ -144,6 +186,12 @@ export const businessCourse: Course = {
                 "Competitor research compares price, quality, location, range and service. A market map plots two features, often price and quality, to reveal crowded positions and possible gaps.",
               ],
               example: "A market-map gap is only an opportunity if research shows enough customers want it and the business can supply it profitably.",
+              visual: {
+                kind: "pitch-journey",
+                title: "From research to a targeted offer",
+                caption: "Evidence identifies a segment, which guides a more suitable marketing mix and customer offer.",
+                labels: ["Research", "Segment", "Target customer", "Marketing mix", "Customer response"],
+              },
             },
           ],
           keyTerms: [
@@ -182,6 +230,12 @@ export const businessCourse: Course = {
                 "Revenue is money earned from sales, while profit is what remains after total costs. Fixed costs do not change directly with output; total variable costs do.",
               ],
               formula: "Revenue = price × quantity; total cost = fixed cost + variable cost; profit = revenue − total cost",
+              visual: {
+                kind: "pitch-journey",
+                title: "From sales to profit or loss",
+                caption: "Price multiplied by quantity gives revenue; total costs are then deducted to find profit or loss.",
+                labels: ["Price × quantity", "Revenue", "Total costs", "Profit or loss"],
+              },
             },
             {
               heading: "Break-even and margin of safety",
@@ -194,7 +248,7 @@ export const businessCourse: Course = {
                 kind: "break-even",
                 title: "Break-even chart",
                 caption: "Break-even is where the total-revenue line crosses total costs; the gap beyond it represents profit.",
-                labels: ["Output", "Costs/revenue", "Fixed costs", "Total costs", "Revenue", "Break-even"],
+                labels: ["Total costs", "Sales revenue", "Break-even"],
                 values: [0, 100, 200, 300],
               },
               example: "Fixed costs of £2,400 and contribution of £6 give break-even output of 400 units.",
@@ -206,7 +260,7 @@ export const businessCourse: Course = {
                 "Short-term finance includes overdraft and trade credit. Longer-term choices include savings, loans, venture capital, share capital, retained profit and crowdfunding. Suitability depends on amount, purpose, duration, cost, risk and control.",
               ],
               formula: "Net cash flow = inflows − outflows; closing balance = opening balance + net cash flow",
-              visual: { kind: "cash-flow", title: "Cash-flow movement", caption: "The closing balance for one period becomes the next period's opening balance.", labels: ["Opening", "+ Inflows", "− Outflows", "Closing"] },
+              visual: { kind: "cash-flow", title: "Cash-flow movement", caption: "Inflows minus outflows give net cash flow; adding this to the opening balance gives the closing balance.", labels: ["Cash inflows", "Cash outflows", "Net cash flow", "Closing balance"] },
             },
           ],
           keyTerms: [
@@ -240,6 +294,12 @@ export const businessCourse: Course = {
                 "Sole traders and partnerships are simple and offer control but normally have unlimited liability. A private limited company has a separate legal identity and limited liability, but faces more administration and shared ownership.",
                 "A franchisee buys the right to trade under an established brand and system. Support and recognition reduce some risk, while fees and rules limit independence.",
               ],
+              visual: {
+                kind: "stakeholder-map",
+                title: "What shapes an ownership decision",
+                caption: "Choose a form of ownership by comparing control, liability, finance and administration, not by name alone.",
+                labels: ["Sole trader", "Partnership", "Ltd company", "Control", "Liability", "Finance"],
+              },
             },
             {
               heading: "Location and the four Ps",
@@ -255,6 +315,12 @@ export const businessCourse: Course = {
                 "A business plan records the idea, objectives, research, marketing, location, people and finances. It can coordinate action, measure progress and support a finance application.",
                 "A plan reduces uncertainty rather than removing it. Forecasts may be biased or outdated, and unexpected competitors, costs or economic change can make assumptions wrong.",
               ],
+              visual: {
+                kind: "plan-create-review",
+                title: "A business plan is used and reviewed",
+                caption: "Research informs the plan; action produces results that can be checked against objectives and used to update it.",
+                labels: ["Research", "Plan", "Act", "Review"],
+              },
             },
           ],
           keyTerms: [
@@ -292,6 +358,12 @@ export const businessCourse: Course = {
                 "E-commerce, social media, digital communication and electronic payment can expand reach and improve productivity, but bring investment, training, security and competitive pressures.",
                 "Consumer, employment and health-and-safety law can raise compliance costs while protecting people and strengthening trust. The effect depends on the required change and the business's resources.",
               ],
+              visual: {
+                kind: "stakeholder-map",
+                title: "Technology and law around a business",
+                caption: "Technology creates opportunities, while different laws shape how the business treats data, employees and customers.",
+                labels: ["Technology", "Data law", "Employment", "Equality", "Safety", "Consumers"],
+              },
             },
             {
               heading: "The economy",
@@ -299,6 +371,12 @@ export const businessCourse: Course = {
                 "Income and unemployment influence demand. Inflation changes prices and costs. Interest rates affect borrowing and saving. Taxation affects costs and disposable income.",
                 "Exchange-rate movements change import costs and export prices. Businesses cannot control the economy, but can alter suppliers, prices, finance and product positioning in response.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "How an economic change reaches a business",
+                caption: "An economic change affects costs or customer spending before it changes business revenue, profit or decisions.",
+                labels: ["Economic change", "Costs or spending", "Demand", "Revenue + profit", "Business response"],
+              },
             },
           ],
           keyTerms: [
@@ -341,6 +419,12 @@ export const businessCourse: Course = {
                 "Organic growth comes from the business's own activity, such as new products or markets. Inorganic growth occurs through merger or takeover and may be faster but creates integration risks.",
                 "Economies of scale lower average cost as output grows through purchasing, technical, financial or managerial advantages. Diseconomies can arise when communication, coordination and motivation weaken.",
               ],
+              visual: {
+                kind: "stakeholder-map",
+                title: "Routes to business growth",
+                caption: "A business can grow internally or use external routes; each changes speed, cost, control and risk.",
+                labels: ["New outlets", "New products", "Franchise", "Merger", "Takeover", "Integration"],
+              },
             },
             {
               heading: "Changing objectives and finance",
@@ -348,6 +432,12 @@ export const businessCourse: Course = {
                 "Growth can shift objectives towards market share, profit, shareholder returns or international reach. A public limited company can sell shares publicly but faces scrutiny and possible loss of control.",
                 "Finance choices include retained profit, loans and share capital. The right option depends on scale, cost, risk and owners' willingness to share control.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "Growth changes objectives and finance",
+                caption: "A new stage of growth can change objectives, which changes the amount and type of finance required.",
+                labels: ["Growth stage", "New objective", "Finance needed", "Funding choice", "Effect on control"],
+              },
             },
             {
               heading: "Globalisation, ethics and environment",
@@ -389,7 +479,7 @@ export const businessCourse: Course = {
                 "The design mix balances function, aesthetics and cost. Differentiation and added value help a product stand out.",
                 "The product life cycle moves through development, introduction, growth, maturity and decline. Advertising, redesign, new uses or new markets can extend sales, but cannot guarantee renewed demand.",
               ],
-              visual: { kind: "product-life-cycle", title: "Product life cycle", caption: "Sales commonly rise and later decline; extension strategies aim to delay decline or create renewed growth.", labels: ["Development", "Introduction", "Growth", "Maturity", "Decline", "Extension"] },
+              visual: { kind: "product-life-cycle", title: "Product life cycle", caption: "Sales commonly rise from introduction to growth, level during maturity and then decline; an extension strategy aims to delay that decline.", labels: ["Introduction", "Growth", "Maturity", "Decline"] },
             },
             {
               heading: "Price and promotion",
@@ -397,6 +487,12 @@ export const businessCourse: Course = {
                 "Cost-plus adds a mark-up; competitive pricing follows rivals; penetration starts low to build sales; skimming starts high for a distinctive new product; promotional pricing is temporarily reduced.",
                 "Advertising, sponsorship, trials, special offers and branding should fit the audience, objective, budget and product. Digital promotion can target and measure response but also competes for attention.",
               ],
+              visual: {
+                kind: "stakeholder-map",
+                title: "Pricing and promotion choices",
+                caption: "The business chooses methods that fit its product, audience, objective, competitors and budget.",
+                labels: ["Cost-plus", "Competitive", "Penetration", "Skimming", "Advertising", "Sales offers"],
+              },
             },
             {
               heading: "Place and integration",
@@ -434,6 +530,12 @@ export const businessCourse: Course = {
                 "Job production creates one customised item; batch produces groups; flow uses continuous standardised stages. The choice trades flexibility against speed, consistency and unit cost.",
                 "Technology may improve precision and productivity, but needs investment, maintenance and training and may reduce flexibility or employment.",
               ],
+              visual: {
+                kind: "stakeholder-map",
+                title: "Choosing a production method",
+                caption: "Job, batch and flow production create different trade-offs between volume, variety and unit cost.",
+                labels: ["Job", "Batch", "Flow", "Volume", "Variety", "Unit cost"],
+              },
             },
             {
               heading: "Suppliers, stock and logistics",
@@ -441,6 +543,12 @@ export const businessCourse: Course = {
                 "Supplier choice considers price, quality, reliability, capacity, trust and location. Procurement obtains inputs; logistics moves and stores them.",
                 "Just in time keeps little inventory and lowers storage cost, but disruption can stop production. Buffer stock protects continuity but ties up cash and risks waste or obsolescence.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "The supply chain into production",
+                caption: "Procurement chooses inputs, logistics delivers them and stock policy affects whether production can continue smoothly.",
+                labels: ["Procurement", "Supplier", "Delivery", "Stock", "Production"],
+              },
             },
             {
               heading: "Quality and sales",
@@ -448,6 +556,12 @@ export const businessCourse: Course = {
                 "Quality control inspects output, often after production. Quality assurance designs quality into every process and makes all employees responsible.",
                 "Product knowledge, efficient service, engagement, feedback and after-sales support influence satisfaction, repeat purchase, reputation and revenue.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "From quality to business performance",
+                caption: "Preventing faults and serving customers well can improve satisfaction, repeat purchases, reputation and revenue.",
+                labels: ["Quality process", "Fewer faults", "Satisfaction", "Repeat purchase", "Revenue"],
+              },
             },
           ],
           keyTerms: [
@@ -480,7 +594,7 @@ export const businessCourse: Course = {
                 "Gross profit shows what remains after cost of sales. Net profit deducts other operating expenses and interest. Margins express profit as a percentage of revenue, allowing fairer comparison across years or businesses of different sizes.",
               ],
               formula: "Gross profit = revenue − cost of sales; net profit = gross profit − other operating expenses and interest",
-              visual: { kind: "cash-flow", title: "From revenue to net profit", caption: "Profit is reduced in stages as the costs of selling and operating the business are deducted.", labels: ["Revenue", "− Cost of sales", "Gross profit", "− Expenses/interest", "Net profit"] },
+              visual: { kind: "pitch-journey", title: "From revenue to net profit", caption: "Cost of sales is deducted to find gross profit; other operating expenses and interest are then deducted to find net profit.", labels: ["Revenue", "− Cost of sales", "Gross profit", "− Other expenses", "Net profit"] },
             },
             {
               heading: "Percentages and investment",
@@ -488,6 +602,12 @@ export const businessCourse: Course = {
                 "Gross and net profit margins show how much profit is generated for every £1 of revenue. Average rate of return estimates annual profit as a percentage of an investment's cost.",
               ],
               formula: "Gross/net profit margin = relevant profit ÷ revenue × 100; ARR = average annual profit ÷ investment cost × 100",
+              visual: {
+                kind: "pitch-journey",
+                title: "Turn a profit figure into a percentage",
+                caption: "Choose the relevant profit, divide by revenue or investment cost, multiply by 100 and interpret the percentage.",
+                labels: ["Profit figure", "Divide", "× 100", "Percentage", "Interpret"],
+              },
             },
             {
               heading: "Interpreting performance",
@@ -495,6 +615,12 @@ export const businessCourse: Course = {
                 "A calculation is evidence, not a decision by itself. Compare over time, against objectives or competitors, then investigate causes such as prices, costs, product mix and one-off events.",
                 "Quantitative data may be historic, incomplete or distorted. Qualitative evidence about quality, employees, customer response and future risk may change the judgement.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "From calculation to a supported judgement",
+                caption: "A result becomes useful when it is compared, explained and combined with qualitative evidence before a decision is made.",
+                labels: ["Calculate", "Compare", "Find causes", "Add context", "Judge"],
+              },
             },
           ],
           keyTerms: [
@@ -523,6 +649,12 @@ export const businessCourse: Course = {
                 "Tall hierarchies have more layers and often narrower spans; flat structures have fewer layers and often wider spans. Centralisation keeps decisions near senior leaders, while decentralisation gives lower levels or locations more authority.",
                 "Delegation can speed local decisions and motivate employees, but needs capable staff, clear accountability and appropriate control.",
               ],
+              visual: {
+                kind: "stakeholder-map",
+                title: "How organisation structure fits together",
+                caption: "Layers, span, chain of command, delegation and decision location shape communication and control.",
+                labels: ["Layers", "Span", "Command chain", "Delegation", "Centralised", "Decentralised"],
+              },
             },
             {
               heading: "Recruitment and training",
@@ -530,6 +662,12 @@ export const businessCourse: Course = {
                 "Job analysis informs a job description and person specification. Internal recruitment uses existing employees; external recruitment widens the pool and can bring new ideas.",
                 "Induction introduces the organisation. On-the-job training is practical and contextual; off-the-job training can provide specialist expertise away from daily pressures.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "Recruitment into training",
+                caption: "Job analysis defines the role and ideal applicant before selection, induction and further training.",
+                labels: ["Job analysis", "Role documents", "Recruit + select", "Induction", "Training"],
+              },
             },
             {
               heading: "Motivation",
@@ -537,7 +675,7 @@ export const businessCourse: Course = {
                 "Financial methods include pay, bonus, commission and promotion. Non-financial methods include rotation, enrichment, autonomy and development.",
                 "The most effective method depends on the role and person. Motivation can improve productivity, quality, retention and customer service, but incentives must reward the desired behaviour.",
               ],
-              visual: { kind: "stakeholder-map", title: "People-performance chain", caption: "HR choices influence employee behaviour and then operational and customer outcomes.", labels: ["Recruit", "Train", "Motivate", "Perform", "Customer", "Business result"] },
+              visual: { kind: "pitch-journey", title: "People-performance chain", caption: "A suitable motivation method can change employee behaviour, which affects customers and business performance.", labels: ["Motivation", "Employee effort", "Productivity", "Customer service", "Business result"] },
             },
           ],
           keyTerms: [

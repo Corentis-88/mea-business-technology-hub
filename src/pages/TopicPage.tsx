@@ -28,7 +28,10 @@ export function TopicPage() {
 
   if (!course || !found) return <NotFoundPage />;
   const { unit, topic } = found;
-  const visuals = topic.sections.filter((section) => section.visual);
+  const visualIndex = topic.sections.flatMap((section) => {
+    const items = section.visual ? [section.visual, ...(section.visuals ?? [])] : (section.visuals ?? []);
+    return items.map((visual) => ({ section: section.heading, visual }));
+  });
   const tabOrder: Tab[] = course.id === "enterprise" ? ["learn", "simple", "map", "remember", "practice", "exam"] : ["learn", "map", "remember", "practice", "exam"];
   const tabProps = (value: Tab) => ({ id: `topic-tab-${value}`, "aria-controls": `topic-panel-${value}`, "aria-selected": tab === value, tabIndex: tab === value ? 0 : -1 });
   const moveBetweenTabs = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -56,7 +59,19 @@ export function TopicPage() {
         <button role="tab" {...tabProps("exam")} onClick={() => setTab("exam")}><FileQuestion />Exam</button>
       </div></div>
       <div className="page-section topic-content" id={`topic-panel-${tab}`} role="tabpanel" aria-labelledby={`topic-tab-${tab}`}>
-        {tab === "learn" && <div className="learn-layout"><div className="article-content">{topic.sections.map((section, index) => <section id={topicSectionAnchor(topic, index)} key={`${section.heading}-${index}`}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}{section.formula && <div className="formula-card"><span>Formula</span><strong>{section.formula}</strong></div>}{section.example && <div className="example-callout"><Lightbulb /><div><strong>Worked example</strong><p>{section.example}</p></div></div>}{section.visual && <LearningVisual spec={section.visual} />}</section>)}</div><aside className="topic-sidebar"><div className="sidebar-panel vocabulary-panel"><span className="eyebrow">Key vocabulary</span><p className="vocabulary-panel__hint">Choose a term to jump straight to the explanation.</p><dl>{topic.keyTerms.map((term) => <div key={term.term}><dt><a href={`#${anchorForTerm(topic, term)}`}>{term.term}<ArrowDownRight size={15} /></a></dt><dd>{term.definition}</dd></div>)}</dl></div>{visuals.length > 0 && <div className="sidebar-panel visual-index"><span className="eyebrow">Visuals in this guide</span>{visuals.map((section) => <span key={section.heading}><CheckCircle2 size={15} />{section.visual!.title}</span>)}</div>}</aside></div>}
+        {tab === "learn" && <div className="learn-layout">
+          <div className="article-content">{topic.sections.map((section, index) => <section id={topicSectionAnchor(topic, index)} key={`${section.heading}-${index}`}>
+            <h2>{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
+            {section.formula && <div className="formula-card"><span>Formula</span><strong>{section.formula}</strong></div>}
+            {section.example && <div className="example-callout"><Lightbulb /><div><strong>Worked example</strong><p>{section.example}</p></div></div>}
+            {section.image && <figure className="topic-illustration"><img src={`${import.meta.env.BASE_URL}${section.image.src}`} alt={section.image.alt} loading="lazy" /><figcaption>{section.image.caption}</figcaption></figure>}
+            {section.visual && <LearningVisual spec={section.visual} />}
+            {section.visuals?.map((visual) => <LearningVisual key={`${section.heading}-${visual.title}`} spec={visual} />)}
+          </section>)}</div>
+          <aside className="topic-sidebar"><div className="sidebar-panel vocabulary-panel"><span className="eyebrow">Key vocabulary</span><p className="vocabulary-panel__hint">Choose a term to jump straight to the explanation.</p><dl>{topic.keyTerms.map((term) => <div key={term.term}><dt><a href={`#${anchorForTerm(topic, term)}`}>{term.term}<ArrowDownRight size={15} /></a></dt><dd>{term.definition}</dd></div>)}</dl></div>{visualIndex.length > 0 && <div className="sidebar-panel visual-index"><span className="eyebrow">Visuals in this guide</span>{visualIndex.map(({ section, visual }) => <span key={`${section}-${visual.title}`}><CheckCircle2 size={15} />{visual.title}</span>)}</div>}</aside>
+        </div>}
         {tab === "simple" && course.id === "enterprise" && <EnterpriseSimpleMode topic={topic} />}
         {tab === "map" && <section><div className="section-heading"><div><span className="eyebrow">Completed overview</span><h2>See the whole topic at once</h2></div><p>Open any high-level box to reveal the detail and follow its link back into the lesson.</p></div><ConceptMap topic={topic} courseSlug={course.slug} unitId={unit.id} /></section>}
         {tab === "remember" && <div className="remember-layout"><section><span className="eyebrow">Active recall</span><h2>Can you explain these without looking?</h2><div className="flashcard-grid">{topic.keyTerms.map((term) => <details key={term.term}><summary>{term.term}<span>Reveal</span></summary><p>{term.definition}</p></details>)}</div></section><Quiz questions={topic.quiz} courseId={course.id} topicId={topic.id} /></div>}

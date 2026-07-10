@@ -61,6 +61,7 @@ export const enterpriseCourse: Course = {
                 "Potential rewards include financial return, independence, self-satisfaction and making a desired change. Drawbacks include financial loss, insecurity, stress, reduced wellbeing and work-life imbalance.",
                 "Risk does not guarantee reward. The size, probability and personal impact of an outcome depend on the decision and the entrepreneur's circumstances.",
               ],
+              visual: { kind: "pitch-journey", title: "Risk is a decision chain", caption: "Evidence informs a decision, but the action can still lead to a gain, a loss or useful learning.", labels: ["Evidence", "Decision", "Action", "Uncertain outcome", "Reward or learning"] },
             },
           ],
           keyTerms: [
@@ -100,6 +101,7 @@ export const enterpriseCourse: Course = {
                 "Quantitative data measures how many, how much or how often. Qualitative data explains views, preferences and reasons. Reliability depends on relevance, currency, sample, bias, question design and source credibility.",
                 "Segments may use age, gender, occupation, income, location or lifestyle. A useful profile changes a decision; it must not be an unsupported stereotype.",
               ],
+              visual: { kind: "stakeholder-map", title: "A market contains different customer groups", caption: "Segmentation organises customers into useful groups, but research must show which characteristics actually affect demand.", labels: ["Age group", "Income band", "Location", "Occupation", "Lifestyle", "Customer need"] },
               example: "'Online' is a delivery channel, not a research method. An online questionnaire is still a questionnaire.",
             },
           ],
@@ -232,6 +234,7 @@ export const enterpriseCourse: Course = {
                 "Personal savings and family funding may be flexible but expose personal relationships or money. Loans need repayment and interest. Crowdfunding tests public interest but may not reach its target.",
                 "Grants usually do not need repayment but have eligibility conditions. Business angels invest money and expertise in return for a stake or influence.",
               ],
+              visual: { kind: "stakeholder-map", title: "Funding routes around an enterprise", caption: "Each source offers a different mix of cost, control, eligibility, repayment and expertise.", labels: ["Owner/family", "Bank", "Grant provider", "Crowd", "Business angel", "Franchisor"] },
             },
             {
               heading: "Sources of support",
@@ -332,7 +335,7 @@ export const enterpriseCourse: Course = {
           summary: "Use realistic numbers to work out possible results. Decide whether sales may cover the costs.",
           keywords: ["cost", "selling price", "sales forecast", "revenue", "profit", "break-even", "viability", "assumption"],
           sections: [
-            { heading: "Numbers with an evidence trail", paragraphs: ["Use research and the proposal to justify costs, price and sales assumptions. Calculate total cost, revenue, profit or loss and break-even accurately.", "Interpret the results: compare expected sales with break-even, test sensitivity to lower demand or higher cost and explain what would need to change."], formula: "Profit = (price × sales) − total costs; break-even = fixed costs ÷ contribution per unit", visual: { kind: "break-even", title: "Viability is a judgement", caption: "A low break-even helps, but the expected market and cash timing still matter.", labels: ["Evidence", "Assumptions", "Calculation", "Sensitivity", "Decision"] } },
+            { heading: "Numbers with an evidence trail", paragraphs: ["Use research and the proposal to justify costs, price and sales assumptions. Calculate total cost, revenue, profit or loss and break-even accurately.", "Interpret the results: compare expected sales with break-even, test sensitivity to lower demand or higher cost and explain what would need to change."], formula: "Profit = (price × sales) − total costs; break-even = fixed costs ÷ contribution per unit", visual: { kind: "break-even", title: "Viability is a judgement", caption: "The intersection is the minimum sales target; forecast demand and sensitivity testing decide how safe that target is.", labels: ["Total cost", "Sales revenue", "Break-even"] } },
             { heading: "Fictional skills lab", paragraphs: ["Use a supplied BrightBite cost table and three demand scenarios to test viability and recommend a maximum cost or minimum sales target."], bullets: integrityRules },
           ],
           keyTerms: [{ term: "Sales forecast", definition: "An evidence-based estimate of future sales." }, { term: "Viability", definition: "Whether the proposal can generate enough money to operate and meet objectives." }, { term: "Sensitivity", definition: "How much the result changes when an assumption changes." }],
@@ -347,7 +350,7 @@ export const enterpriseCourse: Course = {
           summary: "Find the biggest outside risks, plan affordable responses and judge whether the proposal may succeed.",
           keywords: ["risk", "political", "economic", "social", "technological", "legal", "environmental", "mitigation"],
           sections: [
-            { heading: "Risk, impact and response", paragraphs: ["Scan political, economic, social, technological, legal and environmental changes, then select only those that genuinely affect the proposal.", "For each major risk, explain likelihood, impact and a proportionate mitigation. Judge likely success by combining research, customer fit, design, finance and remaining risk."], visual: { kind: "stakeholder-map", title: "Risk assessment", caption: "Prioritise by likelihood and impact, then reduce exposure with a realistic response.", labels: ["Risk", "Likelihood", "Impact", "Mitigation", "Residual risk"] } },
+            { heading: "Risk, impact and response", paragraphs: ["Scan political, economic, social, technological, legal and environmental changes, then select only those that genuinely affect the proposal.", "For each major risk, explain likelihood, impact and a proportionate mitigation. Judge likely success by combining research, customer fit, design, finance and remaining risk."], visual: { kind: "pitch-journey", title: "From risk to residual risk", caption: "Estimate likelihood and impact before choosing a proportionate response, then judge what exposure remains.", labels: ["Risk", "Likelihood", "Impact", "Mitigation", "Residual risk"] } },
             { heading: "Fictional skills lab", paragraphs: ["Rank six external changes for BrightBite, justify the top two and propose a response that is affordable for a small enterprise."], bullets: integrityRules },
           ],
           keyTerms: [{ term: "External risk", definition: "A possible harmful event or change arising outside the enterprise." }, { term: "Mitigation", definition: "Action taken to reduce the likelihood or impact of a risk." }, { term: "Residual risk", definition: "The risk remaining after mitigation." }],
@@ -372,7 +375,7 @@ export const enterpriseCourse: Course = {
           summary: "Create a clear brand that suits the proposal, customer and market.",
           keywords: ["brand personality", "brand identity", "brand image", "USP", "competitor", "positioning"],
           sections: [
-            { heading: "Personality, identity and image", paragraphs: ["Brand personality is the human character a brand communicates. Brand identity is what the enterprise deliberately creates—such as name, logo, colour, type and tone. Brand image is how audiences actually perceive it.", "Use competitor strengths and weaknesses to define a credible unique selling point and position. Check that every visual and verbal choice fits the customer and external environment."], visual: { kind: "brand-board", title: "A coherent brand", caption: "Identity expresses a chosen personality so the intended audience forms the desired image.", labels: ["Research", "Personality", "Identity", "Touchpoints", "Audience image"] } },
+            { heading: "Personality, identity and image", paragraphs: ["Brand personality is the human character a brand communicates. Brand identity is what the enterprise deliberately creates—such as name, logo, colour, type and tone. Brand image is how audiences actually perceive it.", "Use competitor strengths and weaknesses to define a credible unique selling point and position. Check that every visual and verbal choice fits the customer and external environment."], visual: { kind: "brand-board", title: "A coherent brand identity", caption: "Logo, colour, type, imagery and tone should express one personality so the audience forms the intended image.", labels: ["Logo", "Colour palette", "Typography", "Imagery", "Tone of voice"] } },
             { heading: "Fictional skills lab", paragraphs: ["Create a small brand board for BrightBite with an explained personality, USP, name, colour palette and tone of voice."], bullets: integrityRules },
           ],
           keyTerms: [{ term: "Brand personality", definition: "Human characteristics associated with a brand." }, { term: "Brand identity", definition: "The deliberate visual and verbal elements used to present a brand." }, { term: "Brand image", definition: "The audience's actual perception of the brand." }, { term: "Unique selling point", definition: "A meaningful feature or benefit that distinguishes the offer." }],
@@ -387,7 +390,7 @@ export const enterpriseCourse: Course = {
           summary: "Set a campaign aim and a number to measure it. Create one digital and one non-digital item.",
           keywords: ["campaign objective", "KPI", "timeframe", "digital promotion", "non-digital promotion", "coherence", "call to action"],
           sections: [
-            { heading: "Campaign logic", paragraphs: ["A campaign needs a precise objective, measurable key performance indicator and appropriate timeframe. Current practice uses two coherent materials: one digital and one non-digital.", "Materials should share brand identity, message, offer and call to action while using each channel's strengths. Explain how the combination reaches and persuades the customer."], visual: { kind: "marketing-mix", title: "Coherent campaign", caption: "Objective and customer guide both materials; a KPI checks whether the combined campaign worked.", labels: ["Objective", "Customer", "Digital", "Non-digital", "Call to action", "KPI"] } },
+            { heading: "Campaign logic", paragraphs: ["A campaign needs a precise objective, measurable key performance indicator and appropriate timeframe. Current practice uses two coherent materials: one digital and one non-digital.", "Materials should share brand identity, message, offer and call to action while using each channel's strengths. Explain how the combination reaches and persuades the customer."], visual: { kind: "marketing-mix", title: "One customer, one coherent campaign", caption: "Digital and non-digital materials should reinforce the same message and action; the objective and KPI judge the combined result.", labels: ["Digital material", "Non-digital material", "Shared message", "Call to action"] } },
             { heading: "Fictional skills lab", paragraphs: ["Design rough concepts for a BrightBite social post and poster, then annotate their shared message and different channel roles."], bullets: integrityRules },
           ],
           keyTerms: [{ term: "Campaign objective", definition: "The specific result promotional activity aims to achieve." }, { term: "KPI", definition: "A measurable indicator used to judge progress towards an objective." }, { term: "Call to action", definition: "A clear instruction telling the audience what to do next." }, { term: "Coherence", definition: "Consistent elements that make materials work as one campaign." }],

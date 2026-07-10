@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import App from "../App";
 import { BLTBuilder } from "../components/BLTBuilder";
+import businessCourse from "../data/business";
 import enterpriseCourse from "../data/enterprise";
 import { enterpriseSimpleGuides, enterpriseSimpleVisuals } from "../data/enterpriseSimple";
 import { practiceCases } from "../data/extendedWriting";
@@ -93,6 +94,14 @@ describe("Enterprise easier-reading coverage", () => {
       expect(guide!.sections.every((section) => section.explanation.length > 0)).toBe(true);
       expect(topic.sections.every((section) => enterpriseSimpleVisuals[`${topic.id}:${section.heading}`])).toBe(true);
     }
+  });
+});
+
+describe("Business visual coverage", () => {
+  it("provides a purposeful visual for every Pearson Business topic section", () => {
+    const sections = businessCourse.units.flatMap((unit) => unit.topics.flatMap((topic) => topic.sections));
+    expect(sections).toHaveLength(30);
+    expect(sections.every((section) => section.visual)).toBe(true);
   });
 });
 

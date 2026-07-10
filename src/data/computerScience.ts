@@ -191,8 +191,8 @@ export const computerScienceCourse: Course = {
                 kind: "binary-place-value",
                 title: "Eight-bit place values",
                 caption: "Add the place values containing a 1 to convert binary to denary.",
-                labels: ["128", "64", "32", "16", "8", "4", "2", "1"],
-                values: [1, 0, 1, 1, 0, 1, 0, 1],
+                labels: ["1", "0", "1", "1", "0", "1", "0", "1"],
+                values: [128, 64, 32, 16, 8, 4, 2, 1],
               },
             },
             {
@@ -208,10 +208,10 @@ export const computerScienceCourse: Course = {
               ],
               formula: "image bits = width × height × colour depth",
               visual: {
-                kind: "data-size",
-                title: "What increases file size?",
-                caption: "More samples, pixels or bits usually store more detail and require more space.",
-                labels: ["Dimensions", "Colour/bit depth", "Sample rate", "Duration"],
+                kind: "pitch-journey",
+                title: "Calculate a media file size",
+                caption: "Choose the values for the media type, multiply to get bits, then convert the unit requested.",
+                labels: ["Choose values", "Multiply", "Total bits", "Divide by 8", "Bytes"],
               },
             },
             {
@@ -294,9 +294,9 @@ export const computerScienceCourse: Course = {
               ],
               visual: {
                 kind: "network-topology",
-                title: "Star and mesh topologies",
-                caption: "A star uses a central device; a mesh offers multiple possible routes.",
-                labels: ["Client", "Switch", "Server", "Alternative route"],
+                title: "A star topology",
+                caption: "Each device has its own connection to the central switch, so one broken cable normally affects one device.",
+                labels: ["Switch", "Client", "Server", "Printer", "WAP"],
               },
             },
             {
@@ -305,6 +305,12 @@ export const computerScienceCourse: Course = {
                 "A switch forwards frames within a LAN, a router moves packets between networks, a wireless access point connects wireless devices and a NIC provides a device's network interface.",
                 "IP addresses identify network locations and may change; MAC addresses identify network interfaces. DNS translates domain names into IP addresses. Hosting stores website resources on a server, while cloud services provide remote storage or processing.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "From a domain name to a web server",
+                caption: "DNS returns the IP address; routers then forward packets towards the server at that address.",
+                labels: ["Domain name", "DNS lookup", "IP address", "Router", "Web server"],
+              },
             },
             {
               heading: "Protocols and layers",
@@ -340,7 +346,7 @@ export const computerScienceCourse: Course = {
             {
               heading: "Threats",
               paragraphs: ["Attackers may exploit software, people or network traffic. Malware performs unwanted actions; social engineering manipulates people; brute force repeatedly guesses credentials; DoS overwhelms a service; interception captures data; SQL injection places malicious database commands into an input."],
-              visual: { kind: "security-layers", title: "Threat → control → effect", caption: "Select a control that addresses the named route of attack, then explain its effect.", labels: ["Threat", "Prevent", "Detect", "Limit damage"] },
+              visual: { kind: "security-layers", title: "Security works in layers", caption: "Different controls protect against different attack routes; one control cannot stop every threat.", labels: ["Physical", "Firewall", "Access control", "Encryption", "Protected data"] },
             },
             {
               heading: "Prevention",
@@ -375,7 +381,7 @@ export const computerScienceCourse: Course = {
               heading: "Operating-system functions",
               paragraphs: ["The operating system provides a user interface and manages memory, multitasking, peripherals, users and files. A device driver lets the operating system communicate with a particular hardware device."],
               bullets: ["Memory management allocates and frees RAM.", "Multitasking shares processor time among running processes.", "User management controls accounts and permissions.", "File management organises, names, moves and protects files."],
-              visual: { kind: "plan-create-review", title: "User → operating system → hardware", caption: "The OS coordinates applications and hardware resources.", labels: ["User", "Application", "Operating system", "Hardware"] },
+              visual: { kind: "pitch-journey", title: "User → operating system → hardware", caption: "The operating system provides services between applications and the computer's hardware.", labels: ["User", "Application", "Operating system", "Driver", "Hardware"] },
             },
             {
               heading: "Utilities",
@@ -452,16 +458,18 @@ export const computerScienceCourse: Course = {
             {
               heading: "Computational thinking and design",
               paragraphs: ["Abstraction keeps relevant detail and removes distraction. Decomposition breaks a problem into manageable parts. Algorithmic thinking creates a precise sequence of steps. Represent algorithms using clear pseudocode, OCR Exam Reference Language, flowcharts or suitable diagrams."],
-              visual: { kind: "algorithm-flow", title: "Input → process → decision → output", caption: "Trace arrows carefully and record how variables change at each step.", labels: ["Input", "Process", "Decision", "Loop", "Output"] },
+              visual: { kind: "algorithm-flow", title: "A decision has two possible paths", caption: "Follow the arrows from Start and use the condition to choose the Yes or No path.", labels: ["Start", "Input mark", "mark ≥ 40?", "Display pass", "Display retry", "End"] },
             },
             {
               heading: "Tracing and comparing",
               paragraphs: ["Dry-run an algorithm using a trace table. Record values only when they change and follow selection and loop boundaries exactly. Compare algorithms using correctness, number of steps, memory needs and suitability for the data."],
+              visual: { kind: "plan-create-review", title: "Trace one instruction at a time", caption: "Read the next instruction, update any value, record the change, then repeat until the algorithm ends.", labels: ["Read line", "Update value", "Record change", "Next line"] },
             },
             {
               heading: "Searching and sorting",
               paragraphs: ["Linear search checks items in order and works on unsorted data. Binary search repeatedly halves a sorted search area. Bubble sort swaps adjacent out-of-order items; insertion sort inserts each item into the sorted portion; merge sort splits, sorts and merges lists."],
               example: "Binary search for 42 in [4, 12, 19, 42, 57] checks the middle 19, discards the lower half, then checks 42.",
+              visual: { kind: "pitch-journey", title: "Binary search keeps halving the search area", caption: "The list must be sorted. Compare with the middle item and discard the half that cannot contain the target.", labels: ["Sorted list", "Check middle", "Compare", "Discard half", "Repeat or found"] },
             },
           ],
           keyTerms: [
@@ -490,7 +498,7 @@ export const computerScienceCourse: Course = {
             {
               heading: "Data and control",
               paragraphs: ["Variables hold values that may change; constants are named values intended not to change. Choose suitable data types and use arithmetic, comparison and Boolean operators. Programs combine sequence, selection and iteration."],
-              visual: { kind: "algorithm-flow", title: "Sequence, selection and iteration", caption: "Most programs combine ordered steps, decisions and repetition.", labels: ["Sequence", "IF decision", "Loop", "Output"] },
+              visual: { kind: "algorithm-flow", title: "Selection chooses which code runs", caption: "The Boolean condition sends execution down one of two paths before the program continues.", labels: ["Start", "Input mark", "mark ≥ 40?", "Display pass", "Display retry", "End"] },
             },
             {
               heading: "Collections and reusable code",
@@ -500,6 +508,7 @@ export const computerScienceCourse: Course = {
               heading: "Files, random values and SQL",
               paragraphs: ["File handling preserves data after a program ends. Random generation supports simulations and games. GCSE SQL retrieves selected fields using SELECT, FROM and WHERE conditions."],
               example: "SELECT Name FROM Players WHERE Score > 100",
+              visual: { kind: "pitch-journey", title: "Read an SQL query in order", caption: "SELECT chooses fields, FROM names the table and WHERE keeps only records that match the condition.", labels: ["SELECT fields", "FROM table", "WHERE condition", "Matching records"] },
             },
           ],
           keyTerms: [
@@ -563,12 +572,13 @@ export const computerScienceCourse: Course = {
             {
               heading: "Gates and truth tables",
               paragraphs: ["AND outputs 1 only when both inputs are 1. OR outputs 1 when at least one input is 1. NOT reverses its input. Combined expressions are best solved one gate or bracket at a time."],
-              visual: { kind: "boolean-logic", title: "AND, OR and NOT", caption: "Trace intermediate outputs before finding the final output.", labels: ["A", "B", "A AND B", "A OR B", "NOT A"] },
+              visual: { kind: "boolean-logic", title: "AND, OR and NOT", caption: "Use every input combination, and calculate intermediate outputs before the final output.", labels: ["A", "B", "AND", "OR", "NOT"] },
             },
             {
               heading: "Moving between representations",
               paragraphs: ["You may need to create a truth table from an expression, label an output from a circuit, or draw a circuit from a description. Preserve brackets and follow the connection order."],
               example: "For NOT(A AND B), calculate A AND B first, then reverse that intermediate output.",
+              visual: { kind: "pitch-journey", title: "Keep the same logic in every form", caption: "Brackets and wire connections determine which operation happens first when moving between a description, expression, circuit and truth table.", labels: ["Description", "Expression", "Gate order", "Circuit", "Truth table"] },
             },
           ],
           keyTerms: [
@@ -596,7 +606,7 @@ export const computerScienceCourse: Course = {
             {
               heading: "Language levels and translation",
               paragraphs: ["High-level languages are designed for human readability and portability. Low-level languages give closer hardware control but are harder for people to write. A translator converts source code because the processor executes machine code."],
-              visual: { kind: "algorithm-flow", title: "Source code → translator → machine code", caption: "Compilers translate a program as a whole; interpreters translate and execute step by step.", labels: ["Source", "Compiler/interpreter", "Machine instructions", "Run"] },
+              visual: { kind: "pitch-journey", title: "Source code → translator → machine code", caption: "A translator converts human-written source code into instructions the processor can execute.", labels: ["Source code", "Translator", "Machine code", "Processor runs it"] },
             },
             {
               heading: "Compiler, interpreter and IDE",

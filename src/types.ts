@@ -21,7 +21,9 @@ export type VisualKind =
   | "brand-board"
   | "comic-layout"
   | "compression"
-  | "plan-create-review";
+  | "plan-create-review"
+  | "concept-web"
+  | "process-flow";
 
 export interface VisualSpec {
   kind: VisualKind;
@@ -41,6 +43,12 @@ export interface TopicSection {
   paragraphs: string[];
   bullets?: string[];
   visual?: VisualSpec;
+  visuals?: VisualSpec[];
+  image?: {
+    src: string;
+    alt: string;
+    caption: string;
+  };
   formula?: string;
   example?: string;
 }

@@ -27,6 +27,8 @@ export function sectionIndexForTerm(topic: Topic, term: KeyTerm) {
       section.example ?? "",
       section.visual?.title ?? "",
       section.visual?.caption ?? "",
+      ...(section.visuals?.flatMap((visual) => [visual.title, visual.caption]) ?? []),
+      section.image?.caption ?? "",
     ].join(" ").toLowerCase();
     const score = (heading.includes(needle) ? 6 : 0) + (body.includes(needle) ? 3 : 0);
     if (score > bestScore) {

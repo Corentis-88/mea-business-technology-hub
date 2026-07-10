@@ -261,6 +261,28 @@ function PlanCreateReview({ spec }: { spec: VisualSpec }) {
   return <Cycle spec={spec} defaults={["Plan","Create","Test","Review"]}/>;
 }
 
+function ConceptWeb({ spec }: { spec: VisualSpec }) {
+  const labels = pick(spec.labels, ["Big idea", "Point one", "Point two", "Point three", "Point four"]);
+  const [centre, ...nodes] = labels;
+  const positions = nodes.map((_, index) => {
+    const angle = -Math.PI / 2 + index * (Math.PI * 2 / nodes.length);
+    return [320 + Math.cos(angle) * 205, 150 + Math.sin(angle) * 105];
+  });
+  return <Svg title={spec.title} description={`${centre} connects to ${nodes.join(", ")}.`}>
+    {positions.map(([x, y], index) => <Arrow key={nodes[index]} x1={320} y1={150} x2={x} y2={y} />)}
+    <circle className="v-center" cx="320" cy="150" r="68" />
+    <text className="v-center-label" x="320" y="156" textAnchor="middle">{centre}</text>
+    {positions.map(([x, y], index) => <g key={nodes[index]}>
+      <rect className="v-panel" x={x - 70} y={y - 26} width="140" height="52" rx="14" />
+      <text className="v-small" x={x} y={y + 5} textAnchor="middle">{nodes[index]}</text>
+    </g>)}
+  </Svg>;
+}
+
+function ProcessFlow({ spec }: { spec: VisualSpec }) {
+  return <Journey spec={spec} defaults={["Input", "Action", "Output", "Effect"]}/>;
+}
+
 function renderVisual(spec: VisualSpec) {
   switch (spec.kind) {
     case "break-even": return <BreakEven spec={spec}/>;
@@ -284,6 +306,8 @@ function renderVisual(spec: VisualSpec) {
     case "comic-layout": return <ComicLayout spec={spec}/>;
     case "compression": return <Compression spec={spec}/>;
     case "plan-create-review": return <PlanCreateReview spec={spec}/>;
+    case "concept-web": return <ConceptWeb spec={spec}/>;
+    case "process-flow": return <ProcessFlow spec={spec}/>;
   }
 }
 

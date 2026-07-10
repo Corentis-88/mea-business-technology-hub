@@ -74,13 +74,6 @@ export const creativeImediaCourse: Course = {
                 "Traditional media includes long-established channels such as print, radio, film and broadcast television. New media uses connected, interactive or on-demand platforms, but many products now cross both categories.",
                 "Convergence happens when media forms or functions combine. A news app may use text, photographs, audio, video, notifications and interactive data on one platform.",
               ],
-              visual: {
-                kind: "media-codes",
-                title: "Media sectors connect",
-                caption:
-                  "A single campaign can use publishing, moving image, audio, graphics and social interaction.",
-                labels: ["Publishing", "Moving image", "Audio", "Interactive", "Advertising"],
-              },
             },
             {
               heading: "Job roles and production phases",
@@ -92,6 +85,12 @@ export const creativeImediaCourse: Course = {
                 "Production: recording, photographing, drawing, animating or programming assets.",
                 "Post-production: editing, compositing, testing, exporting and distribution preparation.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "A media product moves through production phases",
+                caption: "Different roles contribute at each phase, with approved plans and assets passed forward to the next team.",
+                labels: ["Brief", "Pre-production", "Production", "Post-production", "Distribution"],
+              },
               example:
                 "A video editor selects and combines recorded shots in post-production to create the intended pace and continuity.",
             },
@@ -322,6 +321,12 @@ export const creativeImediaCourse: Course = {
                 "Creators must consider copyright, intellectual property, Creative Commons licence conditions, privacy, permission, data protection and defamation. ASA regulates advertising, Ofcom broadcast and communications, BBFC film classification and PEGI game classification.",
                 "A risk assessment identifies hazards, risk and controls. A location recce records whether a place is suitable, accessible, safe and practical before production.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "Compliance must be planned before production",
+                caption: "Check rights, people, data, regulation and physical safety early enough to change the plan.",
+                labels: ["Rights", "Consent", "Audience data", "Regulator", "Safety controls", "Approval"],
+              },
             },
           ],
           keyTerms: [
@@ -406,24 +411,30 @@ export const creativeImediaCourse: Course = {
               paragraphs: [
                 "Distribution choices depend on the product, audience access, reach, cost, interaction and technical limits. Online delivery can update and reach widely but depends on devices and connectivity; physical media may provide ownership or offline access but costs more to manufacture and distribute.",
               ],
+              visual: {
+                kind: "pitch-journey",
+                title: "Choose distribution from audience evidence",
+                caption: "Move from product and audience access to a platform, technical properties and a tested delivery copy.",
+                labels: ["Product", "Audience access", "Platform", "Properties", "Export", "Test"],
+              },
             },
             {
               heading: "Properties and formats",
               paragraphs: [
                 "Image dimensions, resolution and colour properties affect quality and size. Audio uses properties such as sample rate and bit rate; video adds dimensions, frame rate and codecs. Native project formats preserve editable structure, while distribution formats prioritise access, playback and manageable size.",
               ],
-              visual: {
-                kind: "compression",
-                title: "Quality, size and access",
-                caption: "The most suitable export balances visual or audio quality with loading, storage and compatibility.",
-                labels: ["Editable master", "Export", "Compression", "Platform", "Audience device"],
-              },
             },
             {
               heading: "Raster, vector and compression",
               paragraphs: [
                 "Raster images are pixel-based and suit photographs; vector graphics use shapes and paths and scale without pixelation. Lossless compression preserves all information, while lossy compression removes selected information for a smaller file.",
               ],
+              visual: {
+                kind: "compression",
+                title: "Lossless and lossy compression make different trade-offs",
+                caption: "Lossless compression can reconstruct the original data; lossy compression removes detail to make a smaller delivery file.",
+                labels: ["Original file", "Lossless copy", "Lossy copy"],
+              },
               example:
                 "Keep a layered native project for editing, export a suitable compressed copy for the chosen platform, and retain an accessible high-quality master when required.",
             },
@@ -496,11 +507,12 @@ export const creativeImediaCourse: Course = {
             {
               heading: "Identity with a purpose",
               paragraphs: ["A visual identity helps an organisation become recognisable, distinct and consistent while expressing its values to an audience. Components should work as a system rather than as unrelated attractive choices."],
-              visual: { kind: "brand-board", title: "Visual identity system", caption: "Test whether the same personality is communicated by every component.", labels: ["Name", "Logo", "Colours", "Type", "Imagery", "Values"] },
+              visual: { kind: "brand-board", title: "Visual identity system", caption: "Logo, colour, typography, imagery and tone should communicate one recognisable personality.", labels: ["Logo", "Colour palette", "Typography", "Imagery", "Tone of voice"] },
             },
             {
               heading: "Research and justification",
               paragraphs: ["Interpret the fictional client's aims and audience, research relevant conventions and competitors, then justify choices using their intended effect. Record sources and permission for any research images."],
+              visual: { kind: "research-cycle", title: "Evidence should drive identity choices", caption: "Move from the client and audience to research, a design decision and a check against the original purpose.", labels: ["Client aim", "Audience", "Research", "Design choice", "Justification", "Check"] },
               example: "Practice brief: create a visual identity for 'Northlight', a fictional youth astronomy club. This is skills practice, not a live assignment.",
             },
             {
@@ -534,7 +546,7 @@ export const creativeImediaCourse: Course = {
             {
               heading: "Layout and hierarchy",
               paragraphs: ["Composition controls how elements work together. Hierarchy directs attention; alignment creates order; balance controls visual weight; contrast separates priorities; proximity groups related items; white space prevents crowding; consistency supports recognition."],
-              visual: { kind: "pre-production", title: "From rough layout to production plan", caption: "Plan focal point, reading order, asset placement, dimensions and technical properties before creating.", labels: ["Focal point", "Hierarchy", "Grid", "Assets", "Export size"] },
+              visual: { kind: "pre-production", title: "Planning toolkit for a digital graphic", caption: "Use a visualisation, asset record and work plan to turn the purpose into a buildable layout.", labels: ["Purpose", "Visualisation", "Asset log", "Layout grid", "Work plan"] },
             },
             {
               heading: "Assets and technical planning",
@@ -575,6 +587,7 @@ export const creativeImediaCourse: Course = {
               heading: "Evidence and export",
               paragraphs: ["A final image may not prove masking, layer organisation or asset preparation. Capture concise evidence of significant technical processes. Keep the editable native file and export a distribution copy with the required format, dimensions, resolution and colour properties."],
               bullets: ["MEA currently teaches Photoshop; learn the concept as well as the menu route.", "Check the exported file independently rather than assuming the export worked."],
+              visual: { kind: "compression", title: "Keep a master, then make the right delivery copy", caption: "The editable master preserves production evidence; exported copies trade file size against quality for their chosen platform.", labels: ["Editable master", "Lossless export", "Lossy delivery"] },
             },
             {
               heading: "Assessment integrity",
@@ -629,6 +642,7 @@ export const creativeImediaCourse: Course = {
             {
               heading: "Production-ready planning",
               paragraphs: ["Interpret the fictional brief and audience, create a detailed character profile and design development, outline a story arc, write a usable script and storyboard panels with shot, text and action detail. Plan software and assets, including ownership and each asset's contribution."],
+              visual: { kind: "pre-production", title: "A comic needs production-ready documents", caption: "The character profile, script, storyboard, asset log and work plan answer different questions for the person building the comic.", labels: ["Comic purpose", "Character profile", "Script", "Storyboard", "Asset / work plan"] },
               example: "Fictional practice brief: plan a four-page comic in which an original young inventor solves a neighbourhood energy problem. Do not reuse this as live NEA work.",
             },
             {
