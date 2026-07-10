@@ -1,25 +1,8 @@
-export interface SimpleSection {
-  heading: string;
-  simpleHeading: string;
-  explanation: string[];
-  steps?: string[];
-  example?: string;
-}
+import { publishedContentOverride } from "../content/published";
+import type { SimpleTopicGuide, SimpleVisualSpec } from "../types";
+export type { SimpleSection, SimpleTopicGuide, SimpleVisualSpec } from "../types";
 
-export interface SimpleTopicGuide {
-  topicId: string;
-  bigIdea: string;
-  sections: SimpleSection[];
-}
-
-export interface SimpleVisualSpec {
-  type: "flow" | "cycle" | "compare" | "balance";
-  title: string;
-  labels: string[];
-  caption: string;
-}
-
-export const enterpriseSimpleGuides: SimpleTopicGuide[] = [
+export const baselineEnterpriseSimpleGuides: SimpleTopicGuide[] = [
   {
     topicId: "enterprise-r067-1",
     bigIdea: "People use different skills to start and run an enterprise. They may gain rewards, but they also face risks.",
@@ -153,9 +136,7 @@ export const enterpriseSimpleGuides: SimpleTopicGuide[] = [
   },
 ];
 
-export const enterpriseSimpleGuideByTopic = new Map(enterpriseSimpleGuides.map((guide) => [guide.topicId, guide]));
-
-export const enterpriseSimpleVisuals: Record<string, SimpleVisualSpec> = {
+export const baselineEnterpriseSimpleVisuals: Record<string, SimpleVisualSpec> = {
   "enterprise-r067-1:Enterprise characteristics": { type: "flow", title: "A skill creates a result", labels: ["Skill", "Action", "Customer response", "Enterprise result"], caption: "Do not stop after naming the skill. Show what it helps the person do." },
   "enterprise-r067-1:Risk and reward": { type: "balance", title: "Compare both sides", labels: ["What may go wrong", "How serious?", "What may be gained", "Is it worth it?"], caption: "A sensible decision compares the possible loss with the possible reward." },
   "enterprise-r067-2:Research for a decision": { type: "flow", title: "Research leads to a choice", labels: ["Question", "Research method", "Finding", "Decision"], caption: "Useful research changes an enterprise decision." },
@@ -192,6 +173,10 @@ export const enterpriseSimpleVisuals: Record<string, SimpleVisualSpec> = {
   "enterprise-r069-5:Evidence-based reflection": { type: "flow", title: "Turn evidence into action", labels: ["Evidence", "What it shows", "Why it happened", "Specific action", "Likely benefit"], caption: "Do not jump from a feeling straight to a vague improvement." },
   "enterprise-r069-5:Fictional skills lab": { type: "compare", title: "Two kinds of next action", labels: ["Improvement", "Fix current work", "New step for later", "Take the enterprise forward"], caption: "Keep an immediate fix separate from a future enterprise step." },
 };
+
+export const enterpriseSimpleGuides: SimpleTopicGuide[] = publishedContentOverride?.enterpriseSimpleGuides ?? baselineEnterpriseSimpleGuides;
+export const enterpriseSimpleVisuals: Record<string, SimpleVisualSpec> = publishedContentOverride?.enterpriseSimpleVisuals ?? baselineEnterpriseSimpleVisuals;
+export const enterpriseSimpleGuideByTopic = new Map(enterpriseSimpleGuides.map((guide) => [guide.topicId, guide]));
 
 const simpleDefinitions: Record<string, string> = {
   "Creativity": "Thinking of new ideas.",

@@ -1,0 +1,10 @@
+import { Image, Settings } from "lucide-react";
+import type { ContentBundle } from "../../types";
+
+interface Props { bundle: ContentBundle; onChange: (next: ContentBundle | ((current: ContentBundle) => ContentBundle)) => void; }
+
+export function SettingsEditor({ bundle, onChange }: Props) {
+  const settings = bundle.siteSettings;
+  const update = (field: keyof typeof settings, value: string) => onChange((draft) => { draft.siteSettings[field] = value; return draft; });
+  return <section><div className="studio-page-heading"><span className="studio-kicker">Site details</span><h1>Change the words that welcome students</h1><p>These are the shared details used around the site. Course lessons, quizzes and diagrams are edited in Courses.</p></div><div className="studio-settings-layout"><div className="studio-card studio-card-body studio-form-grid"><label className="wide"><span>Website name</span><input value={settings.siteName} onChange={(event) => update("siteName", event.target.value)} /></label><label className="wide"><span>Homepage message</span><textarea rows={3} value={settings.tagline} onChange={(event) => update("tagline", event.target.value)} /></label><label className="wide"><span>School name</span><input value={settings.schoolName} onChange={(event) => update("schoolName", event.target.value)} /></label><label className="wide"><span>Logo description for screen readers</span><input value={settings.logoAlt} onChange={(event) => update("logoAlt", event.target.value)} /></label><div className="studio-message studio-message--notice"><Settings /> The logo file itself stays locked here so it cannot be removed by mistake. Images inside lessons and new pages remain fully editable.</div></div><aside className="studio-settings-preview"><span>Student header preview</span><div><img src={`${import.meta.env.BASE_URL}${settings.logoSrc}`} alt={settings.logoAlt} /><strong>{settings.siteName}</strong><small>{settings.tagline}</small></div><p><Image /> This preview uses the current MEA logo and your edited wording.</p></aside></div></section>;
+}

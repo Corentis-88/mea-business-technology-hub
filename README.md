@@ -16,7 +16,21 @@ pnpm install
 pnpm dev
 ```
 
-Open `http://127.0.0.1:4173`. The app needs no account or database.
+Open `http://127.0.0.1:4173`. Students need no account or database.
+
+## MEA Content Studio
+
+The no-code editing suite is deliberately absent from the public navigation. Open:
+
+`http://127.0.0.1:4173/manage-mea-7f3k9q`
+
+The root-URL equivalent `http://127.0.0.1:4173/?studio=mea-7f3k9q` is useful on static hosts because it returns a normal HTTP 200 response.
+
+On GitHub Pages the same route is below the repository base URL. On first use, choose a local username and a password of at least 12 characters. The password is never stored: PBKDF2 creates a verifier and a separate non-extractable encryption key. Drafts save automatically in IndexedDB, with import/export backup controls.
+
+Publishing requires a fine-grained GitHub token restricted to `Corentis-88/mea-business-technology-hub` with repository **Contents: Read and write**. The token is AES-GCM encrypted with the local password-derived key. One publish creates the content JSON and any uploaded WebP images as a single Git commit, then the existing GitHub Pages workflow tests, builds and deploys it.
+
+GitHub Pages is static hosting, so the route itself cannot be made server-private. The cryptographic login protects the editing and publishing capability on the configured browser; no username, password, token or draft is included in the deployed repository.
 
 ## Verify
 
@@ -43,6 +57,8 @@ The production output is written to `dist`.
 - an evidence-checked Pearson Business extended-writing lab covering Explain, Discuss, Analyse, Justify and Evaluate, including four completed Explain answers and three full-length original source-booklet cases with figures and question ladders
 - qualification-separated materials with offline official specifications, sample material, public past papers, mark schemes and examiner reports
 - responsive navigation, larger-text mode and print-friendly topic guides
+- a private-route, first-run Content Studio with drag-and-drop lesson sections, image compression and uploads, previews, undo/redo, automatic drafts, validation, backups and atomic GitHub publishing
+- simple editors for course and unit details, topic lessons, Enterprise easy-reading guides, vocabulary, quizzes, exam questions, materials, Pearson Business case studies, general site wording and new standalone pages
 
 ## Content and assessment safeguards
 

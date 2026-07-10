@@ -1,10 +1,12 @@
 import type { Course, CourseId, Topic, Unit } from "../types";
+import { publishedContentOverride } from "../content/published";
 import { businessCourse } from "./business";
 import { enterpriseCourse } from "./enterprise";
 import { computerScienceCourse } from "./computerScience";
 import { creativeImediaCourse } from "./creativeImedia";
 
-export const courses: Course[] = [businessCourse, enterpriseCourse, computerScienceCourse, creativeImediaCourse];
+export const baselineCourses: Course[] = [businessCourse, enterpriseCourse, computerScienceCourse, creativeImediaCourse];
+export const courses: Course[] = publishedContentOverride?.courses ?? baselineCourses;
 
 export const courseBySlug = (slug?: string) => courses.find((course) => course.slug === slug);
 export const courseById = (id: CourseId) => courses.find((course) => course.id === id);

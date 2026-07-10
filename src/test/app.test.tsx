@@ -18,6 +18,13 @@ function renderApp(path = "/") {
 }
 
 describe("student journeys", () => {
+  it("keeps the private editing studio off the public navigation and opens first-time setup at its direct URL", async () => {
+    renderApp("/manage-mea-7f3k9q");
+    expect(await screen.findByRole("heading", { name: "Create the login for this computer" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Create login and open studio" })).toBeInTheDocument();
+    expect(screen.queryByRole("navigation", { name: "Main navigation" })).not.toBeInTheDocument();
+  });
+
   it("renders four qualification front doors", () => {
     renderApp();
     expect(screen.getByRole("heading", { name: "MEA Business and Technology Hub" })).toBeInTheDocument();

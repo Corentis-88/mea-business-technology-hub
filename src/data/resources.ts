@@ -1,10 +1,11 @@
 import type { ResourceLink } from "../types";
+import { publishedContentOverride } from "../content/published";
 
 export const officialDocumentHref = (file: string, base = import.meta.env.BASE_URL) => `${base}official-documents/${file}`;
 
 const local = officialDocumentHref;
 
-export const resources: ResourceLink[] = [
+export const baselineResources: ResourceLink[] = [
   { id: "business-spec", courseId: "business", title: "Pearson Business specification", description: "The complete 1BS0 content and assessment requirements.", type: "Specification", href: local("pearson-edexcel-gcse-business-1bs0-specification.pdf"), official: true, local: true },
   { id: "business-sam", courseId: "business", title: "Pearson sample assessment materials", description: "Sample Paper 1 and Paper 2 questions with marking guidance.", type: "Past paper", href: local("pearson-business-sample-assessment-materials.pdf"), official: true, local: true },
   { id: "business-p1-report", courseId: "business", title: "2024 Paper 1 examiner report", description: "What students did well and where marks were lost.", type: "Examiner report", href: local("pearson-business-2024-paper1-examiners-report.pdf"), official: true, local: true },
@@ -39,3 +40,5 @@ export const resources: ResourceLink[] = [
   { id: "imedia-guide", courseId: "creative-imedia", title: "J834 assessment guide", description: "OCR guide to examined and moderated assessment.", type: "Assessment guide", href: local("ocr-j834-assessment-guide.pdf"), official: true, local: true },
   { id: "imedia-genius", courseId: "creative-imedia", title: "iMediaGenius R093", description: "Independent games, guides, flashcards and exam practice.", type: "External revision", href: "https://imediagenius.co.uk/", official: false },
 ];
+
+export const resources: ResourceLink[] = publishedContentOverride?.resources ?? baselineResources;

@@ -53,6 +53,10 @@ export interface TopicSection {
   example?: string;
 }
 
+export interface EditableTopicSection extends TopicSection {
+  id: string;
+}
+
 export interface QuizQuestion {
   id: string;
   prompt: string;
@@ -91,6 +95,10 @@ export interface Topic {
   durationMinutes?: number;
 }
 
+export interface EditableTopic extends Omit<Topic, "sections"> {
+  sections: EditableTopicSection[];
+}
+
 export interface Unit {
   id: string;
   code: string;
@@ -99,6 +107,10 @@ export interface Unit {
   assessment: string;
   weight: string;
   topics: Topic[];
+}
+
+export interface EditableUnit extends Omit<Unit, "topics"> {
+  topics: EditableTopic[];
 }
 
 export interface AnswerMethod {
@@ -125,6 +137,10 @@ export interface Course {
   units: Unit[];
   answerMethod?: AnswerMethod;
   aliases: string[];
+}
+
+export interface EditableCourse extends Omit<Course, "units"> {
+  units: EditableUnit[];
 }
 
 export interface SearchDocument {
@@ -170,4 +186,95 @@ export interface ResourceLink {
   href: string;
   official: boolean;
   local?: boolean;
+}
+
+export interface PracticeEvidence {
+  id: string;
+  label: string;
+  quote: string;
+  meaning: string;
+}
+
+export interface CaseQuestion {
+  command: "Outline" | "Analyse" | "Justify" | "Evaluate";
+  marks: number;
+  prompt: string;
+}
+
+export interface SupportingFigure {
+  label: string;
+  type: "review" | "table";
+  title: string;
+  body?: string;
+  columns?: string[];
+  rows?: string[][];
+}
+
+export interface PracticeCase {
+  id: string;
+  title: string;
+  theme: string;
+  sourceSection: "Section B" | "Section C";
+  sourceInstruction: string;
+  context: string[];
+  evidence: PracticeEvidence[];
+  chart: { label: string; value: number; max: number; display: string }[];
+  chartTitle: string;
+  supportingFigure: SupportingFigure;
+  question: { command: "Analyse" | "Justify" | "Evaluate"; marks: number; prompt: string };
+  questionLadder: CaseQuestion[];
+  strands: { label: string; text: string }[];
+  model: string[];
+}
+
+export interface SiteSettings {
+  id: string;
+  siteName: string;
+  tagline: string;
+  schoolName: string;
+  logoSrc: string;
+  logoAlt: string;
+}
+
+export interface CustomPage {
+  id: string;
+  slug: string;
+  title: string;
+  summary?: string;
+  showInNavigation: boolean;
+  sections: TopicSection[];
+}
+
+export interface SimpleSection {
+  heading: string;
+  simpleHeading: string;
+  explanation: string[];
+  steps?: string[];
+  example?: string;
+}
+
+export interface SimpleTopicGuide {
+  topicId: string;
+  bigIdea: string;
+  sections: SimpleSection[];
+}
+
+export interface SimpleVisualSpec {
+  type: "flow" | "cycle" | "compare" | "balance";
+  title: string;
+  labels: string[];
+  caption: string;
+}
+
+export interface ContentBundle {
+  schemaVersion: 1;
+  contentVersion: number;
+  updatedAt: string;
+  courses: EditableCourse[];
+  resources: ResourceLink[];
+  practiceCases: PracticeCase[];
+  siteSettings: SiteSettings;
+  customPages: CustomPage[];
+  enterpriseSimpleGuides: SimpleTopicGuide[];
+  enterpriseSimpleVisuals: Record<string, SimpleVisualSpec>;
 }

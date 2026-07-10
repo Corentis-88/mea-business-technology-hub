@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CourseCard } from "../components/CourseCard";
 import { SearchBox } from "../components/SearchBox";
 import { courses } from "../data/courses";
+import { siteSettings } from "../content";
 
 const tools = [
   { icon: FileQuestion, eyebrow: "Quiz", title: "Build a focused quiz", text: "Choose a qualification, topic, difficulty and up to 50 questions.", to: "/revision", action: "Set up a quiz" },
@@ -16,7 +17,7 @@ export function HomePage() {
     <>
       <section className="hero">
         <div className="hero__inner">
-          <div className="hero__copy"><span className="hero-kicker"><Sparkles size={16} /> Manchester Enterprise Academy</span><h1>MEA Business and <em>Technology Hub</em></h1><p>Helping you easily learn and revise topics at MEA in Business and Technology</p></div>
+          <div className="hero__copy"><span className="hero-kicker"><Sparkles size={16} /> {siteSettings.schoolName}</span><h1>{siteSettings.siteName === "MEA Business and Technology Hub" ? <>MEA Business and <em>Technology Hub</em></> : siteSettings.siteName}</h1><p>{siteSettings.tagline}</p></div>
           <div className="hero__search"><SearchBox large /><div className="popular-searches"><span>Try:</span><Link to="/search?q=break-even">break-even</Link><Link to="/search?q=CPU">CPU</Link><Link to="/search?q=R095">R095</Link><Link to="/search?q=BLT">BLT</Link></div></div>
           <div className="hero-visual" aria-label="Learning journey: understand, connect, practise and apply">
             <div className="orbit orbit--one"><span>Understand</span></div><div className="orbit orbit--two"><span>Connect</span></div><div className="orbit orbit--three"><span>Practise</span></div><div className="hero-visual__centre"><strong>MEA</strong><span>Business + Tech</span></div>

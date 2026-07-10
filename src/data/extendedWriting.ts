@@ -1,43 +1,9 @@
-export interface PracticeEvidence {
-  id: string;
-  label: string;
-  quote: string;
-  meaning: string;
-}
+import { publishedContentOverride } from "../content/published";
+import type { CaseQuestion, PracticeCase, PracticeEvidence, SupportingFigure } from "../types";
 
-export interface CaseQuestion {
-  command: "Outline" | "Analyse" | "Justify" | "Evaluate";
-  marks: number;
-  prompt: string;
-}
+export type { CaseQuestion, PracticeCase, PracticeEvidence, SupportingFigure } from "../types";
 
-export interface SupportingFigure {
-  label: string;
-  type: "review" | "table";
-  title: string;
-  body?: string;
-  columns?: string[];
-  rows?: string[][];
-}
-
-export interface PracticeCase {
-  id: string;
-  title: string;
-  theme: string;
-  sourceSection: "Section B" | "Section C";
-  sourceInstruction: string;
-  context: string[];
-  evidence: PracticeEvidence[];
-  chart: { label: string; value: number; max: number; display: string }[];
-  chartTitle: string;
-  supportingFigure: SupportingFigure;
-  question: { command: "Analyse" | "Justify" | "Evaluate"; marks: number; prompt: string };
-  questionLadder: CaseQuestion[];
-  strands: { label: string; text: string }[];
-  model: string[];
-}
-
-export const practiceCases: PracticeCase[] = [
+export const baselinePracticeCases: PracticeCase[] = [
   {
     id: "looplab",
     title: "LoopLab Repairs",
@@ -197,3 +163,5 @@ export const practiceCases: PracticeCase[] = [
     ],
   },
 ];
+
+export const practiceCases: PracticeCase[] = publishedContentOverride?.practiceCases ?? baselinePracticeCases;
