@@ -20,7 +20,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <header className="site-header">
         <div className="header-inner">
           <NavLink to="/" className="brand" aria-label="MEA Business and Technology Hub home">
-            <span className="brand-logo-wrap"><img src="/branding/mea-official-logo.svg" alt="Manchester Enterprise Academy" /></span>
+            <span className="brand-logo-wrap"><img src={`${import.meta.env.BASE_URL}branding/mea-official-logo.svg`} alt="Manchester Enterprise Academy" /></span>
             <span className="brand-name"><strong>Business &amp; Technology Hub</strong><small>Learn and revise at MEA</small></span>
           </NavLink>
           <div className="header-search"><SearchBox /></div>
