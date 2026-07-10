@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { allTopics, courses } from "../data/courses";
-import { resources } from "../data/resources";
+import { officialDocumentHref, resources } from "../data/resources";
 import { searchTopics } from "../lib/search";
 
 describe("qualification coverage", () => {
@@ -69,6 +69,20 @@ describe("materials", () => {
     for (const course of courses) {
       const local = resources.filter((resource) => resource.courseId === course.id && resource.official && resource.local);
       expect(local.length).toBeGreaterThanOrEqual(5);
+    }
+  });
+
+  it("keeps official documents inside the deployed GitHub Pages base path", () => {
+    expect(officialDocumentHref("sample.pdf", "/mea-business-technology-hub/")).toBe(
+      "/mea-business-technology-hub/official-documents/sample.pdf",
+    );
+  });
+
+  it("uses valid secure URLs for every external material", () => {
+    const external = resources.filter((resource) => !resource.local);
+    expect(external.length).toBeGreaterThan(0);
+    for (const resource of external) {
+      expect(new URL(resource.href).protocol).toBe("https:");
     }
   });
 });

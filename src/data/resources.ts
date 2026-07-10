@@ -1,6 +1,8 @@
 import type { ResourceLink } from "../types";
 
-const local = (file: string) => `/official-documents/${file}`;
+export const officialDocumentHref = (file: string, base = import.meta.env.BASE_URL) => `${base}official-documents/${file}`;
+
+const local = officialDocumentHref;
 
 export const resources: ResourceLink[] = [
   { id: "business-spec", courseId: "business", title: "Pearson Business specification", description: "The complete 1BS0 content and assessment requirements.", type: "Specification", href: local("pearson-edexcel-gcse-business-1bs0-specification.pdf"), official: true, local: true },
