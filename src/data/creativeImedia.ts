@@ -112,7 +112,7 @@ export const creativeImediaCourse: Course = {
           quiz: [
             {
               id: "imedia-r093-1-q1",
-              prompt: "Which is the best example of media convergence?",
+              prompt: "Which example shows media convergence?",
               options: [
                 "A printed poster using one photograph",
                 "A news app combining articles, video, audio and interactive polls",
@@ -121,14 +121,14 @@ export const creativeImediaCourse: Course = {
               ],
               answer: 1,
               explanation:
-                "The app combines several media forms and interactive functions on one platform.",
+                "The news app brings several types of media and interactive features together on one platform.",
             },
             {
               id: "imedia-r093-1-q2",
-              prompt: "Which task is most clearly a post-production responsibility?",
+              prompt: "Which task happens during post-production?",
               options: ["Writing the first script", "Filming a scene", "Editing recorded dialogue", "Approving the initial budget"],
               answer: 2,
-              explanation: "Editing recorded content takes place after production capture.",
+              explanation: "Dialogue is edited after it has been recorded, so this is a post-production task.",
             },
           ],
           examQuestions: [
@@ -230,17 +230,17 @@ export const creativeImediaCourse: Course = {
           quiz: [
             {
               id: "imedia-r093-2-q1",
-              prompt: "Which is qualitative primary research?",
+              prompt: "Which example is qualitative primary research?",
               options: ["A published census table", "An interview conducted with six target users", "Website visitor totals", "A competitor's price list"],
               answer: 1,
-              explanation: "The project team collects first-hand explanations and opinions through the interview.",
+              explanation: "The team carries out the interview itself and collects detailed opinions directly from the target users.",
             },
             {
               id: "imedia-r093-2-q2",
-              prompt: "Using dark shadows to make a scene threatening is mainly which type of media code?",
+              prompt: "A creator uses dark shadows to make a scene feel threatening. What type of media code is this?",
               options: ["Technical", "Written", "Financial", "Regulatory"],
               answer: 0,
-              explanation: "Lighting is a technical code used to create mood and meaning.",
+              explanation: "Lighting is a technical code. Dark shadows can create a threatening mood.",
             },
           ],
           examQuestions: [
@@ -353,17 +353,17 @@ export const creativeImediaCourse: Course = {
           quiz: [
             {
               id: "imedia-r093-3-q1",
-              prompt: "Which document best plans the placement of buttons and content on an app screen?",
+              prompt: "Which document is used to plan where buttons and content will appear on an app screen?",
               options: ["Storyboard", "Wireframe", "Script", "Asset log"],
               answer: 1,
-              explanation: "A wireframe plans screen layout and navigation.",
+              explanation: "A wireframe shows the planned screen layout, including content and navigation.",
             },
             {
               id: "imedia-r093-3-q2",
-              prompt: "Which regulator classifies video games by age suitability?",
+              prompt: "Which organisation gives video games age ratings?",
               options: ["ASA", "Ofcom", "BBFC", "PEGI"],
               answer: 3,
-              explanation: "PEGI provides age classifications and content descriptors for games.",
+              explanation: "PEGI gives video games age ratings and content warnings.",
             },
           ],
           examQuestions: [
@@ -463,17 +463,17 @@ export const creativeImediaCourse: Course = {
           quiz: [
             {
               id: "imedia-r093-4-q1",
-              prompt: "Why are vector graphics often suitable for a logo?",
+              prompt: "Why are vector graphics often a good choice for a logo?",
               options: ["They always contain photographs", "They scale without pixelation", "They cannot use colour", "They require no software"],
               answer: 1,
-              explanation: "Vector paths can be recalculated cleanly at different sizes.",
+              explanation: "Vector graphics can be made larger or smaller without becoming pixelated.",
             },
             {
               id: "imedia-r093-4-q2",
-              prompt: "What is the main advantage of keeping a native project file?",
+              prompt: "Why should you keep the native project file?",
               options: ["It is always the smallest file", "It preserves editable features such as layers", "It plays on every device", "It removes copyright"],
               answer: 1,
-              explanation: "Native formats retain software-specific structure needed for later editing.",
+              explanation: "A native project file keeps editable features, such as layers, so the work can be changed later.",
             },
           ],
           examQuestions: [
@@ -538,8 +538,8 @@ export const creativeImediaCourse: Course = {
           commonMistakes: ["Choosing colours only because they are personal favourites.", "Designing components independently so they do not feel coherent.", "Restating a fictional brief instead of interpreting its needs."],
           examTips: ["Practise explaining every design choice as choice → meaning → client/audience fit.", "Keep source and permission records from the beginning."],
           quiz: [
-            { id: "imedia-r094-1-q1", prompt: "Which is the strongest justification for a visual-identity colour?", options: ["Blue looks nice", "Blue was first in the menu", "A dark blue palette suggests trust and gives readable contrast for the fictional science club", "Everyone likes blue"], answer: 2, explanation: "It links a specific choice to meaning, readability, client and context." },
-            { id: "imedia-r094-1-q2", prompt: "What most helps recognition across several products?", options: ["Changing the logo every time", "Consistent use of the identity system", "Using every font available", "Removing the organisation name"], answer: 1, explanation: "Repeated coherent identity elements help an audience recognise the organisation." },
+            { id: "imedia-r094-1-q1", prompt: "Which answer gives the best reason for choosing a colour for a visual identity?", options: ["Blue looks nice", "Blue was the first colour in the menu", "A dark blue palette suggests trust and creates clear contrast for the fictional science club", "Everyone likes blue"], answer: 2, explanation: "This answer links the colour choice to meaning, readability and the client's needs." },
+            { id: "imedia-r094-1-q2", prompt: "What helps people recognise an organisation across different products?", options: ["Changing the logo every time", "Using the visual identity consistently", "Using every available font", "Removing the organisation's name"], answer: 1, explanation: "Using the same identity elements across different products helps the audience recognise the organisation." },
           ],
           examQuestions: [
             { id: "imedia-r094-1-e1", command: "Practise", marks: 4, prompt: "For the fictional Northlight youth astronomy club, justify one typography choice and one colour choice.", guidance: ["Use a fictional practice brief only.", "Explain the intended meaning and practical readability.", "Connect each choice to the audience or purpose."], model: "A clean geometric sans-serif could suggest modern science while staying clear at small social-media sizes. Deep navy could suggest the night sky, with bright cyan accents providing contrast and an energetic feel for younger members." },
@@ -576,8 +576,8 @@ export const creativeImediaCourse: Course = {
           commonMistakes: ["Listing an asset source without explaining its contribution.", "Using a low-resolution raster image for a large output.", "Planning attractive content but omitting dimensions or export requirements."],
           examTips: ["Annotate what an element does, not only where it appears.", "Match every technical property to the intended distribution."],
           quiz: [
-            { id: "imedia-r094-2-q1", prompt: "Which principle groups a caption with the image it describes?", options: ["Proximity", "Randomness", "Compression", "Frame rate"], answer: 0, explanation: "Placing related elements close together communicates that they belong together." },
-            { id: "imedia-r094-2-q2", prompt: "Why record the licence of an asset?", options: ["To increase its resolution", "To show whether and how it may legally be used", "To make it vector", "To select a font automatically"], answer: 1, explanation: "Licence terms establish permitted use and any attribution requirements." },
+            { id: "imedia-r094-2-q1", prompt: "Which design principle places a caption close to the image it describes?", options: ["Proximity", "Randomness", "Compression", "Frame rate"], answer: 0, explanation: "Proximity means placing related items close together to show that they belong together." },
+            { id: "imedia-r094-2-q2", prompt: "Why should you record an asset's licence?", options: ["To increase its resolution", "To check whether and how it can be used legally", "To turn it into a vector", "To choose a font automatically"], answer: 1, explanation: "The licence explains how the asset can be used and whether the creator must be credited." },
           ],
           durationMinutes: 55,
         }),
@@ -612,8 +612,8 @@ export const creativeImediaCourse: Course = {
           commonMistakes: ["Flattening or overwriting the only editable file.", "Using effects without a design purpose.", "Showing only the final image when process evidence is required.", "Exporting with incorrect dimensions or inaccessible format."],
           examTips: ["Practise non-destructive editing on fictional assets.", "Use a final checklist for dimensions, format, quality, content and readability."],
           quiz: [
-            { id: "imedia-r094-3-q1", prompt: "Why is a mask usually preferable to permanently erasing part of a layer?", options: ["It makes every file smaller", "Hidden areas can be restored and refined", "It converts raster to vector", "It removes the need for permission"], answer: 1, explanation: "Masking is non-destructive, so the original pixels remain available." },
-            { id: "imedia-r094-3-q2", prompt: "What should be kept alongside a final exported graphic?", options: ["Only a screenshot", "An editable native project", "No source information", "A flattened file renamed as native"], answer: 1, explanation: "The native project preserves layers and editable structure." },
+            { id: "imedia-r094-3-q1", prompt: "Why is using a mask usually better than permanently erasing part of a layer?", options: ["It makes every file smaller", "Hidden areas can be restored and adjusted", "It turns a raster image into a vector", "It removes the need for permission"], answer: 1, explanation: "A mask hides pixels without deleting them, so they can be restored or adjusted later." },
+            { id: "imedia-r094-3-q2", prompt: "What should you keep with the final exported graphic?", options: ["Only a screenshot", "An editable native project file", "No information about the sources", "A flattened file renamed as a native file"], answer: 1, explanation: "The native project file keeps the layers and other features needed to edit the work later." },
           ],
           examQuestions: [
             { id: "imedia-r094-3-e1", command: "Practise", marks: 4, prompt: "Using fictional assets, describe two pieces of technical-process evidence that would demonstrate advanced editing more clearly than the finished graphic alone.", guidance: ["Use fictional/public practice work only.", "Name the technique and the evidence view.", "Explain what the evidence proves."], model: "A layers-panel capture could show named groups, masks and separate text, proving non-destructive construction. A before-and-after view with selection edges could show how a photographed object was isolated and colour-corrected before compositing." },
@@ -674,8 +674,8 @@ export const creativeImediaCourse: Course = {
           commonMistakes: ["Using a premade character and making only small edits.", "Producing shallow character planning with appearance but no personality or motivation.", "Listing asset sources without explaining contribution.", "Creating a sequence that reads like a narrated storyboard rather than a comic."],
           examTips: ["Practise character turnarounds, expression sheets and annotated design iterations using fictional briefs.", "Test reading order with someone who has not seen the plan before."],
           quiz: [
-            { id: "imedia-r095-1-q1", prompt: "What is the main purpose of a comic gutter?", options: ["Store source URLs", "Separate panels and imply a transition", "Replace every caption", "Show the client logo"], answer: 1, explanation: "The gutter separates moments and asks the reader to infer what happens between them." },
-            { id: "imedia-r095-1-q2", prompt: "Which is strongest evidence of original character development?", options: ["A downloaded character recoloured once", "One unlabelled sketch", "Annotated iterations showing silhouette, expressions, pose and justified changes", "A list of existing superheroes"], answer: 2, explanation: "Development shows independent decisions, refinement and communication of character traits." },
+            { id: "imedia-r095-1-q1", prompt: "What is the main purpose of the gutter between comic panels?", options: ["To store source URLs", "To separate panels and suggest a change in time or action", "To replace every caption", "To show the client's logo"], answer: 1, explanation: "The gutter separates two moments. The reader works out what happens between the panels." },
+            { id: "imedia-r095-1-q2", prompt: "Which example gives the best evidence of original character development?", options: ["A downloaded character with one colour changed", "One sketch with no labels", "Several annotated designs showing silhouettes, expressions, poses and reasons for changes", "A list of existing superheroes"], answer: 2, explanation: "Several annotated designs show original decisions and explain how the character was improved." },
           ],
           examQuestions: [
             { id: "imedia-r095-1-e1", command: "Practise", marks: 6, prompt: "For the fictional inventor comic, explain how three planned comic conventions could control pace and audience attention.", guidance: ["Use fictional practice only.", "Name a precise convention each time.", "Explain the visual or narrative effect and audience response."], model: "Small repeated panels could slow the invention sequence into clear steps. A large borderless panel could emphasise the moment the device starts. A close-up reaction panel after the climax could pause the action and show the character's relief without extra narration." },
@@ -716,8 +716,8 @@ export const creativeImediaCourse: Course = {
           commonMistakes: ["Showing only final pages with no evidence of technical process.", "Relying on narration instead of visual comic conventions.", "Using many effects that weaken consistency or readability.", "Failing to export an accessible product with the requested properties."],
           examTips: ["Practise consistent character proportions and expressions before assembling pages.", "Zoom out to check page flow and zoom in to check lettering and image quality."],
           quiz: [
-            { id: "imedia-r095-2-q1", prompt: "Why keep a character as an editable component?", options: ["To avoid creating a final export", "To support consistent reuse and controlled changes", "To remove the need for originality", "To make every panel identical"], answer: 1, explanation: "Editable components can be reused and adjusted while maintaining visual consistency." },
-            { id: "imedia-r095-2-q2", prompt: "Which best distinguishes a finished comic from a storyboard?", options: ["A finished comic uses reader-ready art, lettering and deliberate panel flow", "A comic never uses panels", "A storyboard requires more final colour", "A comic contains no planning"], answer: 0, explanation: "The finished comic is designed as the audience's complete reading experience." },
+            { id: "imedia-r095-2-q1", prompt: "Why should a character be kept as an editable component?", options: ["To avoid creating a final export", "To reuse the character consistently and make controlled changes", "To remove the need for original work", "To make every panel identical"], answer: 1, explanation: "An editable component can be reused and changed while the character's appearance stays consistent." },
+            { id: "imedia-r095-2-q2", prompt: "What is the main difference between a finished comic and a storyboard?", options: ["A finished comic has polished artwork, lettering and a clear panel flow for the reader", "A comic never uses panels", "A storyboard needs more finished colour", "A comic does not need planning"], answer: 0, explanation: "A finished comic is the complete product that the audience will read. A storyboard is a plan for creating it." },
           ],
           examQuestions: [
             { id: "imedia-r095-2-e1", command: "Practise", marks: 4, prompt: "Using a fictional two-panel scene, describe two technical choices that would keep an original character consistent while changing their expression and pose.", guidance: ["Practise outside a live assignment.", "Name the production method.", "Explain consistency and intended change separately."], model: "Reusable construction guides can preserve head and body proportions while separate facial-feature layers change the expression. A fixed colour palette and line-weight guide can keep the design recognisable when the pose changes between panels." },
@@ -759,8 +759,8 @@ export const creativeImediaCourse: Course = {
           commonMistakes: ["Checking only whether every brief item exists, not technical properties.", "Saying the comic is effective because it looks good without evidence.", "Calling a sequel an improvement to the existing pages.", "Proposing a change without explaining how it benefits audience or purpose."],
           examTips: ["Practise reviews with annotated fictional outputs and measurable evidence.", "Use evidence → effect → specific action for each proposal."],
           quiz: [
-            { id: "imedia-r095-3-q1", prompt: "Which is an improvement rather than a further development?", options: ["Create a sequel", "Add a new spin-off character", "Increase contrast of unreadable speech bubbles", "Release a monthly series"], answer: 2, explanation: "Changing unreadable bubbles strengthens the existing product; the other options extend it." },
-            { id: "imedia-r095-3-q2", prompt: "Which is the strongest test record?", options: ["Looks fine", "Tested it", "Expected 300 ppi; actual export was 72 ppi; re-export at 300 ppi for print", "The audience will like it"], answer: 2, explanation: "It records a measurable expectation, actual result and corrective action." },
+            { id: "imedia-r095-3-q1", prompt: "Which option improves the existing comic rather than developing a new product?", options: ["Create a sequel", "Add a new spin-off character", "Increase the contrast of speech bubbles that are hard to read", "Release a monthly series"], answer: 2, explanation: "Making the speech bubbles easier to read improves the existing comic. The other options create or extend future products." },
+            { id: "imedia-r095-3-q2", prompt: "Which option is the best test record?", options: ["It looks fine", "I tested it", "Expected: 300 ppi. Actual: 72 ppi. Action: export again at 300 ppi for printing", "The audience will like it"], answer: 2, explanation: "This record gives a measurable expected result, the actual result and the action needed to fix the problem." },
           ],
           examQuestions: [
             { id: "imedia-r095-3-e1", command: "Practise", marks: 6, prompt: "Review a fictional comic page where the reading order is unclear and text becomes pixelated when printed. Propose one improvement and one further development.", guidance: ["Use a fictional practice output.", "Address both observed problems in the review.", "Keep improvement and future development distinct.", "Explain audience benefit."], model: "The existing page should use clearer panel spacing and directional composition so readers follow the intended order, then re-export from higher-quality text and artwork so print remains sharp. A future development could be an accessible digital edition with guided panel transitions, extending the story for mobile readers rather than merely repairing the print page." },

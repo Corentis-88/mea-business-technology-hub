@@ -74,7 +74,7 @@ export const enterpriseCourse: Course = {
           examTips: ["Make every explanation fit the named entrepreneur and decision.", "For a drawback, explain the real personal or enterprise consequence."],
           quiz: [
             q("e6711", "Which characteristic is most directly used when agreeing a lower supplier price?", ["Negotiation", "Independence", "Self-satisfaction", "Revenue"], 0, "Negotiation helps parties reach an agreement about price or terms."),
-            q("e6712", "Which is a possible non-financial reward?", ["Loan interest", "Self-satisfaction", "Variable cost", "Financial loss"], 1, "Satisfaction from pursuing an idea is a personal, non-financial reward."),
+            q("e6712", "Which option is a possible non-financial reward?", ["Loan interest", "Self-satisfaction", "A variable cost", "A financial loss"], 1, "The satisfaction gained from developing an idea is a personal, non-financial reward."),
           ],
           examQuestions: [
             { id: "e671-e1", command: "Explain", marks: 3, prompt: "Aisha is starting a mobile bicycle-repair enterprise. Explain why determination may be important to Aisha.", guidance: ["Name what determination enables her to do.", "Use the mobile repair context.", "Develop a clear consequence for the enterprise."] },
@@ -115,8 +115,8 @@ export const enterpriseCourse: Course = {
           commonMistakes: ["Naming 'online' as the research method.", "Treating all large samples as unbiased.", "Inventing customer preferences from age or gender alone."],
           examTips: ["State the method before its channel.", "Connect a segment to a product, price, promotion or place decision."],
           quiz: [
-            q("e6721", "Which is secondary research?", ["A new focus group", "Observing shoppers today", "An existing government income table", "Interviewing five customers"], 2, "The government table already exists and was collected by another organisation."),
-            q("e6722", "Which finding is quantitative?", ["Customers like the friendly design", "62% would pay up to £15", "The colour feels calming", "A customer explains why delivery matters"], 1, "A percentage and price produce numerical data."),
+            q("e6721", "Which example is secondary research?", ["A new focus group", "Observing shoppers today", "An existing government income table", "Interviewing five customers"], 2, "The government table is secondary research because it already exists and another organisation collected the information."),
+            q("e6722", "Which research finding is quantitative?", ["Customers like the friendly design", "62% would pay up to £15", "The colour feels calming", "A customer explains why delivery matters"], 1, "The percentage and price are numbers, so this is quantitative data."),
           ],
         }),
         topic({
@@ -208,7 +208,7 @@ export const enterpriseCourse: Course = {
           examTips: ["The eight-mark item is linked to Topic Area 4: address every printed bullet.", "Apply the enterprise context and explain trade-offs before reaching a decision."],
           quiz: [
             q("e6741", "Why might a premium product use specialist retailers?", ["Place can reinforce product quality and target the intended customer", "All customers avoid specialists", "It makes price irrelevant", "Promotion becomes unnecessary"], 0, "The channel contributes to positioning and reaches customers seeking specialist value."),
-            q("e6742", "Which is a sales promotion?", ["A two-week buy-one-get-one-free offer", "A permanent factory", "A job description", "A bank loan"], 0, "A temporary purchase incentive is a sales promotion."),
+            q("e6742", "Which example is a sales promotion?", ["A two-week buy-one-get-one-free offer", "A permanent factory", "A job description", "A bank loan"], 0, "A sales promotion is a short-term offer that encourages customers to buy."),
           ],
           examQuestions: [
             { id: "e674-e1", command: "Discuss", marks: 8, prompt: "Kai sells reusable lunch boxes to environmentally aware sixth-form students. Discuss whether social-media advertising is the most suitable promotional method for Kai.", guidance: ["Address reach/targeting, cost and suitability for this product and customer.", "Explain relevant benefits and limitations.", "Use the context throughout and reach a supported conclusion."] },
@@ -254,7 +254,7 @@ export const enterpriseCourse: Course = {
           commonMistakes: ["Calling a franchise a legal ownership structure.", "Assuming grants are available to every enterprise.", "Naming a support provider without explaining the support offered."],
           examTips: ["Compare capital choices on repayment, interest, eligibility and control.", "Make the support provider solve the precise problem in the question."],
           quiz: [
-            q("e6751", "Which source may bring expertise but reduce the founder's ownership share?", ["Trade credit", "Business angel", "Grant", "Personal savings"], 1, "An angel often invests for equity and may influence decisions."),
+            q("e6751", "Which source of finance may provide expertise but reduce the founder's share of ownership?", ["Trade credit", "A business angel", "A grant", "Personal savings"], 1, "A business angel often invests in return for a share of ownership and may influence decisions."),
             q("e6752", "Who is best placed to advise on a complex contract?", ["Solicitor", "Customer", "Competitor", "Courier"], 0, "A solicitor provides specialist legal advice."),
           ],
         }),
@@ -281,7 +281,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Research aim", definition: "A precise statement of what the research needs to discover." }, { term: "Random sample", definition: "A sample in which each eligible person has an equal selection chance." }, { term: "Quota sample", definition: "A sample built to contain set numbers from chosen categories." }, { term: "Collate", definition: "Organise collected evidence so it can be analysed." }],
           commonMistakes: ["Collecting data before defining the decision.", "Reporting a chart without identifying a finding.", "Using an unreferenced or outdated secondary source."],
           examTips: ["Current practice is one primary and one secondary tool; do not rely on older assignment counts.", "In assessed work, follow the live OCR-set instructions exactly and work independently."],
-          quiz: [q("e6811", "Which sample gives every eligible student an equal chance?", ["Convenience", "Random", "Quota", "Cluster chosen for ease"], 1, "Random selection gives each eligible member an equal chance."), q("e6812", "What should a research review do?", ["Repeat every question", "Judge usefulness against the aim and limitations", "Invent missing data", "Remove all negative findings"], 1, "Review whether the evidence answered the aim and how limitations affect confidence.")],
+          quiz: [q("e6811", "Which sampling method gives every eligible student an equal chance of being selected?", ["Convenience sampling", "Random sampling", "Quota sampling", "A cluster chosen because it is easy to reach"], 1, "Random sampling gives every eligible student an equal chance of being selected."), q("e6812", "What should you do when reviewing your research?", ["Repeat every question", "Judge how useful the research is by considering the aim and its limitations", "Invent missing data", "Remove all negative findings"], 1, "Decide whether the evidence answered the research aim and explain how any limitations affect your confidence in the findings.")],
         }),
         topic({
           id: "enterprise-r068-2",
@@ -296,7 +296,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Customer profile", definition: "An evidence-based description of the characteristics and needs of an intended customer." }, { term: "Demographic", definition: "A population characteristic such as age, income or occupation." }, { term: "Lifestyle", definition: "Patterns of interests, values and behaviour that may influence buying." }],
           commonMistakes: ["Creating a broad list unrelated to decisions.", "Using stereotypes instead of findings.", "Claiming one small sample represents everyone."],
           examTips: ["Use the wording 'the finding suggests...' to make the evidence trail visible.", "Prioritise characteristics that change the product or campaign."],
-          quiz: [q("e6821", "Which is the strongest basis for a profile?", ["A personal guess", "Relevant findings from the research", "A social stereotype", "A competitor's slogan"], 1, "A profile should be justified by the evidence gathered."), q("e6822", "Why include income when relevant?", ["It may affect an affordable price", "It proves everybody buys", "It replaces product design", "It removes competition"], 0, "Income can influence ability and willingness to pay.")],
+          quiz: [q("e6821", "What is the strongest evidence to use when creating a customer profile?", ["A personal guess", "Relevant findings from the research", "A social stereotype", "A competitor's slogan"], 1, "A customer profile should be supported by evidence from the research."), q("e6822", "Why might you include income in a customer profile?", ["It may affect what price the customer can afford", "It proves that everybody will buy", "It replaces product design", "It removes competition"], 0, "Income can affect how much a customer is able and willing to pay.")],
         }),
         topic({
           id: "enterprise-r068-3",
@@ -311,7 +311,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Function", definition: "What the product must do and how well it performs." }, { term: "Aesthetics", definition: "The product's sensory and visual appeal." }, { term: "Economic manufacture", definition: "Producing the design at a cost compatible with viability." }, { term: "Creative technique", definition: "A structured way to generate or develop ideas." }],
           commonMistakes: ["Presenting decoration with no functional detail.", "Ignoring manufacture cost.", "Describing research without showing its effect on a feature."],
           examTips: ["Current guidance uses one developed proposal; older two-idea advice is historic.", "Annotations should explain decisions, not merely label colours."],
-          quiz: [q("e6831", "Which choice concerns function?", ["A resealable closure keeps food fresh", "The logo uses green", "The pack looks energetic", "The font feels modern"], 0, "The closure performs a practical purpose."), q("e6832", "Why must economic manufacture be considered?", ["Cost affects price and viability", "It makes research unnecessary", "It guarantees demand", "It replaces aesthetics"], 0, "A design that costs too much to make may not be financially viable.")],
+          quiz: [q("e6831", "Which design choice is about the product's function?", ["A resealable closure keeps food fresh", "The logo uses green", "The packaging looks energetic", "The font looks modern"], 0, "The resealable closure has a practical purpose because it helps to keep the food fresh."), q("e6832", "Why should you consider whether a product can be made economically?", ["The cost affects the price and financial viability", "It makes research unnecessary", "It guarantees demand", "It replaces the product's appearance"], 0, "A design may not be financially viable if it costs too much to make.")],
         }),
         topic({
           id: "enterprise-r068-4",
@@ -326,7 +326,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Self-assessment", definition: "A critical check of one's own proposal against relevant criteria." }, { term: "Feedback", definition: "Information from another person about strengths, weaknesses or possible changes." }, { term: "Refinement", definition: "A purposeful modification that improves fitness for the intended use." }],
           commonMistakes: ["Accepting every comment without judgement.", "Saying 'made it better' without showing how.", "Showing only the final version."],
           examTips: ["Record what changed, the evidence behind it and the intended effect.", "Useful feedback is specific and linked to the customer or proposal."],
-          quiz: [q("e6841", "What is the best response to conflicting feedback?", ["Ignore all of it", "Judge each comment against evidence and objectives", "Make every change", "Choose the longest comment"], 1, "Feedback must be evaluated against the proposal and evidence."), q("e6842", "Which best evidences refinement?", ["Only a final image", "A before/after comparison with reasons", "A definition of feedback", "An unrelated mood board"], 1, "A comparison and reason make development visible.")],
+          quiz: [q("e6841", "What is the best way to respond to conflicting feedback?", ["Ignore all of it", "Judge each comment against the evidence and objectives", "Make every suggested change", "Choose the longest comment"], 1, "Judge each comment by using the proposal's objectives and the evidence you have collected."), q("e6842", "Which option provides the best evidence that a proposal has been improved?", ["Only a final image", "A before-and-after comparison with reasons for the changes", "A definition of feedback", "An unrelated mood board"], 1, "A before-and-after comparison shows what changed, while the reasons explain why the proposal was improved.")],
         }),
         topic({
           id: "enterprise-r068-5",
@@ -341,7 +341,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Sales forecast", definition: "An evidence-based estimate of future sales." }, { term: "Viability", definition: "Whether the proposal can generate enough money to operate and meet objectives." }, { term: "Sensitivity", definition: "How much the result changes when an assumption changes." }],
           commonMistakes: ["Using invented values without evidence.", "Stopping after a correct calculation.", "Calling a proposal viable when forecast sales are below break-even."],
           examTips: ["State units and show working.", "Use cautious language because forecasts are uncertain."],
-          quiz: [q("e6851", "Expected sales are 500 and break-even is 460. What is the margin above break-even?", ["40 units", "460 units", "500 units", "960 units"], 0, "500 − 460 = 40 units."), q("e6852", "Which makes a viability judgement stronger?", ["One optimistic forecast", "Testing lower sales and higher costs", "Ignoring cash timing", "Removing sources"], 1, "Sensitivity testing shows whether the proposal survives less favourable assumptions.")],
+          quiz: [q("e6851", "Expected sales are 500 units and the break-even output is 460 units. What is the margin above break-even?", ["40 units", "460 units", "500 units", "960 units"], 0, "500 − 460 = 40 units."), q("e6852", "Which action makes a financial viability judgement stronger?", ["Using one optimistic forecast", "Testing the effect of lower sales and higher costs", "Ignoring when cash enters and leaves the enterprise", "Removing the sources of information"], 1, "Testing less favourable figures shows whether the proposal could remain viable if sales fall or costs rise.")],
         }),
         topic({
           id: "enterprise-r068-6",
@@ -356,7 +356,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "External risk", definition: "A possible harmful event or change arising outside the enterprise." }, { term: "Mitigation", definition: "Action taken to reduce the likelihood or impact of a risk." }, { term: "Residual risk", definition: "The risk remaining after mitigation." }],
           commonMistakes: ["Listing every external category without relevance.", "Suggesting a response that costs more than the risk justifies.", "Ignoring evidence from earlier proposal work."],
           examTips: ["Prioritise rather than list.", "Make the final success judgement conditional on the most important uncertainty."],
-          quiz: [q("e6861", "A law bans the proposal's packaging material. Which category is most direct?", ["Legal", "Personal", "Internal motivation", "Customer service"], 0, "A change in law is a legal external factor."), q("e6862", "What makes mitigation proportionate?", ["It costs any amount", "Its cost and effort fit the likelihood and impact", "It removes all uncertainty", "It ignores the proposal"], 1, "Responses should be justified by the scale of exposure.")],
+          quiz: [q("e6861", "A new law bans the packaging material used in the proposal. Which type of external factor is this?", ["Legal", "Personal", "Internal motivation", "Customer service"], 0, "A new or changed law is a legal external factor."), q("e6862", "What makes an action to reduce risk proportionate?", ["It can cost any amount", "Its cost and effort match the likelihood and impact of the risk", "It removes all uncertainty", "It ignores the proposal"], 1, "The cost and effort of the action should match the size of the risk.")],
         }),
       ],
     },
@@ -381,7 +381,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Brand personality", definition: "Human characteristics associated with a brand." }, { term: "Brand identity", definition: "The deliberate visual and verbal elements used to present a brand." }, { term: "Brand image", definition: "The audience's actual perception of the brand." }, { term: "Unique selling point", definition: "A meaningful feature or benefit that distinguishes the offer." }],
           commonMistakes: ["Using personality, identity and image as synonyms.", "Choosing colours only from personal preference.", "Claiming a generic feature is unique without competitor evidence."],
           examTips: ["Explain what each identity choice communicates to the chosen customer.", "Use R068 evidence rather than starting the brand from guesswork."],
-          quiz: [q("e6911", "Which is part of brand identity?", ["The audience's private opinion", "The designed logo and colour system", "A supplier invoice", "Break-even output"], 1, "The enterprise deliberately creates its logo and colours as identity elements."), q("e6912", "What is brand image?", ["Only the logo file", "How audiences perceive the brand", "The legal ownership", "The selling price"], 1, "Image exists in audience perceptions and may differ from intended identity.")],
+          quiz: [q("e6911", "Which option is part of a brand's identity?", ["The audience's private opinion", "The designed logo and colour system", "A supplier invoice", "The break-even output"], 1, "The enterprise creates its logo and colour system as parts of its brand identity."), q("e6912", "What does brand image mean?", ["Only the logo file", "How the audience sees the brand", "The legal ownership of the enterprise", "The selling price"], 1, "Brand image is how the audience sees the brand. This may be different from the identity that the enterprise intended to create.")],
         }),
         topic({
           id: "enterprise-r069-2",
@@ -396,7 +396,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Campaign objective", definition: "The specific result promotional activity aims to achieve." }, { term: "KPI", definition: "A measurable indicator used to judge progress towards an objective." }, { term: "Call to action", definition: "A clear instruction telling the audience what to do next." }, { term: "Coherence", definition: "Consistent elements that make materials work as one campaign." }],
           commonMistakes: ["Making two versions of the same material instead of different types.", "Using a vague objective with no measure or time.", "Showing materials without explaining how they work together."],
           examTips: ["Current practice is one digital and one non-digital material; older three-material advice is historic.", "A KPI measures the chosen objective, not an unrelated result."],
-          quiz: [q("e6921", "Which is a measurable KPI?", ["Become popular", "Gain 120 landing-page visits in two weeks", "Use bright colours", "Make a nice poster"], 1, "It specifies a measure and timeframe."), q("e6922", "What best creates campaign coherence?", ["Unrelated messages", "Consistent identity, message and action", "Identical file formats", "No customer focus"], 1, "Shared strategic and brand elements make materials reinforce one another.")],
+          quiz: [q("e6921", "Which option is a measurable key performance indicator (KPI)?", ["Become popular", "Gain 120 landing-page visits in two weeks", "Use bright colours", "Make a nice poster"], 1, "It includes a number that can be measured and a clear timeframe."), q("e6922", "What is the best way to make campaign materials feel connected?", ["Use unrelated messages", "Use a consistent brand identity, message and call to action", "Use identical file formats", "Ignore the target customer"], 1, "A consistent identity, message and call to action help the materials support one another.")],
         }),
         topic({
           id: "enterprise-r069-3",
@@ -411,7 +411,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Pitch", definition: "A planned persuasive presentation intended to gain support for a proposal." }, { term: "Visual aid", definition: "A resource that helps an audience understand or remember information." }, { term: "Non-verbal communication", definition: "Meaning conveyed through eye contact, posture, expression, movement and gesture." }],
           commonMistakes: ["Writing slides before deciding the pitch purpose.", "Reading dense text aloud.", "Collecting feedback but showing no change."],
           examTips: ["Anticipate likely questions and prepare evidence-based answers.", "Use notes as prompts rather than a script that prevents audience contact."],
-          quiz: [q("e6931", "Why anticipate questions?", ["To avoid learning the proposal", "To prepare clear evidence and respond confidently", "To make the pitch longer", "To replace resources"], 1, "Preparation supports accurate, confident responses."), q("e6932", "Which is non-verbal communication?", ["Profit figure", "Eye contact", "Spoken explanation", "Written handout"], 1, "Eye contact communicates without words.")],
+          quiz: [q("e6931", "Why should you think about possible questions before giving a pitch?", ["To avoid learning about the proposal", "To prepare clear evidence and answer confidently", "To make the pitch longer", "To replace the pitch resources"], 1, "Preparing for likely questions helps you give accurate and confident answers."), q("e6932", "Which option is an example of non-verbal communication?", ["A profit figure", "Eye contact", "A spoken explanation", "A written handout"], 1, "Eye contact communicates a message without spoken or written words.")],
         }),
         topic({
           id: "enterprise-r069-4",
@@ -426,7 +426,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Professional delivery", definition: "Clear, controlled and audience-appropriate presentation behaviour." }, { term: "Observation record", definition: "Teacher evidence documenting aspects of performance that a submitted file cannot show." }, { term: "Pitch resource", definition: "A material or object used to communicate and support the proposal." }],
           commonMistakes: ["Using slides as the only proof of delivery.", "Reading every word from the screen.", "Failing to show knowledge when questioned."],
           examTips: ["Plan several resource types that each serve a purpose.", "Practise within 5–10 minutes; do not treat timing as an afterthought."],
-          quiz: [q("e6941", "How long is the professional pitch?", ["1–2 minutes", "5–10 minutes", "15–20 minutes", "Exactly 30 minutes"], 1, "OCR specifies a 5–10 minute professional pitch."), q("e6942", "Why are slides alone insufficient?", ["Slides are forbidden", "They do not evidence all delivery, interaction or resource use", "They cannot contain text", "They replace the pitch"], 1, "Performance and interaction require observation and wider evidence.")],
+          quiz: [q("e6941", "How long should the professional pitch last?", ["1–2 minutes", "5–10 minutes", "15–20 minutes", "Exactly 30 minutes"], 1, "OCR states that the professional pitch should last between 5 and 10 minutes."), q("e6942", "Why are slides alone not enough as evidence of a professional pitch?", ["Slides are not allowed", "They do not show all of the delivery, interaction or use of resources", "They cannot contain text", "They replace the pitch"], 1, "An assessor must also observe how the pitch is delivered, how the presenter interacts with the audience and how other resources are used.")],
         }),
         topic({
           id: "enterprise-r069-5",
@@ -441,7 +441,7 @@ export const enterpriseCourse: Course = {
           keyTerms: [{ term: "Reflection", definition: "Critical consideration of performance and outcomes using evidence." }, { term: "Improvement", definition: "A change that strengthens or corrects existing work." }, { term: "Further development", definition: "A realistic next step that extends the proposal or enterprise." }],
           commonMistakes: ["Writing only a list of strengths.", "Using vague claims such as 'be more confident'.", "Confusing an immediate correction with future enterprise development."],
           examTips: ["State the evidence before the conclusion.", "Prioritise the action with the largest likely benefit and explain why."],
-          quiz: [q("e6951", "Which is an improvement to an existing pitch?", ["Reduce dense slide text and add a labelled cost chart", "Launch in another country next year", "Develop a new product range", "Open a second site"], 0, "This directly corrects the current pitch communication."), q("e6952", "Which is strongest reflection evidence?", ["I think it was fine", "Three viewers misunderstood price and the Q&A showed the slide was unclear", "I worked hard", "The colours were my favourite"], 1, "Specific observed audience evidence supports the conclusion." )],
+          quiz: [q("e6951", "Which option would improve an existing pitch?", ["Reduce the amount of text on the slides and add a labelled cost chart", "Launch in another country next year", "Develop a new product range", "Open a second site"], 0, "This change makes the information in the current pitch clearer for the audience."), q("e6952", "Which option is the strongest evidence to use in a reflection?", ["I think it was fine", "Three viewers misunderstood the price, and the question-and-answer session showed that the slide was unclear", "I worked hard", "The colours were my favourite"], 1, "Specific evidence about the audience's response supports the conclusion." )],
         }),
       ],
     },

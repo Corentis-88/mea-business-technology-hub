@@ -209,7 +209,7 @@ export const businessCourse: Course = {
           ],
           examTips: ["Apply research reliability to the actual method and sample.", "Use source evidence inside the reasoning rather than copying it as a separate sentence."],
           quiz: [
-            q("b121", "Which is qualitative primary research?", ["A government population table", "Written explanations from a focus group", "Competitor prices copied from a website", "The number of weekly sales"], 1, "A focus group is first-hand, and written explanations are qualitative."),
+            q("b121", "Which example is qualitative primary research?", ["A government population table", "Written explanations from a focus group", "Competitor prices copied from a website", "The number of weekly sales"], 1, "A focus group collects first-hand information. Written explanations are qualitative because they use words rather than numbers."),
             q("b122", "What is the strongest reason to segment a market?", ["It removes all competition", "It guarantees profit", "It helps tailor the marketing mix to a chosen customer group", "It makes research unnecessary"], 2, "Segmentation supports more focused product, price, promotion and distribution decisions."),
           ],
           examQuestions: [
@@ -275,7 +275,7 @@ export const businessCourse: Course = {
           examTips: ["Formulae are not supplied: recall, substitute, calculate, label and interpret.", "After calculating, state what the result means for the named business."],
           quiz: [
             q("b131", "A business sells 600 units at £15. Total costs are £7,200. What is profit?", ["£1,800", "£7,200", "£9,000", "£16,200"], 0, "Revenue is £9,000; £9,000 − £7,200 = £1,800 profit."),
-            q("b132", "Why might a profitable business have a negative cash balance?", ["Profit and cash are identical", "Customers pay after supplier bills are due", "Fixed costs disappear", "Sales revenue cannot create cash"], 1, "Timing differences can leave too little cash even when recorded revenue exceeds costs."),
+            q("b132", "Why might a profitable business still have a negative cash balance?", ["Profit and cash are identical", "Customers pay after supplier bills are due", "Fixed costs disappear", "Sales revenue cannot create cash"], 1, "The business may not receive cash from customers before it must pay its bills. This can cause a negative cash balance even when the business makes a profit."),
           ],
           examQuestions: [
             { id: "b13-e1", command: "Calculate", marks: 2, prompt: "A café has fixed costs of £9,000. Each meal sells for £12 and has a variable cost of £7. Calculate break-even output.", guidance: ["Calculate contribution first.", "Show substitution and give the answer in meals."], model: "Contribution = £12 − £7 = £5. Break-even output = £9,000 ÷ £5 = 1,800 meals." },
@@ -464,8 +464,8 @@ export const businessCourse: Course = {
           commonMistakes: ["Saying all growth lowers unit costs.", "Confusing merger with organic growth.", "Assuming ethical decisions cannot improve profit in the long term."],
           examTips: ["Separate speed of growth from risk and control.", "For international expansion, apply culture, income, law or exchange rates to the named market."],
           quiz: [
-            q("b211", "Which is organic growth?", ["Buying a competitor", "Merging with a supplier", "Opening stores using retained profit", "Being taken over"], 2, "The business expands through its own stores and internal finance."),
-            q("b212", "Which is a possible diseconomy of scale?", ["Bulk-buying discount", "Specialist manager", "Slower communication through many layers", "Cheaper finance"], 2, "More layers and sites can delay or distort communication."),
+            q("b211", "Which example shows organic growth?", ["Buying a competitor", "Merging with a supplier", "Opening stores using retained profit", "Being taken over"], 2, "The business grows by opening its own stores and using internal finance."),
+            q("b212", "Which example is a possible diseconomy of scale?", ["A bulk-buying discount", "A specialist manager", "Slower communication through many layers", "Cheaper finance"], 2, "Having more management layers and business sites can make communication slower or less accurate."),
           ],
           examQuestions: [
             { id: "b21-e1", command: "Justify", marks: 9, prompt: "A successful regional food producer can grow by opening its own factory or taking over a smaller competitor. Justify which option it should choose.", guidance: ["Choose one option and apply BLT reasoning.", "You may fully develop one option; equal treatment is not compulsory.", "End with a contextual judgement based on speed, finance, capacity or integration risk."] },
@@ -579,7 +579,7 @@ export const businessCourse: Course = {
           commonMistakes: ["Calling flow production suitable for every customised product.", "Saying JIT means no stock under any circumstances.", "Confusing quality assurance with a final inspection."],
           examTips: ["Link the production method to volume, variety and customer needs.", "For JIT, evaluate reliability of supply and cost of disruption against stockholding cost."],
           quiz: [
-            q("b231", "Which method best fits thousands of identical drinks each day?", ["Job", "Flow", "One-off", "Handmade custom"], 1, "Continuous flow suits high-volume standardised production."),
+            q("b231", "Which production method is best for making thousands of identical drinks each day?", ["Job production", "Flow production", "One-off production", "Handmade custom production"], 1, "Flow production is suitable for making a large number of standardised products."),
             q("b232", "What is the main operational risk of JIT?", ["Too much warehouse space", "A late delivery can stop production", "Stock must become more expensive", "Quality assurance becomes impossible"], 1, "Little buffer stock means disruption can halt operations."),
           ],
           examQuestions: [
@@ -637,7 +637,7 @@ export const businessCourse: Course = {
           commonMistakes: ["Using cost of sales as the denominator for a profit margin.", "Confusing a larger profit amount with a better margin.", "Presenting ARR without considering risk, time and alternative investments."],
           examTips: ["Memorise every formula; none is supplied.", "Always interpret the percentage for the named decision."],
           quiz: [
-            q("b241", "Revenue is £500,000 and gross profit is £150,000. What is gross profit margin?", ["15%", "30%", "35%", "70%"], 1, "£150,000 ÷ £500,000 × 100 = 30%."),
+            q("b241", "Revenue is £500,000 and gross profit is £150,000. What is the gross profit margin?", ["15%", "30%", "35%", "70%"], 1, "£150,000 ÷ £500,000 × 100 = 30%."),
             q("b242", "Why is margin often more useful than profit when comparing two differently sized businesses?", ["It ignores revenue", "It measures profit relative to revenue", "It guarantees future performance", "It includes all qualitative evidence"], 1, "A percentage controls for differences in sales scale."),
           ],
         }),
@@ -695,7 +695,7 @@ export const businessCourse: Course = {
           examTips: ["Trace HR decisions to productivity, retention, service, cost or revenue.", "Evaluate a method against role, skill level, budget and time horizon."],
           quiz: [
             q("b251", "Which document describes the ideal applicant's skills and qualifications?", ["Job description", "Person specification", "Cash-flow forecast", "Organisation chart"], 1, "The person specification states what the applicant should bring to the role."),
-            q("b252", "Which is non-financial motivation?", ["Commission", "Bonus", "Job enrichment", "Higher hourly pay"], 2, "Job enrichment increases challenge or responsibility rather than direct financial reward."),
+            q("b252", "Which option is a form of non-financial motivation?", ["Commission", "A bonus", "Job enrichment", "Higher hourly pay"], 2, "Job enrichment gives an employee more challenge or responsibility without directly increasing their pay."),
           ],
           examQuestions: [
             { id: "b25-e1", command: "Evaluate", marks: 12, prompt: "A rapidly growing restaurant chain plans to decentralise decisions to restaurant managers. Evaluate whether decentralisation is likely to improve its performance.", guidance: ["Build applied BLTs on local speed/knowledge and consistency/control.", "Use the growth and restaurant context throughout.", "Conclude with the decisive condition, such as manager capability or strength of operating standards."] },

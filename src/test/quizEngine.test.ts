@@ -53,6 +53,32 @@ describe("configurable quiz engine", () => {
   it("maps the three slider positions to named levels", () => {
     expect([1, 2, 3].map(difficultyFromSlider)).toEqual(["low", "medium", "high"]);
   });
+
+  it("uses clear, consistently formatted English throughout generated quizzes", () => {
+    const awkwardPhrases = [
+      "correct response to:",
+      "complete the knowledge link",
+      "most directly demonstrated",
+      "should be used to analyse",
+      "reinforcement check",
+      "which is a common mistake",
+    ];
+
+    for (const course of courses) {
+      for (const difficulty of difficulties) {
+        const questions = createQuizSession({ course, difficulty, count: 50, seed: 23 }).questions;
+        for (const question of questions) {
+          expect(question.prompt).not.toMatch(/^[a-z]/);
+          expect(question.prompt).not.toMatch(/\s{2,}/);
+          expect(question.explanation).not.toMatch(/^[a-z]/);
+          expect(question.options.every((option) => option.trim() === option && option.length > 0)).toBe(true);
+          for (const phrase of awkwardPhrases) {
+            expect(question.prompt.toLowerCase()).not.toContain(phrase);
+          }
+        }
+      }
+    }
+  });
 });
 
 describe("quiz builder interface", () => {

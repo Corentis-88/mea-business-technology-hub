@@ -107,22 +107,22 @@ export const computerScienceCourse: Course = {
           quiz: [
             {
               id: "cs-1-1-q1",
-              prompt: "Which register stores the address of the next instruction?",
+              prompt: "Which CPU register stores the address of the next instruction?",
               options: ["MDR", "Accumulator", "Program Counter", "MAR"],
               answer: 2,
-              explanation: "The Program Counter stores the address of the next instruction to fetch.",
+              explanation: "The program counter stores the address of the next instruction that the CPU will fetch.",
             },
             {
               id: "cs-1-1-q2",
-              prompt: "Why can a larger cache improve CPU performance?",
+              prompt: "Why can increasing the cache size improve CPU performance?",
               options: [
                 "It permanently stores every program",
-                "It reduces the need to fetch frequently used items from slower RAM",
-                "It increases secondary-storage capacity",
+                "It reduces how often the CPU must fetch frequently used data from slower RAM",
+                "It increases the computer's secondary storage capacity",
                 "It replaces the control unit",
               ],
               answer: 1,
-              explanation: "Cache is fast memory close to the CPU, so repeated access can take less time.",
+              explanation: "Cache is fast memory close to the CPU. A larger cache can hold more frequently used data, so the CPU may spend less time fetching it from RAM.",
             },
           ],
           examQuestions: [
@@ -253,14 +253,14 @@ export const computerScienceCourse: Course = {
             },
             {
               id: "cs-1-2-q2",
-              prompt: "Which change directly increases the number of measurements taken from sound each second?",
-              options: ["Higher bit depth", "Higher sample rate", "Lossy compression", "Lower duration"],
+              prompt: "Which change increases the number of sound measurements taken each second?",
+              options: ["Increasing the bit depth", "Increasing the sample rate", "Using lossy compression", "Reducing the duration"],
               answer: 1,
-              explanation: "Sample rate is the number of samples captured per second.",
+              explanation: "The sample rate is the number of sound measurements, or samples, captured each second.",
             },
             {
               id: "cs-1-2-q3",
-              prompt: "A 100 × 50 image uses 8-bit colour depth. What is its uncompressed size?",
+              prompt: "A bitmap image is 100 × 50 pixels and uses an 8-bit colour depth. What is its uncompressed file size?",
               options: ["5,000 bits", "40,000 bits", "80,000 bits", "400,000 bits"],
               answer: 1,
               explanation: "100 × 50 × 8 = 40,000 bits.",
@@ -333,8 +333,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Treating a switch, router and server as interchangeable.", "Saying a WAN is simply a wireless network.", "Claiming HTTPS prevents every kind of cyberattack."],
           examTips: ["Name both the protocol and its exact job.", "When comparing topologies, link failure or cost to the diagram's structure."],
           quiz: [
-            { id: "cs-1-3-q1", prompt: "Which device normally forwards packets between different networks?", options: ["Switch", "Router", "NIC", "WAP"], answer: 1, explanation: "A router selects routes between networks." },
-            { id: "cs-1-3-q2", prompt: "Which protocol is used to send email from a client or between mail servers?", options: ["IMAP", "FTP", "SMTP", "HTTP"], answer: 2, explanation: "SMTP sends email; IMAP and POP are used to retrieve it." },
+            { id: "cs-1-3-q1", prompt: "Which device forwards data packets between different networks?", options: ["Switch", "Router", "NIC", "WAP"], answer: 1, explanation: "A router directs data packets between networks." },
+            { id: "cs-1-3-q2", prompt: "Which protocol sends email from an email client or between email servers?", options: ["IMAP", "FTP", "SMTP", "HTTP"], answer: 2, explanation: "SMTP is used to send email. IMAP and POP are used to retrieve email." },
           ],
           examQuestions: [
             { id: "cs-1-3-e1", command: "Explain", marks: 4, prompt: "Explain two benefits to a school of using a client-server network rather than peer-to-peer networking.", guidance: ["Make two separate points.", "Develop each point in the school context.", "Possible areas include accounts, security, backup or software."], model: "User accounts can be managed centrally, so access can be removed or permissions changed consistently across school computers. Files can also be backed up centrally, making recovery easier if a classroom device fails." },
@@ -367,8 +367,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Listing controls without explaining how they counter the threat.", "Saying encryption prevents data from being stolen.", "Confusing DoS with malware that deletes files."],
           examTips: ["Use the named threat from the scenario in your explanation.", "Separate prevention from reducing the consequences after an incident."],
           quiz: [
-            { id: "cs-1-4-q1", prompt: "Which attack places malicious commands into a database input?", options: ["Brute force", "SQL injection", "DoS", "Phishing"], answer: 1, explanation: "SQL injection exploits poorly handled database input." },
-            { id: "cs-1-4-q2", prompt: "What is the most direct purpose of user access levels?", options: ["Make every file public", "Limit actions and data to authorised users", "Increase CPU clock speed", "Remove the need for passwords"], answer: 1, explanation: "Permissions restrict users to the resources and actions their role needs." },
+            { id: "cs-1-4-q1", prompt: "Which attack adds malicious commands to a database input?", options: ["Brute-force attack", "SQL injection", "Denial-of-service attack", "Phishing"], answer: 1, explanation: "SQL injection uses a poorly protected database input to run malicious commands." },
+            { id: "cs-1-4-q2", prompt: "What is the main purpose of user access levels?", options: ["To make every file public", "To limit data and actions to authorised users", "To increase the CPU clock speed", "To remove the need for passwords"], answer: 1, explanation: "Access levels limit users to the data and actions that they need for their role." },
           ],
           examQuestions: [
             { id: "cs-1-4-e1", command: "Explain", marks: 4, prompt: "Explain two ways a hospital could reduce the impact of unauthorised access to patient records.", guidance: ["Choose two distinct controls.", "Explain the mechanism of each.", "Apply the consequence to confidential records."], model: "Role-based access means a receptionist cannot open clinical notes they do not need. Encrypting stored records means copied files remain unreadable without the decryption key." },
@@ -401,8 +401,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Describing an operating system as only a user interface.", "Claiming defragmentation is useful for every SSD.", "Confusing a driver with the physical device."],
           examTips: ["Explain both what is managed and why it is needed.", "Choose utilities that fit the scenario rather than listing all three."],
           quiz: [
-            { id: "cs-1-5-q1", prompt: "Which OS function gives each running process suitable space in RAM?", options: ["File compression", "Memory management", "Defragmentation", "Authentication"], answer: 1, explanation: "Memory management allocates RAM and prevents processes from interfering with each other." },
-            { id: "cs-1-5-q2", prompt: "What is the role of a device driver?", options: ["Translate between the OS and a hardware device", "Store every user file", "Replace the CPU", "Create a network password"], answer: 0, explanation: "A driver provides the device-specific communication needed by the operating system." },
+            { id: "cs-1-5-q1", prompt: "Which operating-system function gives each running process space in RAM?", options: ["File compression", "Memory management", "Defragmentation", "Authentication"], answer: 1, explanation: "Memory management allocates space in RAM and helps to stop processes from interfering with each other." },
+            { id: "cs-1-5-q2", prompt: "What does a device driver do?", options: ["It allows the operating system to communicate with a hardware device", "It stores every user file", "It replaces the CPU", "It creates a network password"], answer: 0, explanation: "A device driver allows the operating system to communicate with a particular hardware device." },
           ],
           durationMinutes: 30,
         }),
@@ -435,8 +435,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Naming a law without applying what it regulates.", "Producing a one-sided extended response.", "Assuming open source means no licence or no copyright."],
           examTips: ["Use every bullet named in an extended-response question.", "Make a supported recommendation connected to the organisation's priorities."],
           quiz: [
-            { id: "cs-1-6-q1", prompt: "Which law is most directly concerned with unauthorised access to a computer?", options: ["DPA 2018", "CMA 1990", "CDPA 1988", "Freedom of Information Act"], answer: 1, explanation: "The Computer Misuse Act covers unauthorised access and related computer misuse." },
-            { id: "cs-1-6-q2", prompt: "Which is a possible benefit of open-source software?", options: ["It can never contain bugs", "Its source may be inspected and adapted under the licence", "It has no copyright", "It always includes guaranteed support"], answer: 1, explanation: "Access to source code can enable checking and customisation, subject to the licence." },
+            { id: "cs-1-6-q1", prompt: "Which law covers unauthorised access to a computer system?", options: ["Data Protection Act 2018", "Computer Misuse Act 1990", "Copyright, Designs and Patents Act 1988", "Freedom of Information Act 2000"], answer: 1, explanation: "The Computer Misuse Act 1990 covers unauthorised access and other forms of computer misuse." },
+            { id: "cs-1-6-q2", prompt: "What is one possible benefit of open-source software?", options: ["It can never contain bugs", "Its source code can be inspected and changed if the licence allows it", "It is not protected by copyright", "It always includes guaranteed support"], answer: 1, explanation: "Open-source software allows people to inspect and change its source code, as long as they follow the licence." },
           ],
           examQuestions: [
             { id: "cs-1-6-e1", command: "Discuss", marks: 8, prompt: "A council plans to replace face-to-face enquiries with an AI-powered online service. Discuss the ethical, cultural and environmental impacts of this decision.", guidance: ["Cover all three named areas.", "Consider more than one stakeholder and both benefits and drawbacks.", "Reach a supported conclusion using the council context."], model: "A high-level response would compare improved 24-hour access and possibly reduced travel with exclusion of residents who lack access or confidence, privacy and bias concerns, changes to local employment, and the energy used by online infrastructure. Its conclusion would recommend a mixed service if inclusion and accountability outweigh the savings." },
@@ -490,8 +490,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Using binary search on unsorted data.", "Skipping a loop's first or last iteration.", "Writing vague English that cannot be executed unambiguously."],
           examTips: ["Trace one line at a time and do not calculate mentally several iterations ahead.", "For write/refine questions, use OCR ERL or a recognisable high-level language."],
           quiz: [
-            { id: "cs-2-1-q1", prompt: "What must be true before binary search can be used correctly?", options: ["The data must be sorted", "The list must contain text", "The list must have an even length", "Every value must be unique"], answer: 0, explanation: "Binary search relies on ordering to discard half of the remaining values." },
-            { id: "cs-2-1-q2", prompt: "Which sort repeatedly swaps adjacent out-of-order values?", options: ["Insertion sort", "Merge sort", "Bubble sort", "Binary sort"], answer: 2, explanation: "Bubble sort compares neighbouring values and swaps them when needed." },
+            { id: "cs-2-1-q1", prompt: "What must be true before a binary search can be used?", options: ["The data must be sorted", "The list must contain text", "The list must have an even number of items", "Every value must be different"], answer: 0, explanation: "A binary search needs sorted data so that it can discard half of the remaining items after each comparison." },
+            { id: "cs-2-1-q2", prompt: "Which sorting algorithm repeatedly swaps neighbouring values that are in the wrong order?", options: ["Insertion sort", "Merge sort", "Bubble sort", "Binary sort"], answer: 2, explanation: "A bubble sort compares neighbouring values and swaps them when they are in the wrong order." },
           ],
           examQuestions: [
             { id: "cs-2-1-e1", command: "Design", marks: 6, prompt: "Design an algorithm that inputs ten temperatures and outputs the highest temperature and how many readings were below zero.", guidance: ["Initialise the maximum from a valid value or first input.", "Use a loop for exactly ten readings.", "Update the maximum and a separate below-zero counter."], model: "highest = -1000\nbelow = 0\nfor i = 1 to 10\n  temp = input()\n  if temp > highest then highest = temp\n  if temp < 0 then below = below + 1\nnext i\nprint(highest)\nprint(below)" },
@@ -530,8 +530,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Confusing assignment with equality comparison.", "Taking new input when a supplied parameter already contains the value.", "Printing a total inside a loop when only the final total is required.", "Forgetting that array indices may start at zero in the language shown."],
           examTips: ["Use meaningful variable names and follow the requested inputs and outputs exactly.", "Keep a solution simple; extra code creates more opportunities for logic errors."],
           quiz: [
-            { id: "cs-2-2-q1", prompt: "What is the purpose of a return value?", options: ["To repeat a loop", "To send a result back from a function", "To declare every variable global", "To read a file"], answer: 1, explanation: "A function returns a result to the calling code." },
-            { id: "cs-2-2-q2", prompt: "Which SQL clause states the table being queried?", options: ["SELECT", "FROM", "WHERE", "ORDER"], answer: 1, explanation: "FROM identifies the table; SELECT identifies fields and WHERE filters records." },
+            { id: "cs-2-2-q1", prompt: "What is the purpose of a return value?", options: ["To repeat a loop", "To send a result back from a function", "To make every variable global", "To read data from a file"], answer: 1, explanation: "A return value sends a result from a function back to the code that called it." },
+            { id: "cs-2-2-q2", prompt: "Which SQL keyword names the table to search?", options: ["SELECT", "FROM", "WHERE", "ORDER"], answer: 1, explanation: "FROM names the table, SELECT chooses the fields and WHERE filters the records." },
           ],
           examQuestions: [
             { id: "cs-2-2-e1", command: "Write", marks: 5, prompt: "Write an algorithm that outputs every value above 50 in an array called scores containing 20 values.", guidance: ["Loop across all 20 valid positions.", "Test the current array element.", "Output only qualifying values."], model: "for index = 0 to 19\n  if scores[index] > 50 then\n    print(scores[index])\n  endif\nnext index" },
@@ -564,8 +564,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Saying validation proves data is correct.", "Describing testing as a maintainability technique without explaining code readability.", "Using just-inside values when asked specifically for boundary values."],
           examTips: ["For range 1 to 10 inclusive, boundary values are 1 and 10; invalid near-boundary values are 0 and 11.", "When refining code, state the corrected line or logic rather than only naming the error."],
           quiz: [
-            { id: "cs-2-3-q1", prompt: "For an accepted age range of 13–18 inclusive, which pair is boundary data?", options: ["12 and 19", "13 and 18", "14 and 17", "'thirteen' and 18.5"], answer: 1, explanation: "Boundary data is exactly at the valid limits: 13 and 18." },
-            { id: "cs-2-3-q2", prompt: "Which feature most directly improves maintainability?", options: ["Cryptic one-letter identifiers", "One very long block", "Meaningful subprogram names", "Removing indentation"], answer: 2, explanation: "Meaningful names and modular code help another programmer understand and change the program." },
+            { id: "cs-2-3-q1", prompt: "A valid age must be from 13 to 18, including both limits. Which pair is boundary data?", options: ["12 and 19", "13 and 18", "14 and 17", "'thirteen' and 18.5"], answer: 1, explanation: "Boundary data uses the exact limits of the valid range, which are 13 and 18." },
+            { id: "cs-2-3-q2", prompt: "Which feature makes a program easier to maintain?", options: ["Unclear one-letter names", "One very long block of code", "Meaningful names for subprograms", "Removing indentation"], answer: 2, explanation: "Meaningful names and smaller subprograms help another programmer understand and change the code." },
           ],
           examQuestions: [
             { id: "cs-2-3-e1", command: "Create", marks: 4, prompt: "Create four test cases for an integer quantity that must be from 1 to 50 inclusive: one normal, two boundary and one erroneous case.", guidance: ["Label each type.", "Use exact accepted limits for boundaries.", "Erroneous means the wrong data type.", "Give expected acceptance or rejection."], model: "Normal: 25, accept. Boundary: 1, accept. Boundary: 50, accept. Erroneous: 'ten', reject because it is not an integer." },
@@ -598,8 +598,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Treating OR as exactly one input rather than one or both.", "Applying NOT to the wrong part of an expression.", "Skipping intermediate columns in a combined truth table."],
           examTips: ["Add an intermediate column for each gate.", "Check that a two-input table contains four input combinations."],
           quiz: [
-            { id: "cs-2-4-q1", prompt: "What is the output of 1 OR 1?", options: ["0", "1", "Undefined", "It depends on NOT"], answer: 1, explanation: "OR is true when either or both inputs are true." },
-            { id: "cs-2-4-q2", prompt: "What is NOT(1 AND 0)?", options: ["0", "1", "10", "Undefined"], answer: 1, explanation: "1 AND 0 is 0; NOT 0 is 1." },
+            { id: "cs-2-4-q1", prompt: "What is the result of 1 OR 1?", options: ["0", "1", "Undefined", "It depends on NOT"], answer: 1, explanation: "OR gives a result of 1 when either input, or both inputs, are 1." },
+            { id: "cs-2-4-q2", prompt: "What is the result of NOT (1 AND 0)?", options: ["0", "1", "10", "Undefined"], answer: 1, explanation: "1 AND 0 gives 0. NOT changes this 0 to 1." },
           ],
           examQuestions: [
             { id: "cs-2-4-e1", command: "Complete", marks: 3, prompt: "Complete the output column for (A OR B) AND NOT B using input rows 00, 01, 10, 11.", guidance: ["Calculate A OR B.", "Calculate NOT B.", "AND those intermediate results."], model: "Outputs in order: 0, 0, 1, 0." },
@@ -631,8 +631,8 @@ export const computerScienceCourse: Course = {
           commonMistakes: ["Saying a high-level language is faster simply because it is easier to read.", "Claiming an interpreter creates a permanent executable in the same way as a compiler.", "Naming IDE features without explaining how they help development."],
           examTips: ["Compare translators using translation timing, error feedback, distribution and execution.", "For an IDE feature, state the developer task it makes easier or more reliable."],
           quiz: [
-            { id: "cs-2-5-q1", prompt: "Why is a translator needed?", options: ["A CPU directly understands Python", "A CPU executes machine code rather than high-level source", "Every program must use the internet", "It increases RAM capacity"], answer: 1, explanation: "Source code must be converted into instructions the processor can execute." },
-            { id: "cs-2-5-q2", prompt: "Which IDE feature highlights likely syntax mistakes?", options: ["Error diagnostics", "File compression", "Defragmentation", "A router"], answer: 0, explanation: "Diagnostics identify and report code errors to the programmer." },
+            { id: "cs-2-5-q1", prompt: "Why does a program written in a high-level language need a translator?", options: ["The CPU directly understands Python", "The CPU can execute machine code but not high-level source code", "Every program must use the internet", "A translator increases the amount of RAM"], answer: 1, explanation: "A translator converts high-level source code into machine-code instructions that the CPU can execute." },
+            { id: "cs-2-5-q2", prompt: "Which IDE feature helps a programmer find syntax errors?", options: ["Error diagnostics", "File compression", "Defragmentation", "A router"], answer: 0, explanation: "Error diagnostics identify and report code errors to the programmer." },
           ],
           examQuestions: [
             { id: "cs-2-5-e1", command: "Compare", marks: 4, prompt: "Compare using a compiler with using an interpreter while developing and distributing a program.", guidance: ["Give linked differences, not two unrelated definitions.", "Consider error discovery during development.", "Consider whether users need the translator or source code."], model: "An interpreter runs code a line at a time, so a developer can test and locate an error as execution reaches it. A compiler translates the whole program and can produce executable code for distribution, so the user may run it without receiving the source or compiler." },

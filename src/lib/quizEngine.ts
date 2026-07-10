@@ -79,8 +79,8 @@ function directQuestion(question: QuizQuestion, topic: Topic, difficulty: QuizDi
   const lead = difficulty === "low"
     ? ""
     : difficulty === "medium"
-      ? "Think carefully: "
-      : `Apply your knowledge of ${topic.title}: `;
+      ? "Think carefully. "
+      : `Use what you know about ${topic.title}. `;
   return {
     ...question,
     id: `${topic.id}:direct:${difficulty}:${question.id}`,
@@ -109,14 +109,14 @@ function topicBank(course: Course, topic: Topic, difficulty: QuizDifficulty, see
     questions.push(directQuestion(question, topic, difficulty, seed));
     const correctOption = question.options[question.answer];
     const reasoningPrompt = difficulty === "high"
-      ? `Which reasoning most convincingly justifies “${correctOption}” as the answer to this question: ${question.prompt}`
-      : `Why is “${correctOption}” the correct response to: ${question.prompt}`;
+      ? `Which explanation best shows why “${correctOption}” answers this question? ${question.prompt}`
+      : `Why is “${correctOption}” the best answer to this question? ${question.prompt}`;
     questions.push(makeQuestion(
       `${topic.id}:reason:${difficulty}:${question.id}`,
       reasoningPrompt,
       question.explanation,
       explanations,
-      `${question.explanation} This connects the answer to the underlying idea rather than relying on a guess.`,
+      `${question.explanation} This links the answer to the key idea.`,
       topic,
       difficulty,
       seed,
@@ -125,31 +125,31 @@ function topicBank(course: Course, topic: Topic, difficulty: QuizDifficulty, see
 
   topic.keyTerms.forEach((term, index) => {
     const definitionPrompt = difficulty === "high"
-      ? `Which specialist term would be most precise when explaining this idea: “${term.definition}”?`
-      : `Which term matches this definition: “${term.definition}”?`;
+      ? `Which subject term best matches this meaning? “${term.definition}”`
+      : `Which term matches this meaning? “${term.definition}”`;
     questions.push(makeQuestion(`${topic.id}:term-name:${difficulty}:${index}`, definitionPrompt, term.term, termNames, `${term.term} means ${term.definition}`, topic, difficulty, seed));
-    questions.push(makeQuestion(`${topic.id}:term-definition:${difficulty}:${index}`, `Which explanation best defines “${term.term}”?`, term.definition, definitions, `${term.term} means ${term.definition}`, topic, difficulty, seed));
-    questions.push(makeQuestion(`${topic.id}:term-link:${difficulty}:${index}`, `Complete the knowledge link: “${term.term}” is most closely connected to…`, term.definition, definitions, `The accurate link is: ${term.term} — ${term.definition}`, topic, difficulty, seed));
+    questions.push(makeQuestion(`${topic.id}:term-definition:${difficulty}:${index}`, `What is the best definition of “${term.term}”?`, term.definition, definitions, `${term.term} means ${term.definition}`, topic, difficulty, seed));
+    questions.push(makeQuestion(`${topic.id}:term-link:${difficulty}:${index}`, `Which meaning is linked to “${term.term}”?`, term.definition, definitions, `${term.term} means ${term.definition}`, topic, difficulty, seed));
   });
 
   topic.commonMistakes.forEach((mistake, index) => {
     const prompt = difficulty === "high"
-      ? `A student is reviewing ${topic.title}. Which approach below is the one they should challenge and correct?`
-      : `Which is a common mistake to avoid in ${topic.title}?`;
+      ? `Which mistake should a student correct when reviewing ${topic.title}?`
+      : `Which common mistake should you avoid in ${topic.title}?`;
     questions.push(makeQuestion(`${topic.id}:mistake:${difficulty}:${index}`, prompt, mistake, positiveActions, `Avoid this: ${mistake}`, topic, difficulty, seed));
   });
 
   topic.examTips.forEach((tip, index) => {
     const prompt = difficulty === "high"
-      ? `Which action would make an exam response on ${topic.title} more precise and convincing?`
-      : `Which action would strengthen an answer on ${topic.title}?`;
-    questions.push(makeQuestion(`${topic.id}:tip:${difficulty}:${index}`, prompt, tip, mistakes, `A strong approach is to ${tip.charAt(0).toLowerCase()}${tip.slice(1)}`, topic, difficulty, seed));
+      ? `Which action would make an exam answer about ${topic.title} more precise?`
+      : `Which action would improve an answer about ${topic.title}?`;
+    questions.push(makeQuestion(`${topic.id}:tip:${difficulty}:${index}`, prompt, tip, mistakes, `This action would improve the answer: ${tip}`, topic, difficulty, seed));
   });
 
   topic.sections.forEach((section, sectionIndex) => {
     questions.push(makeQuestion(
       `${topic.id}:section-topic:${difficulty}:${sectionIndex}`,
-      `Which topic includes the area “${section.heading}”?`,
+      `“${section.heading}” belongs to which revision topic?`,
       topic.title,
       topicTitles,
       `${section.heading} is an area within ${topic.title}.`,
@@ -160,7 +160,7 @@ function topicBank(course: Course, topic: Topic, difficulty: QuizDifficulty, see
     section.paragraphs.forEach((paragraph, paragraphIndex) => {
       questions.push(makeQuestion(
         `${topic.id}:section:${difficulty}:${sectionIndex}:${paragraphIndex}`,
-        difficulty === "high" ? `Which area of ${topic.title} should be used to analyse this statement: “${paragraph}”?` : `Which heading best matches this explanation: “${paragraph}”?`,
+        difficulty === "high" ? `Which section of ${topic.title} would help you explain this information? “${paragraph}”` : `Which heading best matches this information? “${paragraph}”`,
         section.heading,
         headings,
         `This is covered by ${section.heading} within ${topic.title}.`,
@@ -170,11 +170,11 @@ function topicBank(course: Course, topic: Topic, difficulty: QuizDifficulty, see
       ));
     });
     if (section.example) {
-      questions.push(makeQuestion(`${topic.id}:example:${difficulty}:${sectionIndex}`, `Which topic is most directly demonstrated by this example: “${section.example}”?`, topic.title, topicTitles, `The example applies ${topic.title}.`, topic, difficulty, seed));
+      questions.push(makeQuestion(`${topic.id}:example:${difficulty}:${sectionIndex}`, `Which revision topic does this example show? “${section.example}”`, topic.title, topicTitles, `This example applies ${topic.title}.`, topic, difficulty, seed));
     }
   });
 
-  questions.push(makeQuestion(`${topic.id}:summary:${difficulty}`, `Which topic is described here: “${topic.summary}”?`, topic.title, topicTitles, `This summary describes ${topic.title}.`, topic, difficulty, seed));
+  questions.push(makeQuestion(`${topic.id}:summary:${difficulty}`, `Which revision topic matches this summary? “${topic.summary}”`, topic.title, topicTitles, `This summary describes ${topic.title}.`, topic, difficulty, seed));
 
   const seen = new Set<string>();
   return questions.filter((question): question is QuizQuestion => {
@@ -204,7 +204,7 @@ export function createQuizSession({ course, topicId, difficulty, count, seed = 1
       questions.push({
         ...original,
         id: `${original.id}:reinforcement:${reinforcementRound}`,
-        prompt: `Reinforcement check ${reinforcementRound}: ${original.prompt}`,
+        prompt: `Try this question again (round ${reinforcementRound}). ${original.prompt}`,
         options,
         answer: options.indexOf(correct),
         reinforcement: true,
