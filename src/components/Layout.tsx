@@ -1,8 +1,8 @@
-import { Accessibility, BookOpenCheck, FileQuestion, Home, Menu, Network, X } from "lucide-react";
+import { BookOpenCheck, FileQuestion, Home, Menu, Network, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { NavLink } from "react-router-dom";
-import { useAppState } from "../state/AppState";
 import { SearchBox } from "./SearchBox";
+import { AccessibilityPanel } from "./AccessibilityPanel";
 import { customPages, siteSettings } from "../content";
 
 const nav = [
@@ -14,7 +14,6 @@ const nav = [
 
 export function Layout({ children }: { children: ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { textScale, toggleTextScale } = useAppState();
   return (
     <div className="site-shell">
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -29,9 +28,7 @@ export function Layout({ children }: { children: ReactNode }) {
             {nav.slice(1).map(({ to, label }) => <NavLink key={to} to={to}>{label}</NavLink>)}
             {customPages.filter((page) => page.showInNavigation).map((page) => <NavLink key={page.id} to={`/page/${page.slug}`}>{page.title}</NavLink>)}
           </nav>
-          <button type="button" className="icon-button header-accessibility" aria-label={`Use ${textScale === "default" ? "larger" : "standard"} text`} onClick={toggleTextScale}>
-            <Accessibility size={20} />
-          </button>
+          <AccessibilityPanel />
           <button type="button" className="icon-button menu-button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((value) => !value)}>
             {menuOpen ? <X /> : <Menu />}
           </button>

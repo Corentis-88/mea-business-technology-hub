@@ -1,0 +1,67 @@
+/* Device-only accessibility preferences. Important declarations ensure that
+   decorative component styles cannot silently override a chosen setting. */
+html[data-a11y-text="large"] { font-size: 112.5%; }
+html[data-a11y-text="extra-large"] { font-size: 125%; }
+
+html[data-a11y-dyslexia="friendly"] {
+  font-family: Arial, Verdana, Tahoma, sans-serif;
+  letter-spacing: .025em;
+  word-spacing: .09em;
+}
+
+html[data-a11y-dyslexia="friendly"] body,
+html[data-a11y-dyslexia="friendly"] button,
+html[data-a11y-dyslexia="friendly"] input,
+html[data-a11y-dyslexia="friendly"] select,
+html[data-a11y-dyslexia="friendly"] textarea {
+  font-family: Arial, Verdana, Tahoma, sans-serif;
+}
+
+html[data-a11y-dyslexia="friendly"] p,
+html[data-a11y-dyslexia="friendly"] li {
+  line-height: 1.8;
+}
+
+html[data-a11y-contrast="high"] {
+  --colour-ink: #000;
+  --colour-muted: #111;
+  --colour-brand: #000066;
+  --colour-brand-dark: #000;
+  --colour-accent: #ffff00;
+  --colour-surface: #fff;
+  --colour-soft: #fff;
+  --colour-border: #000;
+  --colour-success: #005a00;
+  --colour-warning: #703d00;
+  --colour-danger: #8b0000;
+}
+
+html[data-a11y-contrast="high"] body { background: #fff; color: #000; }
+html[data-a11y-contrast="high"] p,
+html[data-a11y-contrast="high"] small { color: #111; }
+html[data-a11y-contrast="high"] :focus-visible { outline: 4px solid #ffea00; outline-offset: 4px; }
+html[data-a11y-contrast="high"] .site-header { background: #000; }
+html[data-a11y-contrast="high"] img { filter: contrast(1.12); }
+
+html[data-a11y-motion="reduced"] { scroll-behavior: auto !important; }
+html[data-a11y-motion="reduced"] *,
+html[data-a11y-motion="reduced"] *::before,
+html[data-a11y-motion="reduced"] *::after {
+  animation-delay: 0s !important;
+  animation-duration: .001ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-delay: 0s !important;
+  transition-duration: .001ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-a11y-motion="standard"]) { scroll-behavior: auto; }
+  html:not([data-a11y-motion="standard"]) *,
+  html:not([data-a11y-motion="standard"]) *::before,
+  html:not([data-a11y-motion="standard"]) *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

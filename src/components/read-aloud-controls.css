@@ -1,0 +1,44 @@
+.read-aloud-controls {
+  align-items: center;
+  background: #f2f1ff;
+  border: 1px solid #d9d6f5;
+  border-radius: 16px;
+  color: #20234a;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: .8rem 1rem;
+}
+
+.read-aloud-copy { display: grid; gap: .1rem; }
+.read-aloud-copy strong { color: #2f328f; font-size: 1rem; }
+.read-aloud-copy span { font-size: .9rem; }
+.read-aloud-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.read-aloud-actions button {
+  align-items: center;
+  background: #303392;
+  border: 2px solid #303392;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 750;
+  gap: .4rem;
+  min-height: 42px;
+  padding: .45rem .9rem;
+}
+.read-aloud-actions button:hover { background: #23266f; }
+.read-aloud-actions button:focus-visible { outline: 3px solid #e2e63b; outline-offset: 2px; }
+.read-aloud-actions button:disabled { cursor: not-allowed; opacity: .55; }
+.read-aloud-actions .read-aloud-secondary { background: white; color: #303392; }
+.read-aloud-actions .read-aloud-secondary:hover { background: #e8e6fb; }
+
+@media (max-width: 620px) {
+  .read-aloud-controls { align-items: stretch; flex-direction: column; }
+  .read-aloud-actions button { justify-content: center; }
+}
+
+@media print {
+  .read-aloud-controls { display: none !important; }
+}

@@ -25,7 +25,6 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-html[data-text-scale="large"] { font-size: 112.5%; }
 body { margin: 0; min-width: 320px; min-height: 100vh; background: #f4f6fb; color: var(--colour-ink); }
 button, input, select, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -407,7 +406,7 @@ p { color: var(--colour-muted); line-height: 1.66; }
   :root { --page: min(100% - 1.1rem, 1180px); }
   .guided-journey { margin-top: .8rem; padding: .9rem; }.guided-journey__intro { align-items: flex-start; flex-direction: column; }.guided-journey__intro h2 { font-size: 1.15rem; }.guided-journey__intro p { font-size: .9rem; }.guided-journey__steps { display: flex; gap: .4rem; margin-inline: -.15rem; padding: .15rem; overflow-x: auto; scroll-snap-type: x proximity; }.guided-journey__steps li { min-width: 8.25rem; scroll-snap-align: start; }.guided-journey__steps li:not(:last-child)::after { display: none; }.guided-journey__steps button { min-height: 4.7rem; padding: .6rem; }.guided-journey__steps small { display: none; }.guided-journey__now { align-items: flex-start; flex-direction: column; gap: .15rem; }.guided-journey__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }.guided-journey__actions .button { min-width: 0; justify-content: center; padding-inline: .55rem; font-size: .78rem; text-align: center; }.guided-journey__actions .button:only-child { grid-column: 1 / -1; }.guided-journey__review { grid-template-columns: 1fr; padding: .85rem; }
   body { padding-bottom: 4.5rem; }
-  .brand-name small, .desktop-nav, .header-accessibility { display: none; }.menu-button { display: inline-grid; margin-left: auto; }.header-inner { min-height: 4.2rem; }.brand-logo-wrap { width: 3rem; height: 3rem; }.brand-logo-wrap img { width: 2.6rem; height: 2.6rem; }
+  .brand-name small, .desktop-nav { display: none; }.menu-button { display: inline-grid; }.header-accessibility { margin-left: auto; }.header-inner { min-height: 4.2rem; }.brand-logo-wrap { width: 3rem; height: 3rem; }.brand-logo-wrap img { width: 2.6rem; height: 2.6rem; }
   .mobile-menu { display: grid; width: var(--page); gap: .2rem; margin-inline: auto; padding: 0 0 .75rem; }.mobile-menu a { padding: .65rem; border-radius: .5rem; color: rgba(255,255,255,.8); text-decoration: none; }.mobile-menu a.active { color: #fff; background: rgba(255,255,255,.1); }
   .mobile-bottom-nav { position: fixed; z-index: 110; right: .5rem; bottom: .5rem; left: .5rem; display: grid; grid-template-columns: repeat(4, 1fr); overflow: hidden; border: 1px solid var(--colour-border); border-radius: 1rem; background: rgba(255,255,255,.96); box-shadow: var(--shadow-lg); backdrop-filter: blur(10px); }.mobile-bottom-nav a { display: flex; min-height: 3.7rem; align-items: center; justify-content: center; flex-direction: column; gap: .15rem; color: var(--colour-muted); font-size: .62rem; font-weight: 750; text-decoration: none; }.mobile-bottom-nav a.active { color: var(--colour-brand); background: #eef0f8; }
   .site-footer { padding-bottom: 2rem; flex-direction: column; }.site-footer > div:last-child { flex-wrap: wrap; }
