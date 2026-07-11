@@ -38,9 +38,31 @@ function shuffle<T>(items: T[], key: string) {
     .map(({ value }) => value);
 }
 
+function normaliseSpacing(value: string) {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function readableExcerpt(value: string, maximumLength = 170) {
+  const clean = normaliseSpacing(value);
+  if (clean.length <= maximumLength) return clean;
+
+  const completeSentences = clean.match(/.*?[.!?](?=\s|$)/g) ?? [];
+  const excerpt: string[] = [];
+  let length = 0;
+
+  for (const sentence of completeSentences) {
+    const nextLength = length + (excerpt.length ? 1 : 0) + sentence.length;
+    if (nextLength > maximumLength) break;
+    excerpt.push(sentence);
+    length = nextLength;
+  }
+
+  // A long complete sentence is preferable to a fragment with a broken ending.
+  return excerpt.length ? excerpt.join(" ") : (completeSentences[0] ?? clean);
+}
+
 function compact(value: string) {
-  const clean = value.replace(/\s+/g, " ").trim();
-  return clean.length > 190 ? `${clean.slice(0, 187)}…` : clean;
+  return readableExcerpt(value, 190);
 }
 
 function unique(values: string[]) {
@@ -63,7 +85,9 @@ function makeQuestion(
   const options = shuffle([compact(correct), ...alternatives.slice(0, optionCount - 1)], `${id}:options:${seed}`);
   return {
     id,
-    prompt: compact(prompt),
+    // Prompts can contain a question followed by quoted context. Keep that whole
+    // structure intact; shortening it can remove the closing quote or key detail.
+    prompt: normaliseSpacing(prompt),
     options,
     answer: options.indexOf(compact(correct)),
     explanation: compact(explanation),
@@ -158,9 +182,10 @@ function topicBank(course: Course, topic: Topic, difficulty: QuizDifficulty, see
       seed,
     ));
     section.paragraphs.forEach((paragraph, paragraphIndex) => {
+      const information = readableExcerpt(paragraph);
       questions.push(makeQuestion(
         `${topic.id}:section:${difficulty}:${sectionIndex}:${paragraphIndex}`,
-        difficulty === "high" ? `Which section of ${topic.title} would help you explain this information? “${paragraph}”` : `Which heading best matches this information? “${paragraph}”`,
+        difficulty === "high" ? `Which section of ${topic.title} best matches this information? “${information}”` : `Which section heading best matches this information? “${information}”`,
         section.heading,
         headings,
         `This is covered by ${section.heading} within ${topic.title}.`,

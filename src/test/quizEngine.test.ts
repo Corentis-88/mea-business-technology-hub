@@ -70,11 +70,31 @@ describe("configurable quiz engine", () => {
         for (const question of questions) {
           expect(question.prompt).not.toMatch(/^[a-z]/);
           expect(question.prompt).not.toMatch(/\s{2,}/);
+          expect(question.prompt).not.toContain("…");
+          expect((question.prompt.match(/“/g) ?? []).length).toBe((question.prompt.match(/”/g) ?? []).length);
           expect(question.explanation).not.toMatch(/^[a-z]/);
           expect(question.options.every((option) => option.trim() === option && option.length > 0)).toBe(true);
           for (const phrase of awkwardPhrases) {
             expect(question.prompt.toLowerCase()).not.toContain(phrase);
           }
+        }
+      }
+    }
+  });
+
+  it("keeps section questions complete instead of cutting information mid-sentence", () => {
+    for (const course of courses) {
+      for (const difficulty of difficulties) {
+        const questions = course.units.flatMap((unit) => unit.topics).flatMap((topic) =>
+          createQuizSession({ course, topicId: topic.id, difficulty, count: 20, seed: 31 }).questions,
+        );
+        const sectionQuestions = questions.filter((question) => question.id.includes(":section:"));
+
+        for (const question of sectionQuestions) {
+          expect(question.prompt).toMatch(/^Which (section of .+|section heading) best matches this information\?/);
+          expect(question.prompt.endsWith("”")).toBe(true);
+          const quotedInformation = question.prompt.match(/“(.+)”$/)?.[1] ?? "";
+          expect(quotedInformation).toMatch(/[.!?]$/);
         }
       }
     }

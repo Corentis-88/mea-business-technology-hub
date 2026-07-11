@@ -127,6 +127,20 @@ describe("Pearson-informed original case sources", () => {
 });
 
 describe("BLT validation", () => {
+  it("offers an interactive ordering task for each extended-writing command", () => {
+    const view = render(<MemoryRouter><BLTBuilder /></MemoryRouter>);
+    const scope = within(view.container);
+    expect(scope.getByRole("heading", { name: /Put the answer in the correct order/ })).toBeInTheDocument();
+    for (const command of ["Explain", "Justify", "Discuss", "Evaluate"]) {
+      expect(scope.getByRole("button", { name: command })).toBeInTheDocument();
+    }
+    fireEvent.click(scope.getByRole("button", { name: "Evaluate" }));
+    expect(scope.getByText(/Peak Bottles sells a durable bottle/)).toBeInTheDocument();
+    expect(scope.getAllByRole("button", { name: /Move answer part .* (up|down)/ })).toHaveLength(6);
+    fireEvent.click(scope.getByRole("button", { name: /Check answer/ }));
+    expect(scope.getByText(/Show the correctly ordered answer/)).toBeInTheDocument();
+  });
+
   it("rejects a sentence beginning with Because", () => {
     const view = render(<MemoryRouter><BLTBuilder /></MemoryRouter>);
     const scope = within(view.container);
