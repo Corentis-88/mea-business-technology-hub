@@ -155,7 +155,13 @@ export function BLTBuilder() {
     <div className="blt-builder">
       <div className="blt-intro">
         <div><span className="eyebrow">MEA method · Pearson Business only</span><h2>Build an answer with BLT</h2><p>Make the business point first. The word <strong>because must never start a sentence</strong>.</p></div>
-        <div className="blt-pattern"><span>Point <b>because</b> reason</span><i>→</i><span><b>Leads To</b> consequence</span><i>→</i><span><b>Therefore</b> effect</span></div>
+        <div className="blt-pattern" aria-label="The three parts of a BLT answer">
+          <span><small>1. Make your point and explain why</small><b>Training may improve service because staff know how to help customers.</b></span>
+          <i>→</i>
+          <span><small>2. Explain what happens next</small><b>This leads to customers receiving better service.</b></span>
+          <i>→</i>
+          <span><small>3. Give the final business effect</small><b>Therefore, repeat purchases may increase.</b></span>
+        </div>
       </div>
       <BLTOrderingPractice />
       <div className="blt-freewrite-intro"><span className="eyebrow">Now write your own</span><h2>Build your own BLT answer</h2><p>Choose the question type, then write each link yourself. Your complete answer appears at the bottom.</p></div>

@@ -141,6 +141,15 @@ describe("BLT validation", () => {
     expect(scope.getByText(/Show the correctly ordered answer/)).toBeInTheDocument();
   });
 
+  it("introduces BLT with complete, grammatical example sentences", () => {
+    const view = render(<MemoryRouter><BLTBuilder /></MemoryRouter>);
+    const scope = within(view.container);
+    expect(scope.getByText("Training may improve service because staff know how to help customers.")).toBeInTheDocument();
+    expect(scope.getByText("This leads to customers receiving better service.")).toBeInTheDocument();
+    expect(scope.getByText("Therefore, repeat purchases may increase.")).toBeInTheDocument();
+    expect(scope.queryByText("Point because reason")).not.toBeInTheDocument();
+  });
+
   it("rejects a sentence beginning with Because", () => {
     const view = render(<MemoryRouter><BLTBuilder /></MemoryRouter>);
     const scope = within(view.container);
