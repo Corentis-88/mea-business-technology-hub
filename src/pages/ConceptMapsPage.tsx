@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ConceptMap, UnitConceptMap } from "../components/ConceptMap";
 import { CourseIcon } from "../components/CourseIcon";
+import { TopicPracticeTools } from "../components/RevisionPractice";
 import { courses } from "../data/courses";
 import type { CourseId } from "../types";
 
@@ -50,6 +51,7 @@ export function ConceptMapsPage() {
       <div className="map-course-label"><CourseIcon icon={course.icon} /><span><b>{course.shortTitle}</b><small>{unit.title}</small></span><Link className="button button--secondary" to={`/course/${course.slug}`}>Open qualification <ArrowRight size={16} /></Link></div>
       <UnitConceptMap course={course} unit={unit} onSelectTopic={showTopicMap} />
       <section id="selected-topic-map" className="selected-topic-map"><div className="section-heading"><div><span className="eyebrow">Detailed topic map</span><h2>{topic.code} · {topic.title}</h2></div><Link className="text-link" to={`/course/${course.slug}/unit/${unit.id}/topic/${topic.id}`}>Open full topic <ArrowRight size={16} /></Link></div><ConceptMap topic={topic} courseSlug={course.slug} unitId={unit.id} /></section>
+      <TopicPracticeTools topic={topic} />
     </div>
   );
 }

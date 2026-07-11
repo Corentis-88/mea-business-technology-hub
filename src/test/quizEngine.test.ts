@@ -102,6 +102,19 @@ describe("configurable quiz engine", () => {
 });
 
 describe("quiz builder interface", () => {
+  it("includes varied interactive formats while keeping multiple choice", () => {
+    for (const course of courses) {
+      const formats = new Set<string>();
+      for (let seed = 1; seed <= 8; seed += 1) {
+        createQuizSession({ course, difficulty: "medium", count: 50, seed }).questions.forEach((question) => formats.add(question.format ?? "multiple-choice"));
+      }
+      expect(formats).toContain("multiple-choice");
+      expect(formats).toContain("true-false");
+      expect(formats).toContain("fill-gap");
+      expect(formats).toContain("matching");
+    }
+  });
+
   it("changes the question maximum when one topic is selected", () => {
     render(createElement(MemoryRouter, null, createElement(AppStateProvider, null, createElement(RevisionPage))));
     const topicSelect = screen.getByLabelText("Question focus");

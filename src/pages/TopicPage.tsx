@@ -4,10 +4,14 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { ConceptMap } from "../components/ConceptMap";
 import { EnterpriseSimpleMode } from "../components/EnterpriseSimpleMode";
 import { ExamPractice } from "../components/ExamPractice";
+import { GuidedTopicJourney, type JourneyStage } from "../components/GuidedTopicJourney";
 import LearningVisual from "../components/LearningVisual";
 import { Quiz } from "../components/Quiz";
+import { InteractiveVisualActivity, VocabularyFlashcards } from "../components/RevisionPractice";
+import { TopicVideo } from "../components/TopicVideo";
 import { courseBySlug, findTopic } from "../data/courses";
 import { anchorForTerm, topicSectionAnchor } from "../lib/topicNavigation";
+import { createQuizSession } from "../lib/quizEngine";
 import { NotFoundPage } from "./NotFoundPage";
 
 type Tab = "learn" | "simple" | "map" | "remember" | "practice" | "exam";
@@ -28,6 +32,12 @@ export function TopicPage() {
 
   if (!course || !found) return <NotFoundPage />;
   const { unit, topic } = found;
+  const topicQuestionBank = createQuizSession({ course, topicId: topic.id, difficulty: "medium", count: 20, seed: 19 }).questions;
+  const featuredFormats = ["multiple-choice", "true-false", "fill-gap", "matching"].flatMap((format) => {
+    const question = topicQuestionBank.find((item) => (item.format ?? "multiple-choice") === format);
+    return question ? [question] : [];
+  });
+  const quickQuestions = [...featuredFormats, ...topicQuestionBank.filter((question) => !featuredFormats.includes(question))].slice(0, 10);
   const visualIndex = topic.sections.flatMap((section) => {
     const items = section.visual ? [section.visual, ...(section.visuals ?? [])] : (section.visuals ?? []);
     return items.map((visual) => ({ section: section.heading, visual }));
@@ -43,6 +53,7 @@ export function TopicPage() {
     setTab(nextTab);
     requestAnimationFrame(() => document.getElementById(`topic-tab-${nextTab}`)?.focus());
   };
+  const selectJourneyStage = (stage: JourneyStage) => setTab(stage);
   return (
     <div className="topic-page" style={{ "--course-accent": course.accent } as React.CSSProperties}>
       <header className="topic-header"><div className="page-section topic-header__inner">
@@ -50,6 +61,7 @@ export function TopicPage() {
         <div className="topic-title-row"><div><span className="eyebrow">{unit.code} · {unit.title}</span><h1>{topic.title}</h1><p>{topic.summary}</p><div className="topic-meta"><span><Clock3 size={16} /> {topic.durationMinutes ?? 20} minute guide</span><span><Target size={16} /> {topic.quiz.length} core retrieval questions</span></div></div></div>
       </div></header>
       <div className="page-section topic-support-copy"><HeartHandshake /><p>{course.id === "enterprise" ? "If the words in the topic feel difficult, choose Say it simpler. You will see the same topic in shorter steps, with simple examples and course terms explained." : "You're in the right place. Work through one connection at a time, and use the vocabulary links whenever you want to return to a term's explanation."}</p></div>
+      <div className="page-section"><GuidedTopicJourney active={tab === "simple" ? "learn" : tab} courseId={course.id} topicId={topic.id} onSelect={selectJourneyStage} /></div>
       <div className="topic-tabs-wrap"><div className="topic-tabs" role="tablist" aria-label="Topic learning modes" onKeyDown={moveBetweenTabs}>
         <button role="tab" {...tabProps("learn")} onClick={() => setTab("learn")}><NotebookTabs />Learn</button>
         {course.id === "enterprise" && <button className="topic-tab--simple" role="tab" {...tabProps("simple")} onClick={() => setTab("simple")}><MessageCircleMore />Say it simpler</button>}
@@ -58,7 +70,7 @@ export function TopicPage() {
         <button role="tab" {...tabProps("practice")} onClick={() => setTab("practice")}><ListChecks />Practise</button>
         <button role="tab" {...tabProps("exam")} onClick={() => setTab("exam")}><FileQuestion />Exam</button>
       </div></div>
-      <div className="page-section topic-content" id={`topic-panel-${tab}`} role="tabpanel" aria-labelledby={`topic-tab-${tab}`}>
+      <div className="page-section topic-content" id={`topic-panel-${tab}`} role="tabpanel" aria-labelledby={`topic-tab-${tab}`}><div id="guided-topic-content" tabIndex={-1} className="guided-topic-content-focus">
         {tab === "learn" && <div className="learn-layout">
           <div className="article-content">{topic.sections.map((section, index) => <section id={topicSectionAnchor(topic, index)} key={`${section.heading}-${index}`}>
             <h2>{section.heading}</h2>
@@ -73,10 +85,11 @@ export function TopicPage() {
           <aside className="topic-sidebar"><div className="sidebar-panel vocabulary-panel"><span className="eyebrow">Key vocabulary</span><p className="vocabulary-panel__hint">Choose a term to jump straight to the explanation.</p><dl>{topic.keyTerms.map((term) => <div key={term.term}><dt><a href={`#${anchorForTerm(topic, term)}`}>{term.term}<ArrowDownRight size={15} /></a></dt><dd>{term.definition}</dd></div>)}</dl></div>{visualIndex.length > 0 && <div className="sidebar-panel visual-index"><span className="eyebrow">Visuals in this guide</span>{visualIndex.map(({ section, visual }) => <span key={`${section}-${visual.title}`}><CheckCircle2 size={15} />{visual.title}</span>)}</div>}</aside>
         </div>}
         {tab === "simple" && course.id === "enterprise" && <EnterpriseSimpleMode topic={topic} />}
-        {tab === "map" && <section><div className="section-heading"><div><span className="eyebrow">Completed overview</span><h2>See the whole topic at once</h2></div><p>Open any high-level box to reveal the detail and follow its link back into the lesson.</p></div><ConceptMap topic={topic} courseSlug={course.slug} unitId={unit.id} /></section>}
-        {tab === "remember" && <div className="remember-layout"><section><span className="eyebrow">Active recall</span><h2>Can you explain these without looking?</h2><div className="flashcard-grid">{topic.keyTerms.map((term) => <details key={term.term}><summary>{term.term}<span>Reveal</span></summary><p>{term.definition}</p></details>)}</div></section><Quiz questions={topic.quiz} courseId={course.id} topicId={topic.id} /></div>}
-        {tab === "practice" && <div className="practice-layout"><section className="mistake-panel"><div><AlertTriangle /><span className="eyebrow">Avoid these traps</span></div><h2>Common mistakes</h2><ul>{topic.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}</ul></section><section className="tips-panel"><div><CheckCircle2 /><span className="eyebrow">Make it stick</span></div><h2>Practice checklist</h2><ul>{topic.examTips.map((tip) => <li key={tip}>{tip}</li>)}</ul></section><Quiz title="Apply it" questions={topic.quiz.slice().reverse()} courseId={course.id} topicId={topic.id} /></div>}
+        {tab === "map" && <section><div className="section-heading"><div><span className="eyebrow">Completed overview</span><h2>See the whole topic at once</h2></div><p>Open any high-level box to reveal the detail and follow its link back into the lesson.</p></div><ConceptMap topic={topic} courseSlug={course.slug} unitId={unit.id} /><InteractiveVisualActivity topic={topic} /><TopicVideo courseId={course.id} topicId={topic.id} /></section>}
+        {tab === "remember" && <div className="remember-layout"><VocabularyFlashcards topic={topic} /><Quiz questions={quickQuestions} courseId={course.id} topicId={topic.id} /></div>}
+        {tab === "practice" && <div className="practice-layout"><section className="mistake-panel"><div><AlertTriangle /><span className="eyebrow">Avoid these traps</span></div><h2>Common mistakes</h2><ul>{topic.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}</ul></section><section className="tips-panel"><div><CheckCircle2 /><span className="eyebrow">Make it stick</span></div><h2>Practice checklist</h2><ul>{topic.examTips.map((tip) => <li key={tip}>{tip}</li>)}</ul></section><Quiz title="Apply it" questions={quickQuestions.slice().reverse()} courseId={course.id} topicId={topic.id} /></div>}
         {tab === "exam" && <section><div className="section-heading"><div><span className="eyebrow">Exam practice</span><h2>Turn knowledge into marks</h2></div><p>Attempt each question before revealing the guidance. These are original practice questions, not predictions.</p></div>{topic.examQuestions?.length ? <ExamPractice questions={topic.examQuestions} /> : <div className="empty-state"><FileQuestion /><h3>Exam questions are being prepared for this subtopic</h3><p>Use the retrieval quiz now and return to the unit's official materials for more practice.</p><Link className="button button--secondary" to={`/materials?course=${course.id}`}>Open official materials</Link></div>}</section>}
+      </div>
       </div>
     </div>
   );

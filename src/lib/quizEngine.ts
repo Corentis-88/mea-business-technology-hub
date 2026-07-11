@@ -156,6 +156,51 @@ function topicBank(course: Course, topic: Topic, difficulty: QuizDifficulty, see
     questions.push(makeQuestion(`${topic.id}:term-link:${difficulty}:${index}`, `Which meaning is linked to “${term.term}”?`, term.definition, definitions, `${term.term} means ${term.definition}`, topic, difficulty, seed));
   });
 
+  topic.keyTerms.forEach((term, index) => {
+    const otherTerm = topic.keyTerms[(index + 1) % topic.keyTerms.length];
+    const isTrue = index % 2 === 0 || otherTerm === term;
+    questions.push({
+      id: `${topic.id}:true-false:${difficulty}:${index}`,
+      prompt: `True or false? “${term.term} means ${isTrue ? term.definition : otherTerm.definition}”`,
+      options: ["True", "False"],
+      answer: isTrue ? 0 : 1,
+      explanation: `${term.term} means ${term.definition}`,
+      format: "true-false",
+      difficulty,
+      sourceTopicId: topic.id,
+      sourceTopicTitle: topic.title,
+    });
+    questions.push({
+      id: `${topic.id}:fill-gap:${difficulty}:${index}`,
+      prompt: `Type the missing subject term. _____ means: ${term.definition}`,
+      options: [],
+      answer: 0,
+      explanation: `The missing term is ${term.term}. ${term.term} means ${term.definition}`,
+      format: "fill-gap",
+      acceptedAnswers: [term.term],
+      difficulty,
+      sourceTopicId: topic.id,
+      sourceTopicTitle: topic.title,
+    });
+  });
+
+  for (let index = 0; index < topic.keyTerms.length; index += 3) {
+    const group = topic.keyTerms.slice(index, index + 3);
+    if (group.length < 2) continue;
+    questions.push({
+      id: `${topic.id}:matching:${difficulty}:${index}`,
+      prompt: "Match each subject term to its correct meaning.",
+      options: shuffle(group.map((term) => term.definition), `${topic.id}:matching:${index}:${seed}`),
+      answer: 0,
+      explanation: group.map((term) => `${term.term}: ${term.definition}`).join(" "),
+      format: "matching",
+      matchingPairs: group.map((term) => ({ prompt: term.term, answer: term.definition })),
+      difficulty,
+      sourceTopicId: topic.id,
+      sourceTopicTitle: topic.title,
+    });
+  }
+
   topic.commonMistakes.forEach((mistake, index) => {
     const prompt = difficulty === "high"
       ? `Which mistake should a student correct when reviewing ${topic.title}?`

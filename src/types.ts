@@ -67,6 +67,10 @@ export interface QuizQuestion {
   sourceTopicId?: string;
   sourceTopicTitle?: string;
   reinforcement?: boolean;
+  /** Older questions omit this and continue to work as multiple choice. */
+  format?: "multiple-choice" | "true-false" | "fill-gap" | "matching";
+  acceptedAnswers?: string[];
+  matchingPairs?: { prompt: string; answer: string }[];
 }
 
 export type QuizDifficulty = "low" | "medium" | "high";
