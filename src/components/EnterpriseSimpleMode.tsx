@@ -5,9 +5,12 @@ import LearningVisual from "./LearningVisual";
 import { SimpleConceptVisual } from "./SimpleConceptVisual";
 import { enterpriseRichVisuals } from "../data/enterpriseRichVisuals";
 import { EnterpriseRichVisual } from "./EnterpriseRichVisual";
+import { TeachingPicture } from "./TeachingPicture";
+import { enterprisePictureScenes } from "../data/enterprisePictureScenes";
 
 export function EnterpriseSimpleMode({ topic }: { topic: Topic }) {
   const guide = enterpriseSimpleGuideByTopic.get(topic.id);
+  const picture = enterprisePictureScenes[topic.id];
   if (!guide) return null;
   const simpleTerms = topic.id === "enterprise-r067-3" ? topic.keyTerms.filter((term) => term.term !== "Contribution") : topic.keyTerms;
 
@@ -24,6 +27,7 @@ export function EnterpriseSimpleMode({ topic }: { topic: Topic }) {
       </header>
 
       {enterpriseRichVisuals[topic.id] && <EnterpriseRichVisual spec={enterpriseRichVisuals[topic.id]} />}
+      {picture && <TeachingPicture picture={{ src: picture.filename, alt: picture.alt, caption: picture.caption, title: guide.bigIdea, focalPoints: picture.sectionCoverage }} />}
 
       <div className="simple-learning__layout">
         <div className="simple-learning__sections">

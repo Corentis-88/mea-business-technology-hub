@@ -11,9 +11,11 @@ import { SectionStoryVisual } from "../components/SectionStoryVisual";
 import { Quiz } from "../components/Quiz";
 import { InteractiveVisualActivity, VocabularyFlashcards } from "../components/RevisionPractice";
 import { TopicVideo } from "../components/TopicVideo";
+import { TeachingPicture } from "../components/TeachingPicture";
 import { TechnologyKnowledgePoster } from "../components/TechnologyKnowledgePoster";
 import { courseBySlug, findTopic } from "../data/courses";
 import { getBusinessInfographic } from "../data/businessInfographics";
+import { getTeachingPicture } from "../data/teachingPictures";
 import { anchorForTerm, topicSectionAnchor } from "../lib/topicNavigation";
 import { createQuizSession } from "../lib/quizEngine";
 import { NotFoundPage } from "./NotFoundPage";
@@ -82,6 +84,7 @@ export function TopicPage() {
             {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
             {section.formula && <div className="formula-card"><span>Formula</span><strong>{section.formula}</strong></div>}
             {section.example && <div className="example-callout"><Lightbulb /><div><strong>Worked example</strong><p>{section.example}</p></div></div>}
+            {getTeachingPicture(course.id, topic.id, section, index) && <TeachingPicture picture={getTeachingPicture(course.id, topic.id, section, index)!} />}
             <SectionStoryVisual courseId={course.id} topicTitle={topic.title} section={section} sectionIndex={index} />
             {course.id === "business" && getBusinessInfographic(section.heading) && <BusinessInfographic spec={getBusinessInfographic(section.heading)!} />}
             {section.image && <figure className="topic-illustration"><img src={`${import.meta.env.BASE_URL}${section.image.src}`} alt={section.image.alt} loading="lazy" /><figcaption>{section.image.caption}</figcaption></figure>}
