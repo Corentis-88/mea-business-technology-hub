@@ -1,7 +1,7 @@
 import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { ArrowDown, ArrowUp, BookOpen, BrainCircuit, GripVertical, ImagePlus, LayoutDashboard, Lightbulb, ListPlus, Monitor, Network, Pencil, Plus, Search, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowUp, BookOpen, BrainCircuit, Copy, GripVertical, ImagePlus, LayoutDashboard, Lightbulb, ListPlus, Monitor, Network, Pencil, Plus, Search, Smartphone, Sparkles, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import LearningVisual from "../../components/LearningVisual";
 import type { ContentBundle, EditableTopicSection, HomeLayoutBlock, SiteSettings } from "../../types";
@@ -16,6 +16,7 @@ interface VisualSiteEditorProps {
 }
 
 type PageMode = "homepage" | "topic";
+type DeletedItem = { kind: "homepage"; item: HomeLayoutBlock; index: number } | { kind: "topic"; item: EditableTopicSection; index: number };
 
 const blockNames: Record<HomeLayoutBlock["type"], string> = {
   hero: "Hero and search",
@@ -26,7 +27,7 @@ const blockNames: Record<HomeLayoutBlock["type"], string> = {
   image: "Image section",
 };
 
-function SortableFrame({ id, selected, label, index, total, onSelect, onMove, children }: {
+function SortableFrame({ id, selected, label, index, total, onSelect, onMove, onDuplicate, onDelete, children }: {
   id: string;
   selected: boolean;
   label: string;
@@ -34,6 +35,8 @@ function SortableFrame({ id, selected, label, index, total, onSelect, onMove, ch
   total: number;
   onSelect: () => void;
   onMove: (from: number, to: number) => void;
+  onDuplicate?: () => void;
+  onDelete?: () => void;
   children: ReactNode;
 }) {
   const sortable = useSortable({ id });
@@ -45,6 +48,8 @@ function SortableFrame({ id, selected, label, index, total, onSelect, onMove, ch
       <button type="button" disabled={index === 0} onClick={(event) => { event.stopPropagation(); onMove(index, index - 1); }} aria-label={`Move ${label} up`}><ArrowUp /></button>
       <button type="button" disabled={index === total - 1} onClick={(event) => { event.stopPropagation(); onMove(index, index + 1); }} aria-label={`Move ${label} down`}><ArrowDown /></button>
       <button type="button" onClick={(event) => { event.stopPropagation(); onSelect(); }} aria-label={`Edit ${label}`}><Pencil /></button>
+      {onDuplicate && <button type="button" onClick={(event) => { event.stopPropagation(); onDuplicate(); }} aria-label={`Make a copy of ${label}`} title="Make a copy"><Copy /></button>}
+      {onDelete && <button type="button" className="visual-delete-action" onClick={(event) => { event.stopPropagation(); onDelete(); }} aria-label={`Delete ${label}`} title="Delete"><Trash2 /></button>}
     </div>
     <div className="visual-editor-block__content">{children}</div>
   </article>;
@@ -68,6 +73,8 @@ export function VisualSiteEditor({ bundle, onChange, assets, onAssetsChange }: V
   const [unitIndex, setUnitIndex] = useState(0);
   const [topicIndex, setTopicIndex] = useState(0);
   const [selectedSectionId, setSelectedSectionId] = useState("");
+  const [previewSize, setPreviewSize] = useState<"desktop" | "mobile">("desktop");
+  const [deletedItem, setDeletedItem] = useState<DeletedItem>();
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 7 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
@@ -129,14 +136,14 @@ export function VisualSiteEditor({ bundle, onChange, assets, onAssetsChange }: V
     });
   };
 
-  const addHomeBlock = (type: "text" | "callout" | "image") => {
+  const addHomeBlock = (type: "text" | "callout" | "image", afterIndex = bundle.homepageBlocks.length - 1) => {
     const id = uniqueId(`home-${type}`);
     const block: HomeLayoutBlock = type === "text"
       ? { id, type, visible: true, eyebrow: "New section", title: "Add a clear heading", body: ["Write a short, friendly explanation here."] }
       : type === "callout"
         ? { id, type, visible: true, eyebrow: "Need a next step?", title: "Add a helpful callout", body: "Explain what the student should do next.", buttonLabel: "Open resource", buttonHref: "/" }
         : { id, type, visible: true, title: "Add a useful image", body: "Explain what the image helps students understand.", image: { src: "", alt: "", caption: "" } };
-    updateHomepage((blocks) => [...blocks, block]);
+    updateHomepage((blocks) => [...blocks.slice(0, afterIndex + 1), block, ...blocks.slice(afterIndex + 1)]);
     setSelectedBlockId(id);
   };
 
@@ -149,16 +156,57 @@ export function VisualSiteEditor({ bundle, onChange, assets, onAssetsChange }: V
     });
   };
 
-  const addTopicSection = () => {
+  const addTopicSection = (afterIndex = (topic?.sections.length ?? 0) - 1) => {
     const section = createSection();
-    updateTopic((sections) => [...sections, section]);
+    updateTopic((sections) => [...sections.slice(0, afterIndex + 1), section, ...sections.slice(afterIndex + 1)]);
     setSelectedSectionId(section.id);
+  };
+
+  const duplicateHomeBlock = (index: number) => {
+    const source = bundle.homepageBlocks[index];
+    if (!source || source.type === "hero" || source.type === "courses" || source.type === "tools") return;
+    const copy = structuredClone(source);
+    copy.id = uniqueId(`home-${source.type}`);
+    updateHomepage((blocks) => [...blocks.slice(0, index + 1), copy, ...blocks.slice(index + 1)]);
+    setSelectedBlockId(copy.id);
+  };
+  const deleteHomeBlock = (index: number) => {
+    const block = bundle.homepageBlocks[index];
+    if (!block || !window.confirm(`Delete “${blockNames[block.type]}”? You can undo this straight away.`)) return;
+    setDeletedItem({ kind: "homepage", item: structuredClone(block), index });
+    updateHomepage((blocks) => blocks.filter((_, itemIndex) => itemIndex !== index));
+  };
+  const duplicateTopicSection = (index: number) => {
+    const source = topic?.sections[index];
+    if (!source) return;
+    const copy = structuredClone(source);
+    copy.id = uniqueId("section");
+    copy.heading = `${copy.heading} (copy)`;
+    updateTopic((sections) => [...sections.slice(0, index + 1), copy, ...sections.slice(index + 1)]);
+    setSelectedSectionId(copy.id);
+  };
+  const deleteTopicSection = (index: number) => {
+    const section = topic?.sections[index];
+    if (!section || !window.confirm(`Delete “${section.heading || "Untitled section"}”? You can undo this straight away.`)) return;
+    setDeletedItem({ kind: "topic", item: structuredClone(section), index });
+    updateTopic((sections) => sections.filter((_, itemIndex) => itemIndex !== index));
+  };
+
+  const uploadTopicImage = async (file?: File) => {
+    if (!file || !selectedSection) return;
+    const asset = await prepareImage(file);
+    onAssetsChange([...assets, asset]);
+    updateTopic((sections) => {
+      const section = sections.find((item) => item.id === selectedSection.id);
+      if (section) section.image = { src: asset.publicPath, alt: section.image?.alt ?? "", caption: section.image?.caption ?? "" };
+    });
   };
 
   const homeItems = useMemo(() => bundle.homepageBlocks.map((block) => block.id), [bundle.homepageBlocks]);
   const sectionItems = useMemo(() => topic?.sections.map((section) => section.id) ?? [], [topic]);
 
   return <section className="visual-site-editor">
+    {deletedItem && <div className="visual-undo-message" role="status"><span>Item deleted.</span><button type="button" onClick={() => { if (deletedItem.kind === "homepage") updateHomepage((blocks) => [...blocks.slice(0, deletedItem.index), deletedItem.item, ...blocks.slice(deletedItem.index)]); else updateTopic((sections) => [...sections.slice(0, deletedItem.index), deletedItem.item, ...sections.slice(deletedItem.index)]); setDeletedItem(undefined); }}>Undo delete</button><button type="button" aria-label="Dismiss undo message" onClick={() => setDeletedItem(undefined)}>×</button></div>}
     <header className="visual-editor-heading">
       <div><span>Visual site editor</span><h1>Move sections, then edit what you see</h1><p>Choose a page, select any block in the preview and use the panel on the right. Drag the large handles or use the arrow buttons to change the order.</p></div>
       <div className="visual-editor-modes" role="group" aria-label="Page to edit">
@@ -171,18 +219,18 @@ export function VisualSiteEditor({ bundle, onChange, assets, onAssetsChange }: V
       <Field label="Qualification"><select value={courseIndex} onChange={(event) => { setCourseIndex(Number(event.target.value)); setUnitIndex(0); setTopicIndex(0); }}>{bundle.courses.map((item, index) => <option key={item.id} value={index}>{item.shortTitle}</option>)}</select></Field>
       <Field label="Unit"><select value={unitIndex} onChange={(event) => { setUnitIndex(Number(event.target.value)); setTopicIndex(0); }}>{course?.units.map((item, index) => <option key={item.id} value={index}>{item.code} · {item.title}</option>)}</select></Field>
       <Field label="Revision topic"><select value={topicIndex} onChange={(event) => setTopicIndex(Number(event.target.value))}>{unit?.topics.map((item, index) => <option key={item.id} value={index}>{item.code} · {item.title}</option>)}</select></Field>
-      <button type="button" onClick={addTopicSection} disabled={!topic}><ListPlus />Add section</button>
+      <button type="button" onClick={() => addTopicSection()} disabled={!topic}><ListPlus />Add section</button>
     </div>}
 
     <div className="visual-editor-workspace">
-      <div className="visual-editor-stage" aria-label={mode === "homepage" ? "Homepage preview" : "Revision topic preview"}>
-        <div className="visual-browser-bar"><i></i><i></i><i></i><span><Monitor />Student preview</span></div>
+      <div className={`visual-editor-stage preview-${previewSize}`} aria-label={mode === "homepage" ? "Homepage preview" : "Revision topic preview"}>
+        <div className="visual-browser-bar"><i></i><i></i><i></i><span>Student preview</span><div className="visual-preview-size" role="group" aria-label="Preview size"><button type="button" className={previewSize === "desktop" ? "active" : ""} onClick={() => setPreviewSize("desktop")}><Monitor />Desktop</button><button type="button" className={previewSize === "mobile" ? "active" : ""} onClick={() => setPreviewSize("mobile")}><Smartphone />Mobile</button></div></div>
         {mode === "homepage" ? <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={homeDragEnd}>
           <SortableContext items={homeItems} strategy={verticalListSortingStrategy}>
             <div className="visual-home-canvas">
-              {bundle.homepageBlocks.map((block, index) => <SortableFrame key={block.id} id={block.id} selected={selectedBlockId === block.id} label={blockNames[block.type]} index={index} total={bundle.homepageBlocks.length} onSelect={() => setSelectedBlockId(block.id)} onMove={(from, to) => updateHomepage((blocks) => moveItem(blocks, from, to))}>
+              {bundle.homepageBlocks.map((block, index) => <div className="visual-block-with-insert" key={block.id}><SortableFrame id={block.id} selected={selectedBlockId === block.id} label={blockNames[block.type]} index={index} total={bundle.homepageBlocks.length} onSelect={() => setSelectedBlockId(block.id)} onMove={(from, to) => updateHomepage((blocks) => moveItem(blocks, from, to))} onDuplicate={block.type === "text" || block.type === "callout" || block.type === "image" ? () => duplicateHomeBlock(index) : undefined} onDelete={block.type === "text" || block.type === "callout" || block.type === "image" ? () => deleteHomeBlock(index) : undefined}>
                 <HomeBlockPreview block={block} bundle={bundle} assets={assets} />
-              </SortableFrame>)}
+              </SortableFrame><InsertMenu label="Add a homepage section here" onAdd={(type) => addHomeBlock(type, index)} /></div>)}
             </div>
           </SortableContext>
         </DndContext> : !topic ? <div className="visual-editor-empty"><BookOpen /><h2>No revision topic found</h2><p>Add a unit and topic in the course editor first.</p></div> : <div className="visual-topic-canvas" style={{ "--preview-accent": course.accent } as React.CSSProperties}>
@@ -190,19 +238,23 @@ export function VisualSiteEditor({ bundle, onChange, assets, onAssetsChange }: V
           <nav><b>Learn</b><span>Concept map</span><span>Remember</span><span>Practise</span><span>Exam</span></nav>
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={sectionDragEnd}>
             <SortableContext items={sectionItems} strategy={verticalListSortingStrategy}>
-              <main>{topic.sections.map((section, index) => <SortableFrame key={section.id} id={section.id} selected={selectedSection?.id === section.id} label={section.heading || `Section ${index + 1}`} index={index} total={topic.sections.length} onSelect={() => setSelectedSectionId(section.id)} onMove={(from, to) => updateTopic((sections) => moveItem(sections, from, to))}>
+              <main>{topic.sections.map((section, index) => <div className="visual-block-with-insert" key={section.id}><SortableFrame id={section.id} selected={selectedSection?.id === section.id} label={section.heading || `Section ${index + 1}`} index={index} total={topic.sections.length} onSelect={() => setSelectedSectionId(section.id)} onMove={(from, to) => updateTopic((sections) => moveItem(sections, from, to))} onDuplicate={() => duplicateTopicSection(index)} onDelete={() => deleteTopicSection(index)}>
                 <section className="visual-topic-section"><h2>{section.heading || "Untitled section"}</h2>{section.paragraphs.map((paragraph, paragraphIndex) => <p key={`${section.id}-p-${paragraphIndex}`}>{paragraph}</p>)}{section.bullets?.length ? <ul>{section.bullets.map((bullet, bulletIndex) => <li key={`${section.id}-b-${bulletIndex}`}>{bullet}</li>)}</ul> : null}{section.formula && <div className="visual-formula"><span>Formula</span><strong>{section.formula}</strong></div>}{section.example && <div className="visual-example"><Lightbulb /><p>{section.example}</p></div>}{section.image?.src && <figure><img src={imageSource(section.image.src, assets)} alt={section.image.alt} /><figcaption>{section.image.caption}</figcaption></figure>}{section.visual && <LearningVisual spec={section.visual} />}{section.visuals?.map((visual, visualIndex) => <LearningVisual key={`${section.id}-visual-${visualIndex}`} spec={visual} />)}</section>
-              </SortableFrame>)}</main>
+              </SortableFrame><button type="button" className="visual-section-insert" onClick={() => addTopicSection(index)}><Plus />Add a section here</button></div>)}</main>
             </SortableContext>
           </DndContext>
         </div>}
       </div>
 
       <aside className="visual-editor-inspector" aria-label="Selected item settings">
-        {mode === "homepage" ? <HomepageInspector block={selectedBlock} updateBlock={updateBlock} addBlock={addHomeBlock} assets={assets} uploadImage={uploadBlockImage} settings={bundle.siteSettings} updateSettings={(field, value) => onChange((draft) => { draft.siteSettings[field] = value; return draft; })} removeBlock={() => { if (!selectedBlock || selectedBlock.type === "hero" || selectedBlock.type === "courses" || selectedBlock.type === "tools") return; updateHomepage((blocks) => blocks.filter((item) => item.id !== selectedBlock.id)); }} /> : <TopicInspector section={selectedSection} update={(updater) => updateTopic((sections) => { const section = sections.find((item) => item.id === selectedSection?.id); if (section) updater(section); })} addSection={addTopicSection} />}
+        {mode === "homepage" ? <HomepageInspector block={selectedBlock} updateBlock={updateBlock} addBlock={addHomeBlock} assets={assets} uploadImage={uploadBlockImage} settings={bundle.siteSettings} updateSettings={(field, value) => onChange((draft) => { draft.siteSettings[field] = value; return draft; })} removeBlock={() => { const index = bundle.homepageBlocks.findIndex((item) => item.id === selectedBlock?.id); if (index >= 0) deleteHomeBlock(index); }} /> : <TopicInspector section={selectedSection} update={(updater) => updateTopic((sections) => { const section = sections.find((item) => item.id === selectedSection?.id); if (section) updater(section); })} addSection={() => addTopicSection()} assets={assets} uploadImage={uploadTopicImage} />}
       </aside>
     </div>
   </section>;
+}
+
+function InsertMenu({ label, onAdd }: { label: string; onAdd: (type: "text" | "callout" | "image") => void }) {
+  return <div className="visual-insert-menu"><span>{label}</span><button type="button" onClick={() => onAdd("text")}><Plus />Text</button><button type="button" onClick={() => onAdd("callout")}><Plus />Callout</button><button type="button" onClick={() => onAdd("image")}><Plus />Image</button></div>;
 }
 
 function HomeBlockPreview({ block, bundle, assets }: { block: HomeLayoutBlock; bundle: ContentBundle; assets: PendingAsset[] }) {
@@ -246,12 +298,12 @@ function HomepageInspector({ block, updateBlock, addBlock, assets, uploadImage, 
   </>;
 }
 
-function TopicInspector({ section, update, addSection }: { section?: EditableTopicSection; update: (updater: (section: EditableTopicSection) => void) => void; addSection: () => void }) {
+function TopicInspector({ section, update, addSection, assets, uploadImage }: { section?: EditableTopicSection; update: (updater: (section: EditableTopicSection) => void) => void; addSection: () => void; assets: PendingAsset[]; uploadImage: (file?: File) => Promise<void> }) {
   const paragraphText = section?.paragraphs.join("\n\n") ?? "";
   return <>
     <header><span>Revision topic</span><h2>{section?.heading || "Choose a section"}</h2><p>Select a revision topic section in the preview, then edit the text that students will see.</p></header>
     <div className="visual-inspector-body">
-      {section ? <div className="visual-inspector-fields"><Field label="Section heading"><input value={section.heading} onChange={(event) => update((draft) => { draft.heading = event.target.value; })} /></Field><Field label="Explanation paragraphs"><textarea rows={12} value={paragraphText} onChange={(event) => update((draft) => { draft.paragraphs = event.target.value.split(/\n\s*\n/).map((item) => item.trim()).filter(Boolean); })} /><small>Leave a blank line between paragraphs.</small></Field><Field label="Bullet points (one per line)"><textarea rows={7} value={listToLines(section.bullets)} onChange={(event) => update((draft) => { const items = linesToList(event.target.value); draft.bullets = items.length ? items : undefined; })} /></Field></div> : <p className="visual-inspector-empty">Choose a section in the preview to edit it.</p>}
+      {section ? <div className="visual-inspector-fields"><Field label="Section heading"><input value={section.heading} onChange={(event) => update((draft) => { draft.heading = event.target.value; })} /></Field><Field label="Explanation paragraphs"><textarea rows={12} value={paragraphText} onChange={(event) => update((draft) => { draft.paragraphs = event.target.value.split(/\n\s*\n/).map((item) => item.trim()).filter(Boolean); })} /><small>Leave a blank line between paragraphs.</small></Field><Field label="Bullet points (one per line)"><textarea rows={7} value={listToLines(section.bullets)} onChange={(event) => update((draft) => { const items = linesToList(event.target.value); draft.bullets = items.length ? items : undefined; })} /></Field><label className="visual-image-upload"><ImagePlus /><strong>{section.image?.src ? "Replace this image" : "Add an image"}</strong><span>Choose a PNG, JPEG or WebP file</span><input type="file" accept="image/png,image/jpeg,image/webp" onChange={(event) => void uploadImage(event.target.files?.[0])} /></label>{section.image?.src && <><img className="visual-inspector-image" src={imageSource(section.image.src, assets)} alt="Draft preview" /><Field label="Describe the image for screen readers"><textarea rows={3} value={section.image.alt} onChange={(event) => update((draft) => { if (draft.image) draft.image.alt = event.target.value; })} /></Field><Field label="Caption shown below the image"><input value={section.image.caption} onChange={(event) => update((draft) => { if (draft.image) draft.image.caption = event.target.value; })} /></Field><button type="button" className="visual-remove-block" onClick={() => update((draft) => { draft.image = undefined; })}>Remove image</button></>}</div> : <p className="visual-inspector-empty">Choose a section in the preview to edit it.</p>}
       <button type="button" className="visual-add-section" onClick={addSection}><ListPlus />Add a new section</button>
     </div>
   </>;
