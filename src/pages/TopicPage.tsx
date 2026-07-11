@@ -2,14 +2,18 @@ import { AlertTriangle, ArrowDownRight, CheckCircle2, ChevronRight, Clock3, File
 import { useEffect, useState, type KeyboardEvent } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ConceptMap } from "../components/ConceptMap";
+import { BusinessInfographic } from "../components/BusinessInfographic";
 import { EnterpriseSimpleMode } from "../components/EnterpriseSimpleMode";
 import { ExamPractice } from "../components/ExamPractice";
 import { GuidedTopicJourney, type JourneyStage } from "../components/GuidedTopicJourney";
 import LearningVisual from "../components/LearningVisual";
+import { SectionStoryVisual } from "../components/SectionStoryVisual";
 import { Quiz } from "../components/Quiz";
 import { InteractiveVisualActivity, VocabularyFlashcards } from "../components/RevisionPractice";
 import { TopicVideo } from "../components/TopicVideo";
+import { TechnologyKnowledgePoster } from "../components/TechnologyKnowledgePoster";
 import { courseBySlug, findTopic } from "../data/courses";
+import { getBusinessInfographic } from "../data/businessInfographics";
 import { anchorForTerm, topicSectionAnchor } from "../lib/topicNavigation";
 import { createQuizSession } from "../lib/quizEngine";
 import { NotFoundPage } from "./NotFoundPage";
@@ -78,9 +82,12 @@ export function TopicPage() {
             {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
             {section.formula && <div className="formula-card"><span>Formula</span><strong>{section.formula}</strong></div>}
             {section.example && <div className="example-callout"><Lightbulb /><div><strong>Worked example</strong><p>{section.example}</p></div></div>}
+            <SectionStoryVisual courseId={course.id} topicTitle={topic.title} section={section} sectionIndex={index} />
+            {course.id === "business" && getBusinessInfographic(section.heading) && <BusinessInfographic spec={getBusinessInfographic(section.heading)!} />}
             {section.image && <figure className="topic-illustration"><img src={`${import.meta.env.BASE_URL}${section.image.src}`} alt={section.image.alt} loading="lazy" /><figcaption>{section.image.caption}</figcaption></figure>}
             {section.visual && <LearningVisual spec={section.visual} />}
             {section.visuals?.map((visual) => <LearningVisual key={`${section.heading}-${visual.title}`} spec={visual} />)}
+            <TechnologyKnowledgePoster courseId={course.id} topicTitle={topic.title} section={section} />
           </section>)}</div>
           <aside className="topic-sidebar"><div className="sidebar-panel vocabulary-panel"><span className="eyebrow">Key vocabulary</span><p className="vocabulary-panel__hint">Choose a term to jump straight to the explanation.</p><dl>{topic.keyTerms.map((term) => <div key={term.term}><dt><a href={`#${anchorForTerm(topic, term)}`}>{term.term}<ArrowDownRight size={15} /></a></dt><dd>{term.definition}</dd></div>)}</dl></div>{visualIndex.length > 0 && <div className="sidebar-panel visual-index"><span className="eyebrow">Visuals in this guide</span>{visualIndex.map(({ section, visual }) => <span key={`${section}-${visual.title}`}><CheckCircle2 size={15} />{visual.title}</span>)}</div>}</aside>
         </div>}

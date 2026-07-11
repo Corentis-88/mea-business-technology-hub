@@ -1,0 +1,28 @@
+.business-infographic {
+  --bi-ink: var(--colour-ink, #17213a);
+  --bi-paper: var(--colour-surface, #fff);
+  margin: 1.5rem 0;
+  color: var(--bi-ink);
+  border: 1px solid color-mix(in srgb, var(--bi-ink) 13%, transparent);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: linear-gradient(145deg, color-mix(in srgb, #2864dc 7%, var(--bi-paper)), var(--bi-paper) 48%, color-mix(in srgb, #8b5cf6 6%, var(--bi-paper)));
+  box-shadow: 0 .8rem 2rem color-mix(in srgb, var(--bi-ink) 9%, transparent);
+}
+.business-infographic__header { padding: 1.15rem 1.25rem .65rem; }
+.business-infographic__header span { color: var(--course-accent, #2864dc); font-size: .7rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+.business-infographic__header h3 { margin: .25rem 0 0; font-size: clamp(1.15rem, 2.4vw, 1.55rem); }
+.business-infographic__panels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; padding: .7rem 1rem 1rem; }
+.business-infographic__panel { --bi-tone: #2864dc; position: relative; min-width: 0; padding: 1rem; border-radius: 1rem; background: color-mix(in srgb, var(--bi-tone) 11%, var(--bi-paper)); border-top: .35rem solid var(--bi-tone); box-shadow: 0 .35rem .8rem color-mix(in srgb, var(--bi-ink) 8%, transparent); }
+.business-infographic__panel--green { --bi-tone: #16835f; }.business-infographic__panel--gold { --bi-tone: #b66b00; }.business-infographic__panel--coral { --bi-tone: #d34b4b; }.business-infographic__panel--purple { --bi-tone: #7553c6; }
+.business-infographic__topline { display: flex; align-items: center; gap: .45rem; color: var(--bi-tone); font-size: .72rem; letter-spacing: .035em; text-transform: uppercase; }
+.business-infographic__icon { display: grid; place-items: center; width: 2.15rem; height: 2.15rem; flex: 0 0 auto; border-radius: 50%; background: color-mix(in srgb, var(--bi-tone) 18%, var(--bi-paper)); font-size: 1.15rem; }
+.business-infographic__panel h4 { margin: .75rem 0 .35rem; font-size: 1.02rem; color: var(--bi-ink); }
+.business-infographic__panel p { margin: 0; font-size: .86rem; line-height: 1.5; color: color-mix(in srgb, var(--bi-ink) 82%, transparent); }
+.business-infographic__example { display: grid; gap: .15rem; margin-top: .7rem; padding-top: .65rem; border-top: 1px dashed color-mix(in srgb, var(--bi-tone) 35%, transparent); font-size: .76rem; line-height: 1.4; }
+.business-infographic__example b { color: var(--bi-tone); }
+.business-infographic figcaption { display: flex; gap: .5rem; align-items: flex-start; padding: .9rem 1.2rem; background: color-mix(in srgb, #f2ca3a 18%, var(--bi-paper)); border-top: 1px solid color-mix(in srgb, var(--bi-ink) 10%, transparent); font-size: .9rem; line-height: 1.5; }
+.business-infographic figcaption strong { white-space: nowrap; }
+@media (max-width: 850px) { .business-infographic__panels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .business-infographic__panels { grid-template-columns: 1fr; } .business-infographic figcaption { flex-wrap: wrap; } }
+@media (forced-colors: active) { .business-infographic,.business-infographic__panel { border: 1px solid CanvasText; } }

@@ -3,6 +3,8 @@ import { enterpriseSimpleGuideByTopic, enterpriseSimpleVisuals, simplifyEnterpri
 import type { Topic } from "../types";
 import LearningVisual from "./LearningVisual";
 import { SimpleConceptVisual } from "./SimpleConceptVisual";
+import { enterpriseRichVisuals } from "../data/enterpriseRichVisuals";
+import { EnterpriseRichVisual } from "./EnterpriseRichVisual";
 
 export function EnterpriseSimpleMode({ topic }: { topic: Topic }) {
   const guide = enterpriseSimpleGuideByTopic.get(topic.id);
@@ -20,6 +22,8 @@ export function EnterpriseSimpleMode({ topic }: { topic: Topic }) {
           <small>Short sentences are used here. Important course words are kept and explained.</small>
         </div>
       </header>
+
+      {enterpriseRichVisuals[topic.id] && <EnterpriseRichVisual spec={enterpriseRichVisuals[topic.id]} />}
 
       <div className="simple-learning__layout">
         <div className="simple-learning__sections">
