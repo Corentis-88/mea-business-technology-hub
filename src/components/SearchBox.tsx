@@ -61,7 +61,7 @@ export function SearchBox({ large, initialValue = "", courseId, autoFocus }: Sea
       </form>
       {open && suggestions.length > 0 && (
         <div className="search-suggestions" role="listbox" aria-label="Search suggestions">
-          {suggestions.map(({ item }) => (
+          {suggestions.map(({ item, matchType }) => (
             <button
               type="button"
               key={item.id}
@@ -71,7 +71,7 @@ export function SearchBox({ large, initialValue = "", courseId, autoFocus }: Sea
               onClick={() => navigate(`/course/${item.courseId === "computer-science" ? "computer-science" : item.courseId === "creative-imedia" ? "creative-imedia" : item.courseId}/unit/${item.unitId}/topic/${item.topicId}`)}
             >
               <span><strong>{item.title}</strong><small>{item.courseTitle} · {item.topicCode}</small></span>
-              <span className="suggestion-type">Topic</span>
+              <span className="suggestion-type">{matchType === "suggestion" ? "Suggested" : "Topic"}</span>
             </button>
           ))}
           <button type="button" className="search-suggestions__all" onClick={() => submit()}>
