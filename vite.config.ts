@@ -2,7 +2,7 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/mea-business-technology-hub/" : "/",
+  base: process.env.VITE_BASE_PATH ?? (command === "build" ? "/mea-business-technology-hub/" : "/"),
   plugins: [react()],
   publicDir: "research",
   server: { port: 4173, strictPort: true },
